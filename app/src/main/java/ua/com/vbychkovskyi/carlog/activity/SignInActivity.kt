@@ -19,8 +19,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
 
-        findViewById<SignInButton>(R.id.sign_in_button)
-                .setOnClickListener(this)
+        findViewById<SignInButton>(R.id.sign_in_button).setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -33,17 +32,13 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
         val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        val signInIntent = mGoogleSignInClient.signInIntent
-        startActivityForResult(signInIntent, 10)
+        startActivityForResult(mGoogleSignInClient.signInIntent, 10)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == 10) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
         }
@@ -55,7 +50,6 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
             startActivity(Intent(this, MainActivity::class.java))
 
-            // Signed in successfully, show authenticated UI.
             println(account)
         } catch (e: ApiException) {
             println(e)
