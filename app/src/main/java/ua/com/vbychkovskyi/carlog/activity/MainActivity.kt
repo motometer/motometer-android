@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
+import android.widget.TextView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import ua.com.vbychkovskyi.carlog.R
 import ua.com.vbychkovskyi.carlog.activity.listener.SignOutListener
@@ -20,5 +21,9 @@ class MainActivity : AppCompatActivity() {
         if (account == null) {
             startActivity(Intent(this, SignInActivity::class.java))
         }
+
+        val user = account?.displayName ?: "Unknown"
+
+        findViewById<TextView>(R.id.welcome_header).text = "Hello, $user"
     }
 }
