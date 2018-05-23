@@ -22,8 +22,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, SignInActivity::class.java))
         }
 
-        val user = account?.displayName ?: "Unknown"
-
-        findViewById<TextView>(R.id.welcome_header).text = "Hello, $user"
+        findViewById<TextView>(R.id.welcome_header).text = account?.displayName ?: "Unknown"
     }
 }
