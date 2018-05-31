@@ -39,28 +39,28 @@
         android:layout_marginTop="43dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/run_distance"
+        app:layout_constraintBottom_toTopOf="@+id/car_run_distance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/car_name" />
 
     <EditText
-        android:id="@+id/run_distance"
+        android:id="@+id/car_run_distance"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
         android:layout_marginTop="21dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/Add"
+        app:layout_constraintBottom_toTopOf="@+id/create_car"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/car_made_year_input" />
 
     <Button
-        android:id="@+id/Add"
+        android:id="@+id/create_car"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -68,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/run_distance" />
+        app:layout_constraintTop_toBottomOf="@+id/car_run_distance" />
 
     <TextView
         android:id="@+id/car_made_year_label"
@@ -90,7 +90,7 @@
         android:layout_marginBottom="11dp"
         android:layout_marginTop="34dp"
         android:text="@string/car_run_distance_label"
-        app:layout_constraintBottom_toTopOf="@+id/run_distance"
+        app:layout_constraintBottom_toTopOf="@+id/car_run_distance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
