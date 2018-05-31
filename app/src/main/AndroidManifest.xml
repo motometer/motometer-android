@@ -16,8 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MyCarsActivity"/>
-        <activity android:name=".activity.SignInActivity"/>
+        <activity android:name=".activity.SignInActivity" />
+        <activity android:name=".activity.AddCarActivity"></activity>
     </application>
 
 </manifest>

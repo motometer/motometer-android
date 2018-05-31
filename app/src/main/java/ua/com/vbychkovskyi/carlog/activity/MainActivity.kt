@@ -15,6 +15,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         findViewById<Button>(R.id.sign_out).setOnClickListener(SignOutListener(this))
+        findViewById<Button>(R.id.add_car).setOnClickListener( {
+            startActivity(Intent(this, AddCarActivity::class.java))
+        })
 
         val account = GoogleSignIn.getLastSignedInAccount(this)
 
