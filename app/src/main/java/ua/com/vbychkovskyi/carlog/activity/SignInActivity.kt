@@ -27,6 +27,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
             return
         }
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("464386106544-14iv4phhvnao1ek4papjeids6c7du2a7.apps.googleusercontent.com")
                 .requestEmail()
                 .build()
 
@@ -47,6 +48,8 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
+
+            print("ID_TOKEN=${account.idToken}")
 
             startActivity(Intent(this, MainActivity::class.java))
 
