@@ -1,4 +1,4 @@
-package ua.com.vbychkovskyi.carlog
+package ua.com.motometer
 
 import org.junit.Test
 

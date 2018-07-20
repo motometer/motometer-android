@@ -1,4 +1,4 @@
-package ua.com.vbychkovskyi.carlog.activity
+package ua.com.motometer.activity
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -10,7 +10,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import ua.com.vbychkovskyi.carlog.R
+import ua.com.motometer.R
 
 
 class SignInActivity : AppCompatActivity(), View.OnClickListener {

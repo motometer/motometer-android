@@ -1,4 +1,4 @@
-package ua.com.vbychkovskyi.carlog.activity
+package ua.com.motometer.activity
 
 import android.os.AsyncTask
 import org.apache.http.NameValuePair

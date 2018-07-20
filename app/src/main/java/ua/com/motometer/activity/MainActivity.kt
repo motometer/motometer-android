@@ -1,4 +1,4 @@
-package ua.com.vbychkovskyi.carlog.activity
+package ua.com.motometer.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.TextView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import ua.com.vbychkovskyi.carlog.R
-import ua.com.vbychkovskyi.carlog.activity.listener.SignOutListener
+import ua.com.motometer.R
+import ua.com.motometer.activity.listener.SignOutListener
 
 class MainActivity : AppCompatActivity() {
 
