@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "265436435109",
+    "firebase_url": "https://motometer-210608.firebaseio.com",
+    "project_id": "motometer-210608",
+    "storage_bucket": "motometer-210608.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265436435109:android:69a87505e7fdb8bb",
+        "android_client_info": {
+          "package_name": "ua.com.motometer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "265436435109-3jb37hf78582pbq4flv9tr0dasok6b78.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ua.com.motometer",
+            "certificate_hash": "5d95055adda2f01e9809499d5fdcef9f9a206aac"
+          }
+        },
+        {
+          "client_id": "265436435109-706tu2p7fl6te113f15vcuihf802hgkp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYEA_-l1wMigOVclNjwj08PPMSnzJK-f0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "265436435109-706tu2p7fl6te113f15vcuihf802hgkp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

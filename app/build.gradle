@@ -28,7 +28,7 @@ android {
 dependencies {
     implementation 'com.google.android.gms:play-services-auth:15.0.1'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation 'com.android.support:design:27.1.1'
@@ -39,3 +39,23 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
+
+task copyDebugConfig(type: Copy) {
+    description = 'Switches to DEVELOPMENT google-services.json'
+    from "debug"
+    include "google-services.json"
+    into "."
+}
+
+task copyProdConfig(type: Copy) {
+    description = 'Switches to PRODUCTION google-services.json'
+    from "prod"
+    include "google-services.json"
+    into "."
+}
+
+afterEvaluate {
+    processDebugGoogleServices.dependsOn copyDebugConfig
+
+    processReleaseGoogleServices.dependsOn copyProdConfig
+}
