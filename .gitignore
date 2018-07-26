@@ -55,5 +55,5 @@ fastlane/test_output
 fastlane/readme.md
 !gradle-wrapper.jar
 
-!app/prod/google-services.json
-!app/debug/google-services.json
+!app/src/debug/google-services.json
+!app/src/release/google-services.json

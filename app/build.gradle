@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+
 
 android {
     signingConfigs {
@@ -37,9 +37,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
-
-apply plugin: 'com.google.gms.google-services'
-
 task copyDebugConfig(type: Copy) {
     description = 'Switches to DEVELOPMENT google-services.json'
     from "debug"
@@ -52,10 +49,4 @@ task copyProdConfig(type: Copy) {
     from "prod"
     include "google-services.json"
     into "."
-}
-
-afterEvaluate {
-    processDebugGoogleServices.dependsOn copyDebugConfig
-
-    processReleaseGoogleServices.dependsOn copyProdConfig
 }
