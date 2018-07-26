@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Car Log</string>
+    <string name="app_name">Motometer</string>
     <string name="my_cars_button">My cars</string>
     <string name="sign_out_button">Sign out</string>
     <string name="car_name_label">Car name</string>
