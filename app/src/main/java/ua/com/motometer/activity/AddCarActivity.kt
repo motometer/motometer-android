@@ -17,7 +17,7 @@ class AddCarActivity : AppCompatActivity() {
             val carMadeYear = findViewById<TextView>(R.id.car_made_year_input).text
             val carRunDistance = findViewById<TextView>(R.id.car_run_distance).text
 
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, LauncherActivity::class.java))
         })
     }
 }

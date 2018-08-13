@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
-import java.util.*
+import java.util.Arrays
 
 class SignInActivity : AppCompatActivity() {
 
@@ -37,9 +37,9 @@ class SignInActivity : AppCompatActivity() {
                 // Successfully signed in
                 val user = FirebaseAuth.getInstance().currentUser
                 // ...
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, HomeActivity::class.java))
             } else {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, LauncherActivity::class.java))
             }
         }
     }

@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.view.View
 import com.firebase.ui.auth.AuthUI
-import ua.com.motometer.activity.MainActivity
+import ua.com.motometer.activity.LauncherActivity
 
 
 class SignOutListener(private val activity: Activity) : View.OnClickListener {
@@ -13,8 +13,7 @@ class SignOutListener(private val activity: Activity) : View.OnClickListener {
                 .signOut(activity)
                 .addOnCompleteListener {
                     print("Signed out")
+                    activity.startActivity(Intent(activity, LauncherActivity::class.java))
                 }
-
-        activity.startActivity(Intent(activity, MainActivity::class.java))
     }
 }
