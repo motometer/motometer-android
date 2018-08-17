@@ -2,8 +2,20 @@
     <string name="app_name">Motometer</string>
     <string name="my_cars_button">My cars</string>
     <string name="sign_out_button">Sign out</string>
-    <string name="car_name_label">Car name</string>
-    <string name="create_car_button">Create car</string>
-    <string name="car_made_year_label">Car made year</string>
-    <string name="car_run_distance_label">Car run distance</string>
+    <string name="title_activity_home">Motometer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="nav_home_title">Home</string>
+    <string name="nav_profile_title">My profile</string>
+    <string name="nav_cars_title">My cars</string>
+    <string name="nav_settings_title">Settings</string>
+    <string name="nav_actions_title">Actions</string>
+    <string name="nav_share_title">Share</string>
+    <string name="nav_feedback_title">Feedback</string>
+    <string name="nav_about_title">About</string>
+    <string name="nav_sign_out_title">Sign out</string>
 </resources>

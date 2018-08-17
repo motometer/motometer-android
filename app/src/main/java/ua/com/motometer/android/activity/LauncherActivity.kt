@@ -1,10 +1,10 @@
-package ua.com.motometer.activity
+package ua.com.motometer.android.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import ua.com.motometer.R
+import ua.com.motometer.android.R
 
 
 class LauncherActivity : AppCompatActivity() {

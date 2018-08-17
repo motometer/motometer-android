@@ -1,12 +1,10 @@
-package ua.com.motometer.activity
+package ua.com.motometer.android.activity
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.IdpResponse
-import com.google.firebase.auth.FirebaseAuth
 import java.util.Arrays
 
 class SignInActivity : AppCompatActivity() {
@@ -31,12 +29,7 @@ class SignInActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == RC_SIGN_IN) {
-            val response = IdpResponse.fromResultIntent(data)
-
             if (resultCode == Activity.RESULT_OK) {
-                // Successfully signed in
-                val user = FirebaseAuth.getInstance().currentUser
-                // ...
                 startActivity(Intent(this, HomeActivity::class.java))
             } else {
                 startActivity(Intent(this, LauncherActivity::class.java))

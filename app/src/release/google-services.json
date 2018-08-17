@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:265436435109:android:69a87505e7fdb8bb",
         "android_client_info": {
-          "package_name": "ua.com.motometer"
+          "package_name": "ua.com.motometer.android"
         }
       },
       "oauth_client": [

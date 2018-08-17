@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:60934991841:android:69a87505e7fdb8bb",
+        "mobilesdk_app_id": "1:60934991841:android:4fa80a94cfe2a793",
         "android_client_info": {
-          "package_name": "ua.com.motometer"
+          "package_name": "ua.com.motometer.android"
         }
       },
       "oauth_client": [
         {
-          "client_id": "60934991841-o95t01ropp19sr0euklllnps9r0jjmi4.apps.googleusercontent.com",
+          "client_id": "60934991841-hgmlg3fhucfdkblb32e17tamje2suv6f.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "ua.com.motometer",
+            "package_name": "ua.com.motometer.android",
             "certificate_hash": "5d95055adda2f01e9809499d5fdcef9f9a206aac"
           }
         },
