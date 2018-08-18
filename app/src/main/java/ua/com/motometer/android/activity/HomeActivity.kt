@@ -53,10 +53,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.home, menu)
 
-        val account = accountFacade.currentUser()
-
-        nav_header_title.text = account.displayName()
-        nav_header_email.text = account.email()
+        accountFacade.currentUser()
+                .subscribe { account ->
+                    nav_header_title.text = account.displayName()
+                    nav_header_email.text = account.email()
+                }
 
         return true
     }
