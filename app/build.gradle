@@ -49,7 +49,13 @@ dependencies {
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation "com.google.dagger:dagger:$dagger_version"
+
+    implementation 'ua.com.motometer:annotations:0.1.0-SNAPSHOT'
+
+    compileOnly "org.immutables:value:$immutables_version"
+
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    annotationProcessor "org.immutables:value:$immutables_version"
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.assertj:assertj-core:3.10.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

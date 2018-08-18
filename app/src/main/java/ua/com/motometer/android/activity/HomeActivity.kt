@@ -9,19 +9,25 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
 import com.firebase.ui.auth.AuthUI
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
+import kotlinx.android.synthetic.main.nav_header_home.*
 import ua.com.motometer.android.R
+import ua.com.motometer.android.facade.AccountFacade
+import ua.com.motometer.android.facade.DaggerFacadesComponent
+import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    @Inject
+    lateinit var accountFacade: AccountFacade
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
+        DaggerFacadesComponent.create().inject(this)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -45,16 +51,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.home, menu)
 
-        val user = FirebaseAuth.getInstance().currentUser
+        val account = accountFacade.currentUser()
 
-        val title = findViewById<TextView>(R.id.nav_header_title)
-        val email = findViewById<TextView>(R.id.nav_header_email)
-
-        title.text = user?.displayName ?: "No name"
-        email.text = user?.email ?: "empty@gmail.com"
+        nav_header_title.text = account.displayName()
+        nav_header_email.text = account.email()
 
         return true
     }
