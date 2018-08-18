@@ -2,10 +2,14 @@ package ua.com.motometer.android.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
+import ua.com.motometer.android.facade.AccountFacade
+import ua.com.motometer.android.facade.DaggerFacadesComponent
 import java.util.Arrays
+import javax.inject.Inject
 
 class SignInActivity : AppCompatActivity() {
 
@@ -15,8 +19,12 @@ class SignInActivity : AppCompatActivity() {
             AuthUI.IdpConfig.EmailBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build())
 
+    @Inject
+    lateinit var accountFacade: AccountFacade
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DaggerFacadesComponent.create().inject(this)
         startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
@@ -30,6 +38,9 @@ class SignInActivity : AppCompatActivity() {
 
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == Activity.RESULT_OK) {
+                AsyncTask.execute {
+                    accountFacade.signIn()
+                }
                 startActivity(Intent(this, HomeActivity::class.java))
             } else {
                 startActivity(Intent(this, LauncherActivity::class.java))
