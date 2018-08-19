@@ -73,10 +73,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_profile -> {
-                // Handle the camera action
+
             }
             R.id.nav_cars -> {
 
@@ -91,16 +90,20 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.sign_out -> {
-                AuthUI.getInstance()
-                        .signOut(this)
-                        .addOnCompleteListener {
-                            print("Signed out")
-                            startActivity(Intent(this, LauncherActivity::class.java))
-                        }
+                signOut()
             }
         }
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun signOut() {
+        AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener {
+                    print("Signed out")
+                    startActivity(Intent(this, LauncherActivity::class.java))
+                }
     }
 }
