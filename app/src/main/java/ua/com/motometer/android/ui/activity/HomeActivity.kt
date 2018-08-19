@@ -1,4 +1,4 @@
-package ua.com.motometer.android.activity
+package ua.com.motometer.android.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 import kotlinx.android.synthetic.main.nav_header_home.*
 import ua.com.motometer.android.R
-import ua.com.motometer.android.facade.AccountFacade
-import ua.com.motometer.android.facade.DaggerFacadesComponent
+import ua.com.motometer.android.core.facade.AccountFacade
+import ua.com.motometer.android.core.facade.DaggerFacadesComponent
 import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {

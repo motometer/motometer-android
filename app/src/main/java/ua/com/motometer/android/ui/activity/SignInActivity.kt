@@ -1,4 +1,4 @@
-package ua.com.motometer.android.activity
+package ua.com.motometer.android.ui.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -6,8 +6,8 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
-import ua.com.motometer.android.facade.AccountFacade
-import ua.com.motometer.android.facade.DaggerFacadesComponent
+import ua.com.motometer.android.core.facade.AccountFacade
+import ua.com.motometer.android.core.facade.DaggerFacadesComponent
 import java.util.Arrays
 import javax.inject.Inject
 

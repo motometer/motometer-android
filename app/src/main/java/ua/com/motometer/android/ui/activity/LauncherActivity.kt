@@ -1,4 +1,4 @@
-package ua.com.motometer.android.activity
+package ua.com.motometer.android.ui.activity
 
 import android.content.Intent
 import android.os.Bundle

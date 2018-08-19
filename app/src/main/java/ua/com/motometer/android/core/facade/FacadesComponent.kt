@@ -1,8 +1,8 @@
-package ua.com.motometer.android.facade
+package ua.com.motometer.android.core.facade
 
 import dagger.Component
-import ua.com.motometer.android.activity.HomeActivity
-import ua.com.motometer.android.activity.SignInActivity
+import ua.com.motometer.android.ui.activity.HomeActivity
+import ua.com.motometer.android.ui.activity.SignInActivity
 import javax.inject.Singleton
 
 @Singleton

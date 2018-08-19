@@ -1,4 +1,4 @@
-package ua.com.motometer.android.facade.model;
+package ua.com.motometer.android.core.facade.model;
 
 import org.immutables.value.Value;
 

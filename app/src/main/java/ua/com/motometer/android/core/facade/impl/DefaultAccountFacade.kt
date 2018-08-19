@@ -1,11 +1,11 @@
-package ua.com.motometer.android.facade.impl
+package ua.com.motometer.android.core.facade.impl
 
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.Observable
-import ua.com.motometer.android.facade.AccountFacade
-import ua.com.motometer.android.facade.model.ImmutableUserDetails
-import ua.com.motometer.android.facade.model.UserDetails
+import ua.com.motometer.android.core.facade.AccountFacade
+import ua.com.motometer.android.core.facade.model.ImmutableUserDetails
+import ua.com.motometer.android.core.facade.model.UserDetails
 import javax.inject.Inject
 
 class DefaultAccountFacade @Inject constructor() : AccountFacade {
