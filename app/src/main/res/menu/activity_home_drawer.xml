@@ -13,7 +13,7 @@
             android:icon="@drawable/ic_menu_profile"
             android:title="@string/nav_profile_title" />
         <item
-            android:id="@+id/nav_cars"
+            android:id="@+id/nav_garage"
             android:icon="@drawable/ic_menu_cars"
             android:title="@string/nav_cars_title" />
         <item

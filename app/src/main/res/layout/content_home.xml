@@ -8,4 +8,10 @@
     tools:context=".ui.activity.HomeActivity"
     tools:showIn="@layout/app_bar_home">
 
+    <FrameLayout
+        android:id="@+id/garage_list"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0px" />
+
 </android.support.constraint.ConstraintLayout>

@@ -2,8 +2,8 @@ package ua.com.motometer.android.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -16,12 +16,18 @@ import kotlinx.android.synthetic.main.nav_header_home.*
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.facade.AccountFacade
 import ua.com.motometer.android.core.facade.DaggerFacadesComponent
+import ua.com.motometer.android.core.facade.GarageFacade
+import ua.com.motometer.android.core.facade.model.Vehicle
+import ua.com.motometer.android.ui.GarageListFragment
 import javax.inject.Inject
 
-class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, GarageListFragment.OnListFragmentInteractionListener {
 
     @Inject
     lateinit var accountFacade: AccountFacade
+
+    @Inject
+    lateinit var garageFacade: GarageFacade
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +46,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction().run {
+                replace(R.id.garage_list, GarageListFragment())
+                commit()
+            }
+        }
     }
 
     override fun onBackPressed() {
@@ -77,7 +90,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_profile -> {
 
             }
-            R.id.nav_cars -> {
+            R.id.nav_garage -> {
 
             }
             R.id.nav_settings -> {
@@ -105,5 +118,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     print("Signed out")
                     startActivity(Intent(this, LauncherActivity::class.java))
                 }
+    }
+
+    override fun onListFragmentInteraction(item: Vehicle?) {
+        print("Click on $item")
     }
 }

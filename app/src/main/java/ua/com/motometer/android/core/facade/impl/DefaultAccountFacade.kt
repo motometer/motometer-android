@@ -6,9 +6,8 @@ import io.reactivex.Observable
 import ua.com.motometer.android.core.facade.AccountFacade
 import ua.com.motometer.android.core.facade.model.ImmutableUserDetails
 import ua.com.motometer.android.core.facade.model.UserDetails
-import javax.inject.Inject
 
-class DefaultAccountFacade @Inject constructor() : AccountFacade {
+class DefaultAccountFacade : AccountFacade {
     override fun signIn() {
         Log.d("", "User has signed in")
     }

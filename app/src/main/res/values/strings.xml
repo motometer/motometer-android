@@ -11,7 +11,7 @@
     <string name="action_settings">Settings</string>
     <string name="nav_home_title">Home</string>
     <string name="nav_profile_title">My profile</string>
-    <string name="nav_cars_title">My cars</string>
+    <string name="nav_cars_title">Garage</string>
     <string name="nav_settings_title">Settings</string>
     <string name="nav_actions_title">Actions</string>
     <string name="nav_share_title">Share</string>
