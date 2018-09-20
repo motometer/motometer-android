@@ -46,5 +46,6 @@ class SignInActivity : AppCompatActivity() {
                 startActivity(Intent(this, LauncherActivity::class.java))
             }
         }
+        finish()
     }
 }

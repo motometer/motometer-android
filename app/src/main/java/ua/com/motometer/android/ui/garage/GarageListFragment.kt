@@ -1,4 +1,4 @@
-package ua.com.motometer.android.ui
+package ua.com.motometer.android.ui.garage
 
 import android.content.Context
 import android.os.Bundle
@@ -9,10 +9,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ua.com.motometer.android.R
-import ua.com.motometer.android.core.facade.impl.StubGarageFacade
+import ua.com.motometer.android.core.facade.DaggerFacadesComponent
+import ua.com.motometer.android.core.facade.GarageFacade
 import ua.com.motometer.android.core.facade.model.Vehicle
+import ua.com.motometer.android.ui.common.ReadWriteTask
+import javax.inject.Inject
 
 class GarageListFragment : Fragment() {
+
+    @Inject
+    lateinit var garageFacade: GarageFacade
 
     private var listener: OnListFragmentInteractionListener? = null
 
@@ -21,16 +27,17 @@ class GarageListFragment : Fragment() {
         val view = inflater.inflate(R.layout.garage_list, container, false)
 
         if (view is RecyclerView) {
-            with(view) {
-                layoutManager = LinearLayoutManager(context)
-                adapter = GarageListRecyclerViewAdapter(StubGarageFacade().vehicles(), listener)
-            }
+            view.layoutManager = LinearLayoutManager(context)
+            ReadWriteTask(garageFacade::vehicles) { vehicles ->
+                view.adapter = GarageListRecyclerViewAdapter(vehicles, listener)
+            }.execute()
         }
         return view
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        DaggerFacadesComponent.create().inject(this)
         if (context is OnListFragmentInteractionListener) {
             listener = context
         } else {

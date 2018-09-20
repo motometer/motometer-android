@@ -24,6 +24,10 @@
             android:name=".ui.activity.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.GarageActivity"
+            android:label="@string/title_activity_garage"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

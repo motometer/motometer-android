@@ -1,41 +1,24 @@
 package ua.com.motometer.android.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
-import android.view.Menu
+import android.util.Log
 import android.view.MenuItem
-import com.firebase.ui.auth.AuthUI
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
-import kotlinx.android.synthetic.main.nav_header_home.*
 import ua.com.motometer.android.R
-import ua.com.motometer.android.core.facade.AccountFacade
-import ua.com.motometer.android.core.facade.DaggerFacadesComponent
-import ua.com.motometer.android.core.facade.GarageFacade
-import ua.com.motometer.android.core.facade.model.Vehicle
-import ua.com.motometer.android.ui.GarageListFragment
-import javax.inject.Inject
+import ua.com.motometer.android.ui.menu.createListener
 
-class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, GarageListFragment.OnListFragmentInteractionListener {
-
-    @Inject
-    lateinit var accountFacade: AccountFacade
-
-    @Inject
-    lateinit var garageFacade: GarageFacade
+class HomeActivity : AbstractMenuActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
-        DaggerFacadesComponent.create().inject(this)
 
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener {view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
@@ -45,82 +28,22 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
-        nav_view.setNavigationItemSelectedListener(this)
-
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().run {
-                replace(R.id.garage_list, GarageListFragment())
-                commit()
-            }
-        }
+        nav_view.setNavigationItemSelectedListener(createListener(drawer_layout, this))
     }
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
+            Log.d(javaClass.simpleName, "Closing app...")
             super.onBackPressed()
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.home, menu)
-
-        accountFacade.currentUser()
-                .subscribe { account ->
-                    nav_header_title.text = account.displayName()
-                    nav_header_email.text = account.email()
-                }
-
-        return true
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
             R.id.action_settings -> return true
             else -> return super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.nav_profile -> {
-
-            }
-            R.id.nav_garage -> {
-
-            }
-            R.id.nav_settings -> {
-
-            }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_feedback -> {
-
-            }
-            R.id.sign_out -> {
-                signOut()
-            }
-        }
-
-        drawer_layout.closeDrawer(GravityCompat.START)
-        return true
-    }
-
-    private fun signOut() {
-        AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener {
-                    print("Signed out")
-                    startActivity(Intent(this, LauncherActivity::class.java))
-                }
-    }
-
-    override fun onListFragmentInteraction(item: Vehicle?) {
-        print("Click on $item")
     }
 }
