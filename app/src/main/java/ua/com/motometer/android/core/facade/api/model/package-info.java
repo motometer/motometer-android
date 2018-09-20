@@ -1,4 +1,4 @@
 @NotNullByDefault
-package ua.com.motometer.android.core.facade.model;
+package ua.com.motometer.android.core.facade.api.model;
 
 import ua.com.motometer.annotations.NotNullByDefault;

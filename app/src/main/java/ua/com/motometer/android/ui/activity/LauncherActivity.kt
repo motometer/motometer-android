@@ -5,22 +5,21 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import ua.com.motometer.android.R
-import ua.com.motometer.android.core.facade.AccountFacade
-import ua.com.motometer.android.core.facade.DaggerFacadesComponent
+import ua.com.motometer.android.core.facade.api.UserFacade
 import javax.inject.Inject
 
 
 class LauncherActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var accountFacade: AccountFacade
+    lateinit var userFacade: UserFacade
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launcher)
-        DaggerFacadesComponent.create().inject(this)
+        DaggerFacadeComponent.create().inject(this)
 
-        if (accountFacade.isAuthenticated()) {
+        if (userFacade.isAuthenticated()) {
             Log.d(javaClass.simpleName, "User is authenticated")
             startActivity(Intent(this, HomeActivity::class.java))
         } else {

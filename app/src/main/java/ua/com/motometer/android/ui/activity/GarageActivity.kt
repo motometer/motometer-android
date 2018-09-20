@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBarDrawerToggle
 import kotlinx.android.synthetic.main.activity_garage.*
 import kotlinx.android.synthetic.main.app_bar_garage.*
 import ua.com.motometer.android.R
-import ua.com.motometer.android.core.facade.model.Vehicle
+import ua.com.motometer.android.core.facade.api.model.Vehicle
 import ua.com.motometer.android.ui.garage.GarageListFragment
 import ua.com.motometer.android.ui.garage.NewVehicleFragment
 import ua.com.motometer.android.ui.menu.createListener

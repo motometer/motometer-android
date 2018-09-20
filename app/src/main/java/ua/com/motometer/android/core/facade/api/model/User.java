@@ -1,9 +1,9 @@
-package ua.com.motometer.android.core.facade.model;
+package ua.com.motometer.android.core.facade.api.model;
 
 import org.immutables.value.Value;
 
 @Value.Immutable
-public interface UserDetails {
+public interface User {
 
     @Value.Parameter
     String displayName();

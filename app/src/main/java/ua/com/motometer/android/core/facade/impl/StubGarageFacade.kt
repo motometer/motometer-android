@@ -1,8 +1,8 @@
 package ua.com.motometer.android.core.facade.impl
 
-import ua.com.motometer.android.core.facade.GarageFacade
-import ua.com.motometer.android.core.facade.model.ImmutableVehicle
-import ua.com.motometer.android.core.facade.model.Vehicle
+import ua.com.motometer.android.core.facade.api.GarageFacade
+import ua.com.motometer.android.core.facade.api.model.ImmutableVehicle
+import ua.com.motometer.android.core.facade.api.model.Vehicle
 
 class StubGarageFacade : GarageFacade {
     override fun vehicles(): List<Vehicle> {

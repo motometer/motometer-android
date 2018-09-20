@@ -9,7 +9,5 @@ class ReadWriteTask<T>(
 
     override fun doInBackground(vararg params: Unit?): T = supplier.invoke()
 
-    override fun onPostExecute(result: T) {
-        consumer.invoke(result)
-    }
+    override fun onPostExecute(result: T) = consumer.invoke(result)
 }

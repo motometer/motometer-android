@@ -6,8 +6,7 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
-import ua.com.motometer.android.core.facade.AccountFacade
-import ua.com.motometer.android.core.facade.DaggerFacadesComponent
+import ua.com.motometer.android.core.facade.api.UserFacade
 import java.util.Arrays
 import javax.inject.Inject
 
@@ -20,11 +19,10 @@ class SignInActivity : AppCompatActivity() {
             AuthUI.IdpConfig.GoogleBuilder().build())
 
     @Inject
-    lateinit var accountFacade: AccountFacade
+    lateinit var accountFacade: UserFacade
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DaggerFacadesComponent.create().inject(this)
         startActivityForResult(
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()

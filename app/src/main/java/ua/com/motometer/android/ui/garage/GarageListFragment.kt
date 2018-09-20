@@ -9,9 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ua.com.motometer.android.R
-import ua.com.motometer.android.core.facade.DaggerFacadesComponent
-import ua.com.motometer.android.core.facade.GarageFacade
-import ua.com.motometer.android.core.facade.model.Vehicle
+import ua.com.motometer.android.core.facade.api.GarageFacade
+import ua.com.motometer.android.core.facade.api.model.Vehicle
+import ua.com.motometer.android.ui.activity.DaggerFacadeComponent
 import ua.com.motometer.android.ui.common.ReadWriteTask
 import javax.inject.Inject
 
@@ -37,7 +37,7 @@ class GarageListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        DaggerFacadesComponent.create().inject(this)
+        DaggerFacadeComponent.create().inject(this)
         if (context is OnListFragmentInteractionListener) {
             listener = context
         } else {

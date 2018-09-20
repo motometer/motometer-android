@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.garage_item.view.*
 import ua.com.motometer.android.R
-import ua.com.motometer.android.core.facade.model.Vehicle
+import ua.com.motometer.android.core.facade.api.model.Vehicle
 import ua.com.motometer.android.ui.garage.GarageListFragment.OnListFragmentInteractionListener
 
 class GarageListRecyclerViewAdapter(
