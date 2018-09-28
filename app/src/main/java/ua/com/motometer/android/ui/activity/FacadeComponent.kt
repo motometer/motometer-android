@@ -2,7 +2,7 @@ package ua.com.motometer.android.ui.activity
 
 import dagger.Component
 import ua.com.motometer.android.core.facade.api.FacadeModule
-import ua.com.motometer.android.ui.garage.GarageListFragment
+import ua.com.motometer.android.ui.fragment.garage.ListFragment
 import javax.inject.Singleton
 
 @Singleton
@@ -10,7 +10,7 @@ import javax.inject.Singleton
 interface FacadeComponent {
     fun inject(app: AbstractMenuActivity)
 
-    fun inject(app: GarageListFragment)
+    fun inject(app: ListFragment)
 
     fun inject(launcherActivity: LauncherActivity)
 }

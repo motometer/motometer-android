@@ -1,4 +1,4 @@
-package ua.com.motometer.android.ui.garage
+package ua.com.motometer.android.ui.fragment.garage
 
 import android.content.Context
 import android.os.Bundle
@@ -15,7 +15,7 @@ import ua.com.motometer.android.ui.activity.DaggerFacadeComponent
 import ua.com.motometer.android.ui.common.ReadWriteTask
 import javax.inject.Inject
 
-class GarageListFragment : Fragment() {
+class ListFragment : Fragment() {
 
     @Inject
     lateinit var garageFacade: GarageFacade
@@ -29,7 +29,7 @@ class GarageListFragment : Fragment() {
         if (view is RecyclerView) {
             view.layoutManager = LinearLayoutManager(context)
             ReadWriteTask(garageFacade::vehicles) { vehicles ->
-                view.adapter = GarageListRecyclerViewAdapter(vehicles, listener)
+                view.adapter = ListRecyclerViewAdapter(vehicles, listener)
             }.execute()
         }
         return view

@@ -4,7 +4,7 @@
     android:id="@+id/new_vehicle_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.garage.NewVehicleFragment">
+    tools:context=".ui.fragment.garage.NewVehicleFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package ua.com.motometer.android.ui.garage
+package ua.com.motometer.android.ui.fragment.garage
 
 
 import android.support.v7.widget.RecyclerView
@@ -10,12 +10,12 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.garage_item.view.*
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.facade.api.model.Vehicle
-import ua.com.motometer.android.ui.garage.GarageListFragment.OnListFragmentInteractionListener
+import ua.com.motometer.android.ui.fragment.garage.ListFragment.OnListFragmentInteractionListener
 
-class GarageListRecyclerViewAdapter(
+class ListRecyclerViewAdapter(
         private val mValues: List<Vehicle>,
         private val mListener: OnListFragmentInteractionListener?)
-    : RecyclerView.Adapter<GarageListRecyclerViewAdapter.ViewHolder>() {
+    : RecyclerView.Adapter<ListRecyclerViewAdapter.ViewHolder>() {
 
     private val mOnClickListener: View.OnClickListener
 
