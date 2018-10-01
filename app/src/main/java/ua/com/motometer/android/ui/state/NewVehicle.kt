@@ -6,6 +6,7 @@ class NewVehicle : State {
     override fun changeState(action: Action): State {
         return when (logAction(action)) {
             is Actions.Common.Back -> Garage()
+            is Actions.Garage.FinishCreate -> NewVehicleCreated()
             is Actions.Garage.Add -> NewVehicle()
             is Actions.Garage.Cancel -> Garage()
             else -> defaultNoOp(action)

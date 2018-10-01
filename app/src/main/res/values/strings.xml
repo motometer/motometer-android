@@ -31,4 +31,11 @@
     <string name="vin_code">Vin code</string>
     <string name="vehicle_type">Vehicle type</string>
     <string name="title_activity_garage">Garage</string>
+    <string name="empty_garage">You don\'t have any vehicle yet.</string>
+    <string name="add_vehicle_button">Click here to add a new vehicle</string>
+    <string-array name="vehicle_type">
+        <item>Car</item>
+        <item>Motorbike</item>
+        <item>Truck</item>
+    </string-array>
 </resources>

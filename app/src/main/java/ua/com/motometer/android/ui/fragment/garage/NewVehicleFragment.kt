@@ -6,7 +6,10 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
 import ua.com.motometer.android.R
 import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
 import ua.com.motometer.android.ui.state.ActionListener
@@ -34,6 +37,27 @@ class NewVehicleFragment : Fragment() {
         if (actionListener != null) {
             fragment.findViewById<Button>(R.id.new_vehicle_cancel)
                     .setOnClickListener(OnClickListenerAdapter(Actions.Garage.Cancel, actionListener!!))
+            fragment.findViewById<Button>(R.id.new_vehicle_finish)
+                    .setOnClickListener(OnClickListenerAdapter(Actions.Garage.FinishCreate, actionListener!!))
+
+            fragment.findViewById<EditText>(R.id.new_vehicle_bought_date_edit)
+                    .setOnFocusChangeListener { view, hasFocus ->
+                        if (hasFocus) {
+                            val newFragment = DatePickerFragment()
+                            newFragment.input = view as EditText
+                            newFragment.show(activity?.supportFragmentManager, "datePicker")
+                        }
+                    }
+
+            val spinner: Spinner = fragment.findViewById(R.id.new_vehicle_type_choice)
+            ArrayAdapter.createFromResource(
+                    fragment.context,
+                    R.array.vehicle_type,
+                    android.R.layout.simple_spinner_dropdown_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner.adapter = adapter
+            }
         }
     }
 }

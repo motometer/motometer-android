@@ -15,7 +15,10 @@ sealed class Actions : Action {
     }
 
     sealed class Garage : Actions() {
+        object Empty : Garage()
         object Add : Garage()
+        object FinishCreate : Garage()
         object Cancel : Garage()
+        class VehicleDetails(val vehicleId: Long) : Garage()
     }
 }

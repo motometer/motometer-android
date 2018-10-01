@@ -1,54 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/new_vehicle_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.garage.NewVehicleFragment">
+    tools:context=".ui.fragment.garage.VehicleDetailsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/list_item_spacing_half"
         android:paddingLeft="@dimen/list_item_spacing"
-        android:paddingRight="@dimen/list_item_spacing"
         android:paddingTop="@dimen/list_item_spacing_half"
+        android:paddingRight="@dimen/list_item_spacing"
+        android:paddingBottom="@dimen/list_item_spacing_half"
         android:textAppearance="@style/TextAppearance.AppCompat.Large">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-
             <TextView
                 android:layout_width="@dimen/new_vehicle_edit_label"
                 android:layout_height="match_parent"
                 android:text="@string/vehicle_type" />
-
-            <Spinner
-                android:id="@+id/new_vehicle_type_choice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+            <TextView
+                android:id="@+id/details_type"
+                android:layout_width="@dimen/new_vehicle_edit_label"
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-
             <TextView
                 android:layout_width="@dimen/new_vehicle_edit_label"
                 android:layout_height="match_parent"
                 android:text="@string/manufacturer" />
 
-            <EditText
-                android:id="@+id/new_vehicle_manufacturer_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+            <TextView
+                android:id="@+id/details_manufacturer"
+                android:layout_width="@dimen/new_vehicle_edit_label"
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,17 +52,13 @@
 
             <TextView
                 android:layout_width="@dimen/new_vehicle_edit_label"
-                android:layout_height="match_parent"                
+                android:layout_height="match_parent"
                 android:text="@string/model" />
-
-            <EditText
-                android:id="@+id/new_vehicle_model_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName" />
-
+            <TextView
+                android:id="@+id/details_model"
+                android:layout_width="@dimen/new_vehicle_edit_label"
+                android:layout_height="match_parent" />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -78,101 +68,56 @@
                 android:layout_width="@dimen/new_vehicle_edit_label"
                 android:layout_height="match_parent"
                 android:text="@string/built_year" />
-
-            <EditText
-                android:id="@+id/new_vehicle_build_year_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
-
+            <TextView
+                android:id="@+id/details_built_year"
+                android:layout_width="@dimen/new_vehicle_edit_label"
+                android:layout_height="match_parent" />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-
             <TextView
                 android:layout_width="@dimen/new_vehicle_edit_label"
                 android:layout_height="match_parent"
                 android:text="@string/vin_code" />
-
-            <EditText
-                android:id="@+id/new_vehicle_vin_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+            <TextView
+                android:id="@+id/details_vin_code"
+                android:layout_width="@dimen/new_vehicle_edit_label"
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-
             <TextView
                 android:layout_width="@dimen/new_vehicle_edit_label"
                 android:layout_height="match_parent"
                 android:text="@string/bought_date" />
-
-            <EditText
-                android:id="@+id/new_vehicle_bought_date_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="datetime" />
-
+            <TextView
+                android:id="@+id/details_bought_date"
+                android:layout_width="@dimen/new_vehicle_edit_label"
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-
             <TextView
                 android:layout_width="@dimen/new_vehicle_edit_label"
                 android:layout_height="match_parent"
                 android:text="@string/price" />
-
-            <EditText
-                android:id="@+id/new_vehicle_price_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="number" />
-
-            <EditText
-                android:id="@+id/new_vehicle_currency_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="textAutoComplete"
-                android:textAlignment="center"
-                android:enabled="false"
-                android:text="USD" />
+            <TextView
+                android:id="@+id/details_price"
+                android:layout_width="@dimen/new_vehicle_edit_label"
+                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/details_currency"
+                android:layout_width="@dimen/new_vehicle_edit_label"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/new_vehicle_cancel"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/new_vehicle_cancel"
-                android:layout_weight="1"/>
-
-            <Button
-                android:id="@+id/new_vehicle_finish"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/new_vehicle_finish"
-                android:layout_weight="1"/>
-        </LinearLayout>
-
     </LinearLayout>
-
-
 </FrameLayout>

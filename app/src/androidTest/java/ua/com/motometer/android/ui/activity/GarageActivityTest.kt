@@ -7,6 +7,8 @@ import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withId
+import android.support.test.espresso.matcher.ViewMatchers.withSpinnerText
+import android.support.test.espresso.matcher.ViewMatchers.withText
 import org.junit.Test
 import ua.com.motometer.android.R
 
@@ -15,8 +17,11 @@ class GarageActivityTest : AbstractActivityTest() {
     override fun activityClass(): Class<out AbstractMenuActivity> = GarageActivity::class.java
 
     @Test
-    fun loadVehicles() {
-        onView(withId(R.id.list))
+    fun emptyGarage() {
+        onView(withId(R.id.empty_garage))
+                .check(matches(isDisplayed()))
+
+        onView(withText(R.string.empty_garage))
                 .check(matches(isDisplayed()))
     }
 
@@ -27,6 +32,8 @@ class GarageActivityTest : AbstractActivityTest() {
 
         onView(withId(R.id.new_vehicle_fragment))
                 .check(matches(isDisplayed()))
+        onView(withId(R.id.new_vehicle_type_choice))
+                .check(matches(isDisplayed()))
     }
 
     @Test
@@ -36,7 +43,7 @@ class GarageActivityTest : AbstractActivityTest() {
 
         pressBack()
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.empty_garage))
                 .check(matches(isCompletelyDisplayed()))
     }
 
@@ -49,7 +56,22 @@ class GarageActivityTest : AbstractActivityTest() {
                 .perform(click())
 
 
-        onView(withId(R.id.list))
+        onView(withId(R.id.empty_garage))
                 .check(matches(isCompletelyDisplayed()))
+    }
+
+    @Test
+    fun vehicleTypeSelection() {
+        onView(withId(R.id.fab))
+                .perform(click())
+
+        onView(withId(R.id.new_vehicle_type_choice))
+                .perform(click())
+
+        onView(withText("Truck"))
+                .perform(click())
+
+        onView(withId(R.id.new_vehicle_type_choice))
+                .check(matches(withSpinnerText("Truck")))
     }
 }

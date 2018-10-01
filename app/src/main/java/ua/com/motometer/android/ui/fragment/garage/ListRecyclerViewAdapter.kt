@@ -10,21 +10,14 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.garage_item.view.*
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.facade.api.model.Vehicle
-import ua.com.motometer.android.ui.fragment.garage.ListFragment.OnListFragmentInteractionListener
+import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
+import ua.com.motometer.android.ui.state.ActionListener
+import ua.com.motometer.android.ui.state.Actions
 
 class ListRecyclerViewAdapter(
-        private val mValues: List<Vehicle>,
-        private val mListener: OnListFragmentInteractionListener?)
+        private val items: List<Vehicle>,
+        private val listener: ActionListener)
     : RecyclerView.Adapter<ListRecyclerViewAdapter.ViewHolder>() {
-
-    private val mOnClickListener: View.OnClickListener
-
-    init {
-        mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as Vehicle
-            mListener?.onListFragmentInteraction(item)
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -33,17 +26,17 @@ class ListRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = mValues[position]
+        val item = items[position]
         holder.displayName.text = item.displayName()
         holder.buildYear.text = item.builtYear().toString()
 
         with(holder.view) {
             tag = item
-            setOnClickListener(mOnClickListener)
+            setOnClickListener(VehicleOnClickListener(listener) )
         }
     }
 
-    override fun getItemCount(): Int = mValues.size
+    override fun getItemCount(): Int = items.size
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val displayName: TextView = view.display_name

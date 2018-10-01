@@ -9,4 +9,5 @@
     <dimen name="list_item_spacing">16dp</dimen>
     <dimen name="list_item_spacing_half">8dp</dimen>
     <dimen name="new_vehicle_edit_label">150dp</dimen>
+    <dimen name="empty_garage">24sp</dimen>
 </resources>

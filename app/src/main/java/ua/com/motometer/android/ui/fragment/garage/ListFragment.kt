@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.transition.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,8 @@ import ua.com.motometer.android.core.facade.api.GarageFacade
 import ua.com.motometer.android.core.facade.api.model.Vehicle
 import ua.com.motometer.android.ui.activity.DaggerFacadeComponent
 import ua.com.motometer.android.ui.common.ReadWriteTask
+import ua.com.motometer.android.ui.state.ActionListener
+import ua.com.motometer.android.ui.state.Actions
 import javax.inject.Inject
 
 class ListFragment : Fragment() {
@@ -20,7 +23,7 @@ class ListFragment : Fragment() {
     @Inject
     lateinit var garageFacade: GarageFacade
 
-    private var listener: OnListFragmentInteractionListener? = null
+    private var listener: ActionListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -29,7 +32,11 @@ class ListFragment : Fragment() {
         if (view is RecyclerView) {
             view.layoutManager = LinearLayoutManager(context)
             ReadWriteTask(garageFacade::vehicles) { vehicles ->
-                view.adapter = ListRecyclerViewAdapter(vehicles, listener)
+                if (vehicles.isEmpty()) {
+                    listener!!.onAction(Actions.Garage.Empty)
+                } else {
+                    view.adapter = ListRecyclerViewAdapter(vehicles, listener!!)
+                }
             }.execute()
         }
         return view
@@ -38,19 +45,11 @@ class ListFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         DaggerFacadeComponent.create().inject(this)
-        if (context is OnListFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnListFragmentInteractionListener")
-        }
+        listener = context as ActionListener
     }
 
     override fun onDetach() {
         super.onDetach()
         listener = null
-    }
-
-    interface OnListFragmentInteractionListener {
-        fun onListFragmentInteraction(item: Vehicle?)
     }
 }
