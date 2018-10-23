@@ -50,5 +50,11 @@ class NewVehicleFragmentTest : AbstractActivityTest() {
         onView(withId(R.id.list)).check(matches(isCompletelyDisplayed()))
         onView(withText("Audi Q7")).check(matches(isDisplayed()))
         onView(withText("2016")).check(matches(isDisplayed()))
+
+        onView(withText("Audi Q7")).perform(click())
+
+        onView(withText("2016")).check(matches(isDisplayed()))
+        onView(withText("vvvvvvvvvvvvvvv")).check(matches(isDisplayed()))
+        onView(withText("80000")).check(matches(isDisplayed()))
     }
 }

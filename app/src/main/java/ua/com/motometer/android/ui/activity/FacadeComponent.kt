@@ -8,7 +8,7 @@ import ua.com.motometer.android.ui.fragment.garage.VehicleDetailsFragment
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [FacadeModule::class, RoomModule::class])
+@Component(modules = [FacadeModule::class])
 interface FacadeComponent {
     fun inject(app: AbstractMenuActivity)
 
