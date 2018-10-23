@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.transition.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ua.com.motometer.android.R
+import ua.com.motometer.android.core.dao.RoomModule
+import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.GarageFacade
-import ua.com.motometer.android.core.facade.api.model.Vehicle
+import ua.com.motometer.android.core.firebase.FirebaseModule
 import ua.com.motometer.android.ui.activity.DaggerFacadeComponent
 import ua.com.motometer.android.ui.common.ReadWriteTask
 import ua.com.motometer.android.ui.state.ActionListener
@@ -44,7 +45,12 @@ class ListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        DaggerFacadeComponent.create().inject(this)
+        DaggerFacadeComponent.builder()
+                .facadeModule(FacadeModule())
+                .roomModule(RoomModule(activity!!.application))
+                .firebaseModule(FirebaseModule())
+                .build()
+                .inject(this)
         listener = context as ActionListener
     }
 

@@ -10,9 +10,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.garage_item.view.*
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.facade.api.model.Vehicle
-import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
 import ua.com.motometer.android.ui.state.ActionListener
-import ua.com.motometer.android.ui.state.Actions
 
 class ListRecyclerViewAdapter(
         private val items: List<Vehicle>,
@@ -27,7 +25,7 @@ class ListRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-        holder.displayName.text = item.displayName()
+        holder.displayName.text = "${item.manufacturer()} ${item.model()}"
         holder.buildYear.text = item.builtYear().toString()
 
         with(holder.view) {

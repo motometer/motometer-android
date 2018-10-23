@@ -8,7 +8,10 @@ import android.view.Menu
 import com.firebase.ui.auth.AuthUI
 import kotlinx.android.synthetic.main.nav_header_home.*
 import ua.com.motometer.android.R
+import ua.com.motometer.android.core.dao.RoomModule
+import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.UserFacade
+import ua.com.motometer.android.core.firebase.FirebaseModule
 import ua.com.motometer.android.ui.common.ReadWriteTask
 import ua.com.motometer.android.ui.state.MenuHandler
 import ua.com.motometer.android.ui.state.SignOut
@@ -22,7 +25,12 @@ abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActiv
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DaggerFacadeComponent.create().inject(this)
+        DaggerFacadeComponent.builder()
+                .facadeModule(FacadeModule())
+                .roomModule(RoomModule(application))
+                .firebaseModule(FirebaseModule())
+                .build()
+                .inject(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

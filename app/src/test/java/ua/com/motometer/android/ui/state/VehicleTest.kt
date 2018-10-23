@@ -3,7 +3,7 @@ package ua.com.motometer.android.ui.state
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
-class VehicleDetailsTest {
+class VehicleTest {
 
     private val vehicleDetails: VehicleDetails = VehicleDetails(10)
 

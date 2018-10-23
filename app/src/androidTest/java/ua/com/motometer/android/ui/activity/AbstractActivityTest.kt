@@ -12,10 +12,13 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import org.assertj.core.api.Assertions.assertThat
 import org.hamcrest.CoreMatchers.not
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import ua.com.motometer.android.R
+import ua.com.motometer.android.core.dao.ApplicationDatabase
 
 @RunWith(AndroidJUnit4::class)
 abstract class AbstractActivityTest {
@@ -25,6 +28,12 @@ abstract class AbstractActivityTest {
     var activityRule = ActivityTestRule(activityClass())
 
     abstract fun activityClass() : Class<out AbstractMenuActivity>
+
+    @Before
+    @After
+    fun deleteDatabase() {
+        activityRule.activity.application.deleteDatabase(ApplicationDatabase.DB_NAME)
+    }
 
     @Test
     fun shouldOpenMenu() {

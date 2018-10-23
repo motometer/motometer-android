@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import ua.com.motometer.android.R
+import ua.com.motometer.android.core.dao.RoomModule
+import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.UserFacade
+import ua.com.motometer.android.core.firebase.FirebaseModule
 import javax.inject.Inject
 
 
@@ -17,7 +20,12 @@ class LauncherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launcher)
-        DaggerFacadeComponent.create().inject(this)
+        DaggerFacadeComponent.builder()
+                .facadeModule(FacadeModule())
+                .roomModule(RoomModule(application))
+                .firebaseModule(FirebaseModule())
+                .build()
+                .inject(this)
 
         if (userFacade.isAuthenticated()) {
             Log.d(javaClass.simpleName, "User is authenticated")

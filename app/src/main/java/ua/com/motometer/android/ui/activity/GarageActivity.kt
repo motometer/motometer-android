@@ -1,5 +1,6 @@
 package ua.com.motometer.android.ui.activity
 
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -10,8 +11,11 @@ import kotlinx.android.synthetic.main.activity_garage.*
 import kotlinx.android.synthetic.main.app_bar_garage.*
 import kotlinx.android.synthetic.main.fragment_new_vehicle.*
 import ua.com.motometer.android.R
+import ua.com.motometer.android.core.dao.RoomModule
+import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.GarageFacade
-import ua.com.motometer.android.core.facade.api.model.ImmutableVehicleDetails
+import ua.com.motometer.android.core.facade.api.model.ImmutableVehicle
+import ua.com.motometer.android.core.firebase.FirebaseModule
 import ua.com.motometer.android.ui.fragment.garage.ListFragment
 import ua.com.motometer.android.ui.fragment.garage.NewVehicleFragment
 import ua.com.motometer.android.ui.adapter.DrawerListenerAdapter
@@ -42,7 +46,12 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_garage)
         setSupportActionBar(toolbar)
-        DaggerFacadeComponent.create().inject(this)
+        DaggerFacadeComponent.builder()
+                .facadeModule(FacadeModule())
+                .roomModule(RoomModule(application))
+                .firebaseModule(FirebaseModule())
+                .build()
+                .inject(this)
 
         fab.setOnClickListener(OnClickListenerAdapter(Actions.Garage.Add, this))
 
@@ -62,14 +71,16 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
             is CloseApp -> finishAffinity()
             is MenuState -> newState.handleMenu(this)
             is Menu -> Unit
-            is NewVehicleCreated -> addNewVehicle()
+            is NewVehicleCreated -> AsyncTask.execute {
+                addNewVehicle()
+            }
             is VehicleDetails -> showVehicleDetails(newState)
             else -> Log.e(javaClass.simpleName, "Illegal state $newState")
         }
     }
 
     private fun addNewVehicle() {
-        ImmutableVehicleDetails.builder()
+        ImmutableVehicle.builder()
                 .manufacturer(text(R.id.new_vehicle_manufacturer_edit))
                 .model(text(R.id.new_vehicle_model_edit))
                 .builtYear(text(R.id.new_vehicle_build_year_edit).toInt())
