@@ -17,6 +17,9 @@ import ua.com.motometer.android.ui.state.MenuHandler
 import ua.com.motometer.android.ui.state.SignOut
 import ua.com.motometer.android.ui.state.State
 import javax.inject.Inject
+import android.graphics.BitmapFactory
+import java.net.URI
+
 
 abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActivity(initialState), MenuHandler {
 
@@ -39,6 +42,12 @@ abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActiv
         ReadWriteTask(userFacade::currentUser) { account ->
             nav_header_title.text = account.displayName()
             nav_header_email.text = account.email()
+            ReadWriteTask({
+                return@ReadWriteTask BitmapFactory.decodeStream(URI(account.avatarUrl()).toURL().openConnection().getInputStream())
+            }, {
+                nav_header_avatar.setImageBitmap(it)
+            }).execute()
+
         }.execute()
 
         return true

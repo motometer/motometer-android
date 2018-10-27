@@ -10,4 +10,7 @@ public interface User {
 
     @Value.Parameter
     String email();
+
+    @Value.Parameter
+    String avatarUrl();
 }
