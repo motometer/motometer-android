@@ -35,6 +35,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -51,21 +54,26 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:4.0.0'
     implementation "com.google.dagger:dagger:$dagger_version"
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation deps.guava
+
     implementation deps.room.runtime
     implementation deps.room.rxjava2
 
-    compileOnly "org.immutables:value:$immutables_version"
+    compileOnly deps.immutables
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt deps.room.compiler
-    annotationProcessor "org.immutables:value:$immutables_version"
-    testImplementation 'junit:junit:4.12'
+    annotationProcessor deps.immutables
+    testImplementation deps.junit5.jupiter
+    testImplementation deps.junit5.engine
+    testImplementation deps.junit5.params
+    testImplementation deps.junit5.vintage
     testImplementation 'org.assertj:assertj-core:3.10.0'
     androidTestImplementation 'org.assertj:assertj-core:3.10.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
-    androidTestCompile deps.room.testing
+    androidTestImplementation deps.room.testing
 }
 task copyDebugConfig(type: Copy) {
     description = 'Switches to DEVELOPMENT google-services.json'

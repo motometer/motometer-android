@@ -15,8 +15,9 @@ class OnNavigationItemSelectedListenerAdapter(private val actionListener: Action
 
     private fun toAction(p0: MenuItem): Actions {
         return when (p0.itemId) {
-            R.id.sign_out -> Actions.Menu.Garage
             R.id.nav_garage -> Actions.Menu.Garage
+            R.id.nav_home -> Actions.Menu.Home
+            R.id.sign_out -> Actions.Menu.SignOut
             else -> Actions.Common.CloseMenu
         }
     }
