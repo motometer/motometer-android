@@ -1,4 +1,4 @@
-package ua.com.motometer.android.ui.fragment.garage
+package ua.com.motometer.android.ui.fragment.home
 
 import android.content.Context
 import android.os.Bundle
@@ -10,46 +10,45 @@ import android.view.View
 import android.view.ViewGroup
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.dao.RoomModule
+import ua.com.motometer.android.core.facade.api.ExpenseFacade
 import ua.com.motometer.android.core.facade.api.FacadeModule
-import ua.com.motometer.android.core.facade.api.GarageFacade
-import ua.com.motometer.android.ui.common.ReadWriteTask
 import ua.com.motometer.android.ui.fragment.DaggerFragmentComponent
 import ua.com.motometer.android.ui.state.ActionListener
-import ua.com.motometer.android.ui.state.Actions
 import javax.inject.Inject
 
-class ListFragment : Fragment() {
-
-    @Inject
-    lateinit var garageFacade: GarageFacade
+class RecordListFragment : Fragment() {
 
     private var listener: ActionListener? = null
+    @Inject
+    lateinit var expenseFacade: ExpenseFacade
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.garage_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_recordlist_list, container, false)
 
         if (view is RecyclerView) {
-            view.layoutManager = LinearLayoutManager(context)
-            ReadWriteTask(garageFacade::vehicles) { vehicles ->
-                if (vehicles.isEmpty()) {
-                    listener!!.onAction(Actions.Garage.Empty)
-                } else {
-                    view.adapter = ListRecyclerViewAdapter(vehicles, listener!!)
-                }
-            }.execute()
+            with(view) {
+                layoutManager = LinearLayoutManager(context)
+                adapter = RecordListRecyclerViewAdapter(expenseFacade.expenses(), listener)
+            }
         }
         return view
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
+    override fun onAttach(actionListener: Context) {
+        super.onAttach(actionListener)
+
         DaggerFragmentComponent.builder()
                 .facadeModule(FacadeModule())
                 .roomModule(RoomModule(activity!!.application))
                 .build()
                 .inject(this)
-        listener = context as ActionListener
+
+        if (actionListener is ActionListener) {
+            listener = actionListener
+        } else {
+            throw RuntimeException(actionListener.toString() + " must implement ActionListener")
+        }
     }
 
     override fun onDetach() {

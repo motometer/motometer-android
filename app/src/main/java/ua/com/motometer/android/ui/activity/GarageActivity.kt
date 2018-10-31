@@ -16,12 +16,12 @@ import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.GarageFacade
 import ua.com.motometer.android.core.facade.api.model.ImmutableVehicle
 import ua.com.motometer.android.core.firebase.FirebaseModule
+import ua.com.motometer.android.ui.adapter.DrawerListenerAdapter
+import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
+import ua.com.motometer.android.ui.adapter.OnNavigationItemSelectedListenerAdapter
+import ua.com.motometer.android.ui.fragment.garage.EmptyGarageFragment
 import ua.com.motometer.android.ui.fragment.garage.ListFragment
 import ua.com.motometer.android.ui.fragment.garage.NewVehicleFragment
-import ua.com.motometer.android.ui.adapter.DrawerListenerAdapter
-import ua.com.motometer.android.ui.adapter.OnNavigationItemSelectedListenerAdapter
-import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
-import ua.com.motometer.android.ui.fragment.garage.EmptyGarageFragment
 import ua.com.motometer.android.ui.fragment.garage.VehicleDetailsFragment
 import ua.com.motometer.android.ui.state.Actions
 import ua.com.motometer.android.ui.state.CloseApp
@@ -46,7 +46,7 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_garage)
         setSupportActionBar(toolbar)
-        DaggerFacadeComponent.builder()
+        DaggerActivityComponent.builder()
                 .facadeModule(FacadeModule())
                 .roomModule(RoomModule(application))
                 .firebaseModule(FirebaseModule())

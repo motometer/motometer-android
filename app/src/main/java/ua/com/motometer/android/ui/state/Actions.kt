@@ -21,4 +21,8 @@ sealed class Actions : Action {
         object Cancel : Garage()
         class VehicleDetails(val vehicleId: Long) : Garage()
     }
+
+    sealed class Home : Actions() {
+        class TrackRecordDetails(val trackRecordId: Long) : Home()
+    }
 }

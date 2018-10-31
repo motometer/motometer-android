@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.app_bar_home.*
 import ua.com.motometer.android.R
 import ua.com.motometer.android.ui.adapter.DrawerListenerAdapter
 import ua.com.motometer.android.ui.adapter.OnNavigationItemSelectedListenerAdapter
+import ua.com.motometer.android.ui.fragment.home.RecordListFragment
+import ua.com.motometer.android.ui.state.Actions
 import ua.com.motometer.android.ui.state.Garage
 import ua.com.motometer.android.ui.state.Home
 import ua.com.motometer.android.ui.state.Menu
@@ -37,6 +39,7 @@ class HomeActivity : AbstractMenuActivity(Home()) {
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(OnNavigationItemSelectedListenerAdapter(this))
+        onAction(Actions.Menu.Home)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -48,10 +51,19 @@ class HomeActivity : AbstractMenuActivity(Home()) {
 
     override fun renderViewState(oldState: State, newState: State) {
         when (newState) {
-            is Home -> drawer_layout.closeDrawer(GravityCompat.START)
+            is Home -> home()
             is Menu -> Unit
             is MenuState -> newState.handleMenu(this)
             else -> Log.e(javaClass.simpleName, "Illegal state $newState")
+        }
+    }
+
+    private fun home() {
+        drawer_layout.closeDrawer(GravityCompat.START)
+        supportFragmentManager.beginTransaction().run {
+            setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            replace(R.id.record_list, RecordListFragment())
+            commit()
         }
     }
 
