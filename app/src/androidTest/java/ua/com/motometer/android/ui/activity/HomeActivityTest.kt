@@ -22,11 +22,11 @@ class HomeActivityTest : AbstractActivityTest() {
     }
 
     @Test
-    fun newVehicleFragmentDisplayed() {
+    fun newRecordViewDisplayed() {
         onView(withId(R.id.fab))
                 .perform(ViewActions.click())
 
-//        onView(withId(R.id.new_record_view))
-//                .check(matches(isDisplayed()))
+        onView(withId(R.id.new_record_view))
+                .check(matches(isDisplayed()))
     }
 }

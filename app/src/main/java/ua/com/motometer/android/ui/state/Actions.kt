@@ -23,6 +23,7 @@ sealed class Actions : Action {
     }
 
     sealed class Home : Actions() {
+        object AddNewRecord : Home()
         class TrackRecordDetails(val trackRecordId: Long) : Home()
     }
 }

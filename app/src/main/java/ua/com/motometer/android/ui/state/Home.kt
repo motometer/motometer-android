@@ -5,8 +5,8 @@ class Home : MenuState {
         return when (logAction(action)) {
             is Actions.Common.OpenMenu -> Menu(this)
             is Actions.Common.Back -> CloseApp()
-            is Actions.Menu.Home -> this
-            else -> throw IllegalArgumentException("Unsupported action $action")
+            is Actions.Home.AddNewRecord -> AddRecordState()
+            else -> this
         }
     }
 
