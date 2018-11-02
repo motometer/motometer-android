@@ -1,6 +1,6 @@
 package ua.com.motometer.android.ui.state
 
-class Menu(private val previousState: State) : State {
+data class Menu(private val previousState: State) : State {
     override fun changeState(action: Action): State {
         logAction(action)
         return when (action) {
@@ -20,9 +20,9 @@ class Menu(private val previousState: State) : State {
 
     private fun menu(action: Actions.Menu): State {
         return when (action) {
-            is Actions.Menu.Home -> Home()
-            is Actions.Menu.Garage -> Garage()
-            is Actions.Menu.SignOut -> SignOut()
+            is Actions.Menu.Home -> Home
+            is Actions.Menu.Garage -> Garage
+            is Actions.Menu.SignOut -> SignOut
         }
     }
 }

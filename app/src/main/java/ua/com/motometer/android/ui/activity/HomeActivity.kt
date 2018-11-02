@@ -24,7 +24,7 @@ import ua.com.motometer.android.ui.state.Menu
 import ua.com.motometer.android.ui.state.MenuState
 import ua.com.motometer.android.ui.state.State
 
-class HomeActivity : AbstractMenuActivity(Home()) {
+class HomeActivity : AbstractMenuActivity(Home) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

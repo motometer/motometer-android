@@ -24,7 +24,7 @@ import ua.com.motometer.android.ui.fragment.garage.ListFragment
 import ua.com.motometer.android.ui.fragment.garage.NewVehicleFragment
 import ua.com.motometer.android.ui.fragment.garage.VehicleDetailsFragment
 import ua.com.motometer.android.ui.state.Actions
-import ua.com.motometer.android.ui.state.CloseApp
+import ua.com.motometer.android.ui.state.ClosedApp
 import ua.com.motometer.android.ui.state.EmptyGarage
 import ua.com.motometer.android.ui.state.Garage
 import ua.com.motometer.android.ui.state.Home
@@ -37,7 +37,7 @@ import ua.com.motometer.android.ui.state.VehicleDetails
 import java.time.LocalDate
 import javax.inject.Inject
 
-class GarageActivity : AbstractMenuActivity(Garage()) {
+class GarageActivity : AbstractMenuActivity(Garage) {
 
     @Inject
     lateinit var garageFacade: GarageFacade
@@ -68,7 +68,7 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
         when (newState) {
             is EmptyGarage -> showEmptyGarage()
             is NewVehicle -> showNewVehicle()
-            is CloseApp -> finishAffinity()
+            is ClosedApp -> finishAffinity()
             is MenuState -> newState.handleMenu(this)
             is Menu -> Unit
             is NewVehicleCreated -> AsyncTask.execute {
