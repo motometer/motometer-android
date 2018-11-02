@@ -1,6 +1,9 @@
 package ua.com.motometer.android.ui.state
 
 import android.util.Log
+import ua.com.motometer.android.ui.state.api.Action
+import ua.com.motometer.android.ui.state.api.Actions
+import ua.com.motometer.android.ui.state.api.State
 
 object NewVehicle : State {
     override fun changeState(action: Action): State {

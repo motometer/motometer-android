@@ -3,8 +3,8 @@ package ua.com.motometer.android.ui.adapter
 import android.support.design.widget.NavigationView
 import android.view.MenuItem
 import ua.com.motometer.android.R
-import ua.com.motometer.android.ui.state.ActionListener
-import ua.com.motometer.android.ui.state.Actions
+import ua.com.motometer.android.ui.state.api.ActionListener
+import ua.com.motometer.android.ui.state.api.Actions
 
 class OnNavigationItemSelectedListenerAdapter(private val actionListener: ActionListener) : NavigationView.OnNavigationItemSelectedListener {
 

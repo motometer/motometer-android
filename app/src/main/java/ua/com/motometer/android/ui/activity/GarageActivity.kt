@@ -23,17 +23,17 @@ import ua.com.motometer.android.ui.fragment.garage.EmptyGarageFragment
 import ua.com.motometer.android.ui.fragment.garage.ListFragment
 import ua.com.motometer.android.ui.fragment.garage.NewVehicleFragment
 import ua.com.motometer.android.ui.fragment.garage.VehicleDetailsFragment
-import ua.com.motometer.android.ui.state.Actions
 import ua.com.motometer.android.ui.state.ClosedApp
 import ua.com.motometer.android.ui.state.EmptyGarage
 import ua.com.motometer.android.ui.state.Garage
 import ua.com.motometer.android.ui.state.Home
 import ua.com.motometer.android.ui.state.Menu
-import ua.com.motometer.android.ui.state.MenuState
 import ua.com.motometer.android.ui.state.NewVehicle
 import ua.com.motometer.android.ui.state.NewVehicleCreated
-import ua.com.motometer.android.ui.state.State
 import ua.com.motometer.android.ui.state.VehicleDetails
+import ua.com.motometer.android.ui.state.api.Actions
+import ua.com.motometer.android.ui.state.api.MenuState
+import ua.com.motometer.android.ui.state.api.State
 import java.time.LocalDate
 import javax.inject.Inject
 

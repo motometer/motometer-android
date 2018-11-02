@@ -9,8 +9,8 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_recordlist.view.*
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.facade.api.model.ExpenseRecord
-import ua.com.motometer.android.ui.state.ActionListener
-import ua.com.motometer.android.ui.state.Actions
+import ua.com.motometer.android.ui.state.api.ActionListener
+import ua.com.motometer.android.ui.state.api.Actions
 
 class RecordListRecyclerViewAdapter(
         private val mValues: List<ExpenseRecord>,

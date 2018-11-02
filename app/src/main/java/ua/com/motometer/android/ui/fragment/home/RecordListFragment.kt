@@ -13,7 +13,7 @@ import ua.com.motometer.android.core.dao.RoomModule
 import ua.com.motometer.android.core.facade.api.ExpenseFacade
 import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.ui.fragment.DaggerFragmentComponent
-import ua.com.motometer.android.ui.state.ActionListener
+import ua.com.motometer.android.ui.state.api.ActionListener
 import javax.inject.Inject
 
 class RecordListFragment : Fragment() {

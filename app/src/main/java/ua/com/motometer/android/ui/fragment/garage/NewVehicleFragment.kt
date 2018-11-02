@@ -12,8 +12,8 @@ import android.widget.EditText
 import android.widget.Spinner
 import ua.com.motometer.android.R
 import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
-import ua.com.motometer.android.ui.state.ActionListener
-import ua.com.motometer.android.ui.state.Actions
+import ua.com.motometer.android.ui.state.api.ActionListener
+import ua.com.motometer.android.ui.state.api.Actions
 
 class NewVehicleFragment : Fragment() {
 

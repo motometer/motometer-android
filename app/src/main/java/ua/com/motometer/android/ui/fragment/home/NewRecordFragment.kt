@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ua.com.motometer.android.R
-import ua.com.motometer.android.ui.state.ActionListener
+import ua.com.motometer.android.ui.state.api.ActionListener
 
 
 class NewRecordFragment : Fragment() {

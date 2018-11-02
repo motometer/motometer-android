@@ -16,13 +16,13 @@ import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
 import ua.com.motometer.android.ui.adapter.OnNavigationItemSelectedListenerAdapter
 import ua.com.motometer.android.ui.fragment.home.NewRecordFragment
 import ua.com.motometer.android.ui.fragment.home.RecordListFragment
-import ua.com.motometer.android.ui.state.Actions
 import ua.com.motometer.android.ui.state.AddRecordState
 import ua.com.motometer.android.ui.state.Garage
 import ua.com.motometer.android.ui.state.Home
 import ua.com.motometer.android.ui.state.Menu
-import ua.com.motometer.android.ui.state.MenuState
-import ua.com.motometer.android.ui.state.State
+import ua.com.motometer.android.ui.state.api.Actions
+import ua.com.motometer.android.ui.state.api.MenuState
+import ua.com.motometer.android.ui.state.api.State
 
 class HomeActivity : AbstractMenuActivity(Home) {
 

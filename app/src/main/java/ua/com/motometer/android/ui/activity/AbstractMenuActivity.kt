@@ -14,9 +14,9 @@ import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.UserFacade
 import ua.com.motometer.android.core.firebase.FirebaseModule
 import ua.com.motometer.android.ui.common.ReadWriteTask
-import ua.com.motometer.android.ui.state.MenuHandler
 import ua.com.motometer.android.ui.state.SignOut
-import ua.com.motometer.android.ui.state.State
+import ua.com.motometer.android.ui.state.api.MenuHandler
+import ua.com.motometer.android.ui.state.api.State
 import java.net.URI
 import javax.inject.Inject
 

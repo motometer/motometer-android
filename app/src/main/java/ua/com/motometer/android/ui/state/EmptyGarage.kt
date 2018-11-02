@@ -1,5 +1,13 @@
 package ua.com.motometer.android.ui.state
 
+import ua.com.motometer.android.ui.state.api.Action
+import ua.com.motometer.android.ui.state.api.Actions
+import ua.com.motometer.android.ui.state.api.CommonActionState
+import ua.com.motometer.android.ui.state.api.MenuActionState
+import ua.com.motometer.android.ui.state.api.MenuHandler
+import ua.com.motometer.android.ui.state.api.MenuState
+import ua.com.motometer.android.ui.state.api.State
+
 object EmptyGarage : MenuState, CommonActionState, MenuActionState {
     override fun changeState(action: Action): State {
         return when (action) {

@@ -14,8 +14,8 @@ import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.GarageFacade
 import ua.com.motometer.android.ui.common.ReadWriteTask
 import ua.com.motometer.android.ui.fragment.DaggerFragmentComponent
-import ua.com.motometer.android.ui.state.ActionListener
-import ua.com.motometer.android.ui.state.Actions
+import ua.com.motometer.android.ui.state.api.ActionListener
+import ua.com.motometer.android.ui.state.api.Actions
 import javax.inject.Inject
 
 class ListFragment : Fragment() {

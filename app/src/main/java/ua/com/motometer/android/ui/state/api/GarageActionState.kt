@@ -1,4 +1,4 @@
-package ua.com.motometer.android.ui.state
+package ua.com.motometer.android.ui.state.api
 
 interface GarageActionState : State {
 
