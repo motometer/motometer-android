@@ -1,28 +1,24 @@
 package ua.com.motometer.android.ui.state
 
-data class Menu(private val previousState: State) : State {
+data class Menu(private val previousState: State) : CommonActionState, MenuActionState {
     override fun changeState(action: Action): State {
         logAction(action)
         return when (action) {
-            is Actions.Common -> common(action)
-            is Actions.Menu -> menu(action)
+            is Actions.Common -> changeState(action)
+            is Actions.Menu -> changeState(action)
             else -> this
         }
     }
 
-    private fun common(action: Actions.Common): State {
-        return when(action) {
-            is Actions.Common.Back -> previousState
-            is Actions.Common.CloseMenu -> previousState
-            is Actions.Common.OpenMenu -> this
-        }
-    }
+    override fun changeState(action: Actions.Common.Back): State = previousState
 
-    private fun menu(action: Actions.Menu): State {
-        return when (action) {
-            is Actions.Menu.Home -> Home
-            is Actions.Menu.Garage -> Garage
-            is Actions.Menu.SignOut -> SignOut
-        }
-    }
+    override fun changeState(action: Actions.Common.OpenMenu): State = this
+
+    override fun changeState(action: Actions.Common.CloseMenu): State = previousState
+
+    override fun changeState(action: Actions.Menu.Home): State = Home
+
+    override fun changeState(action: Actions.Menu.Garage): State = Garage
+
+    override fun changeState(action: Actions.Menu.SignOut): State = SignOut
 }
