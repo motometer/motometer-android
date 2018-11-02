@@ -6,6 +6,7 @@ import ua.com.motometer.android.ui.state.api.State
 
 data class VehicleDetails(val vehicleId: Long) : State {
     override fun changeState(action: Action): State {
+        logAction(action)
         return when (action) {
             is Actions.Common.Back -> Garage
             else -> Garage

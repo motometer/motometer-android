@@ -5,6 +5,7 @@ import ua.com.motometer.android.ui.state.api.State
 
 object AddRecordState : State {
     override fun changeState(action: Action): State {
+        logAction(action)
         return this
     }
 }

@@ -11,6 +11,7 @@ import ua.com.motometer.android.ui.state.api.State
 
 object Home : MenuState, CommonActionState, MenuActionState, HomeActionState {
     override fun changeState(action: Action): State {
+        logAction(action)
         return when (action) {
             is Actions.Common -> this.changeState(action)
             is Actions.Menu -> this.changeState(action)

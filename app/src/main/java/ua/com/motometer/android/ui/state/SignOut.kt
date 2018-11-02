@@ -6,7 +6,10 @@ import ua.com.motometer.android.ui.state.api.MenuState
 import ua.com.motometer.android.ui.state.api.State
 
 object SignOut : MenuState {
-    override fun changeState(action: Action): State = this
+    override fun changeState(action: Action): State {
+        logAction(action)
+        return this
+    }
 
     override fun handleMenu(menuHandler: MenuHandler) = menuHandler.handleSignOut(this)
 }

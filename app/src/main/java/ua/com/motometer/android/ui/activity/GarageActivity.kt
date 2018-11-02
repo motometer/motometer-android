@@ -72,6 +72,7 @@ class GarageActivity : AbstractMenuActivity(Garage) {
             is MenuState -> newState.handleMenu(this)
             is Menu -> Unit
             is NewVehicleCreated -> AsyncTask.execute {
+                drawer_layout.closeDrawer(GravityCompat.START)
                 addNewVehicle()
             }
             is VehicleDetails -> showVehicleDetails(newState)
