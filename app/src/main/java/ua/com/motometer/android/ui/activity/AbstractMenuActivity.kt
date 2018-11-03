@@ -15,10 +15,12 @@ import ua.com.motometer.android.core.facade.api.UserFacade
 import ua.com.motometer.android.core.firebase.FirebaseModule
 import ua.com.motometer.android.ui.common.ReadWriteTask
 import ua.com.motometer.android.ui.state.SignOut
+import ua.com.motometer.android.ui.state.api.Actions
 import ua.com.motometer.android.ui.state.api.MenuHandler
 import ua.com.motometer.android.ui.state.api.State
 import java.net.URI
 import javax.inject.Inject
+import ua.com.motometer.android.ui.state.Menu as MenuState
 
 
 abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActivity(initialState), MenuHandler {
@@ -63,4 +65,11 @@ abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActiv
     }
 
     abstract fun drawerLayout(): DrawerLayout
+
+    fun onMenu(menuState: MenuState) {
+        if (!menuState.opened) {
+            drawerLayout().closeDrawer(GravityCompat.START)
+            onAction(Actions.Common.Back)
+        }
+    }
 }

@@ -3,7 +3,6 @@ package ua.com.motometer.android.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
@@ -17,6 +16,7 @@ import ua.com.motometer.android.ui.adapter.OnNavigationItemSelectedListenerAdapt
 import ua.com.motometer.android.ui.fragment.home.NewRecordFragment
 import ua.com.motometer.android.ui.fragment.home.RecordListFragment
 import ua.com.motometer.android.ui.state.AddRecordState
+import ua.com.motometer.android.ui.state.AppClosed
 import ua.com.motometer.android.ui.state.Garage
 import ua.com.motometer.android.ui.state.Home
 import ua.com.motometer.android.ui.state.Menu
@@ -57,7 +57,8 @@ class HomeActivity : AbstractMenuActivity(Home) {
         when (newState) {
             is Home -> home()
             is AddRecordState -> addRecord()
-            is Menu -> Unit
+            is Menu -> onMenu(newState)
+            is AppClosed -> finishAffinity()
             is MenuState -> newState.handleMenu(this)
             else -> Log.e(javaClass.simpleName, "Illegal state $newState")
         }
@@ -72,7 +73,6 @@ class HomeActivity : AbstractMenuActivity(Home) {
     }
 
     private fun home() {
-        drawer_layout.closeDrawer(GravityCompat.START)
         supportFragmentManager.beginTransaction().run {
             setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             replace(R.id.record_list, RecordListFragment())
@@ -83,7 +83,6 @@ class HomeActivity : AbstractMenuActivity(Home) {
     override fun handleHome(state: Home) = finishAffinity()
 
     override fun handleGarage(state: Garage) {
-        drawerLayout().closeDrawer(GravityCompat.START)
         startActivity(Intent(this, GarageActivity::class.java))
     }
 

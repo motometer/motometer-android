@@ -16,5 +16,5 @@ interface CommonActionState : State {
 
     fun changeState(action: Actions.Common.OpenMenu): State = Menu(this)
 
-    fun changeState(action: Actions.Common.CloseMenu): State = this
+    fun changeState(action: Actions.Common.CloseMenu): State = Menu(this, false)
 }

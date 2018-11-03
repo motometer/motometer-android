@@ -2,7 +2,6 @@ package ua.com.motometer.android.ui.activity
 
 import android.os.AsyncTask
 import android.os.Bundle
-import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
@@ -23,7 +22,7 @@ import ua.com.motometer.android.ui.fragment.garage.EmptyGarageFragment
 import ua.com.motometer.android.ui.fragment.garage.ListFragment
 import ua.com.motometer.android.ui.fragment.garage.NewVehicleFragment
 import ua.com.motometer.android.ui.fragment.garage.VehicleDetailsFragment
-import ua.com.motometer.android.ui.state.ClosedApp
+import ua.com.motometer.android.ui.state.AppClosed
 import ua.com.motometer.android.ui.state.Garage
 import ua.com.motometer.android.ui.state.Home
 import ua.com.motometer.android.ui.state.Menu
@@ -67,11 +66,10 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
         when (newState) {
             is Garage -> handleGarage(newState)
             is NewVehicle -> showNewVehicle()
-            is ClosedApp -> finishAffinity()
+            is AppClosed -> finishAffinity()
             is MenuState -> newState.handleMenu(this)
-            is Menu -> Unit
+            is Menu -> onMenu(newState)
             is NewVehicleCreated -> AsyncTask.execute {
-                drawer_layout.closeDrawer(GravityCompat.START)
                 addNewVehicle()
             }
             is VehicleDetails -> showVehicleDetails(newState)
@@ -124,7 +122,6 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
     override fun handleHome(state: Home) = finish()
 
     override fun handleGarage(state: Garage) {
-        drawer_layout.closeDrawer(GravityCompat.START)
         if (state.empty) {
             showEmptyGarage()
         } else {
@@ -139,7 +136,6 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
     override fun drawerLayout(): DrawerLayout = drawer_layout
 
     private fun showNewVehicle() {
-        drawer_layout.closeDrawer(GravityCompat.START)
         supportFragmentManager.beginTransaction()
                 .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
                 .replace(R.id.garage_list, NewVehicleFragment())

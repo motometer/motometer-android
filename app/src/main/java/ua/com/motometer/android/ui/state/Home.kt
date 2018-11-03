@@ -20,7 +20,7 @@ object Home : MenuState, CommonActionState, MenuActionState, HomeActionState {
         }
     }
 
-    override fun changeState(action: Actions.Common.Back): State = ClosedApp
+    override fun changeState(action: Actions.Common.Back): State = AppClosed
 
     override fun changeState(action: Actions.Home.AddNewRecord): State = AddRecordState
 
