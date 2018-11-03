@@ -67,7 +67,7 @@ abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActiv
     abstract fun drawerLayout(): DrawerLayout
 
     fun onMenu(menuState: MenuState) {
-        if (!menuState.opened) {
+        if (!menuState.drawerOpened) {
             drawerLayout().closeDrawer(GravityCompat.START)
             onAction(Actions.Common.Back)
         }
