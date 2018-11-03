@@ -23,12 +23,12 @@ internal class StateMachineTest {
         @JvmStatic
         fun parameters(): List<Any> {
             return listOf(
-                    Arguments { arrayOf(AddRecordState, Actions.Common.OpenMenu, Menu(AddRecordState)) },
-                    Arguments { arrayOf(AddRecordState, Actions.Common.CloseMenu, Menu(AddRecordState, false)) },
-                    Arguments { arrayOf(AddRecordState, Actions.Common.Back, Home) },
-                    Arguments { arrayOf(AddRecordState, Actions.Menu.Garage, Garage()) },
-                    Arguments { arrayOf(AddRecordState, Actions.Menu.Home, Home) },
-                    Arguments { arrayOf(AddRecordState, Actions.Menu.SignOut, SignOut) },
+                    Arguments { arrayOf(AddRecord, Actions.Common.OpenMenu, Menu(AddRecord)) },
+                    Arguments { arrayOf(AddRecord, Actions.Common.CloseMenu, Menu(AddRecord, false)) },
+                    Arguments { arrayOf(AddRecord, Actions.Common.Back, Home) },
+                    Arguments { arrayOf(AddRecord, Actions.Menu.Garage, Garage()) },
+                    Arguments { arrayOf(AddRecord, Actions.Menu.Home, Home) },
+                    Arguments { arrayOf(AddRecord, Actions.Menu.SignOut, SignOut) },
                     Arguments { arrayOf(Garage(true), Actions.Common.OpenMenu, Menu(Garage(true))) },
                     Arguments { arrayOf(Garage(true), Actions.Common.Back, Home) },
                     Arguments { arrayOf(Garage(true), Actions.Garage.Add, NewVehicle) },
@@ -43,7 +43,7 @@ internal class StateMachineTest {
                     Arguments { arrayOf(VehicleDetails(10), Actions.Common.Back, Garage()) },
                     Arguments { arrayOf(Home, Actions.Common.OpenMenu, Menu(Home)) },
                     Arguments { arrayOf(Home, Actions.Common.Back, AppClosed) },
-                    Arguments { arrayOf(Home, Actions.Home.AddNewRecord, AddRecordState) },
+                    Arguments { arrayOf(Home, Actions.Home.AddNewRecord, AddRecord) },
                     Arguments { arrayOf(AppClosed, Actions.Home.AddNewRecord, AppClosed) },
                     Arguments { arrayOf(Garage(), Actions.Common.OpenMenu, Menu(Garage())) },
                     Arguments { arrayOf(Garage(), Actions.Common.Back, Home) },

@@ -15,7 +15,7 @@ import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
 import ua.com.motometer.android.ui.adapter.OnNavigationItemSelectedListenerAdapter
 import ua.com.motometer.android.ui.fragment.home.NewRecordFragment
 import ua.com.motometer.android.ui.fragment.home.RecordListFragment
-import ua.com.motometer.android.ui.state.AddRecordState
+import ua.com.motometer.android.ui.state.AddRecord
 import ua.com.motometer.android.ui.state.AppClosed
 import ua.com.motometer.android.ui.state.Garage
 import ua.com.motometer.android.ui.state.Home
@@ -56,7 +56,7 @@ class HomeActivity : AbstractMenuActivity(Home) {
     override fun renderViewState(oldState: State, newState: State) {
         when (newState) {
             is Home -> home()
-            is AddRecordState -> addRecord()
+            is AddRecord -> addRecord()
             is Menu -> onMenu(newState)
             is AppClosed -> finishAffinity()
             is MenuState -> newState.handleMenu(this)

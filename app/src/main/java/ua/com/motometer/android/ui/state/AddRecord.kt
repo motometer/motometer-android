@@ -7,7 +7,7 @@ import ua.com.motometer.android.ui.state.api.HomeActionState
 import ua.com.motometer.android.ui.state.api.MenuActionState
 import ua.com.motometer.android.ui.state.api.State
 
-object AddRecordState : MenuActionState, CommonActionState, HomeActionState {
+object AddRecord : MenuActionState, CommonActionState, HomeActionState {
     override fun changeState(action: Action): State {
         logAction(action)
         return when (action) {
