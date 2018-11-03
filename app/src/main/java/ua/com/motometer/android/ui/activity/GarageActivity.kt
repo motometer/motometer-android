@@ -137,6 +137,7 @@ class GarageActivity : AbstractMenuActivity(Garage) {
     override fun drawerLayout(): DrawerLayout = drawer_layout
 
     private fun showNewVehicle() {
+        drawer_layout.closeDrawer(GravityCompat.START)
         supportFragmentManager.beginTransaction()
                 .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
                 .replace(R.id.garage_list, NewVehicleFragment())

@@ -4,13 +4,15 @@ import ua.com.motometer.android.ui.state.api.Action
 import ua.com.motometer.android.ui.state.api.Actions
 import ua.com.motometer.android.ui.state.api.CommonActionState
 import ua.com.motometer.android.ui.state.api.GarageActionState
+import ua.com.motometer.android.ui.state.api.MenuActionState
 import ua.com.motometer.android.ui.state.api.State
 
-object NewVehicle : CommonActionState, GarageActionState {
+object NewVehicle : CommonActionState, GarageActionState, MenuActionState {
     override fun changeState(action: Action): State {
         logAction(action)
         return when (action) {
             is Actions.Common -> this.changeState(action)
+            is Actions.Menu -> this.changeState(action)
             is Actions.Garage -> this.changeState(action)
             else -> this
         }
