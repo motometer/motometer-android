@@ -23,6 +23,13 @@ internal class StateMachineTest {
         @JvmStatic
         fun parameters(): List<Any> {
             return listOf(
+                    Arguments { arrayOf(VehicleDetails(1), Actions.Common.OpenMenu, Menu(VehicleDetails(1))) },
+                    Arguments { arrayOf(VehicleDetails(1), Actions.Common.OpenMenu, Menu(VehicleDetails(1))) },
+                    Arguments { arrayOf(VehicleDetails(1), Actions.Common.CloseMenu, Menu(VehicleDetails(1), false)) },
+                    Arguments { arrayOf(VehicleDetails(1), Actions.Common.Back, Garage()) },
+                    Arguments { arrayOf(VehicleDetails(1), Actions.Menu.Garage, Menu(Garage(), false)) },
+                    Arguments { arrayOf(VehicleDetails(1), Actions.Menu.Home, Menu(Home, false)) },
+                    Arguments { arrayOf(VehicleDetails(1), Actions.Menu.SignOut, Menu(SignOut, false)) },
                     Arguments { arrayOf(AddRecord, Actions.Common.OpenMenu, Menu(AddRecord)) },
                     Arguments { arrayOf(AddRecord, Actions.Common.CloseMenu, Menu(AddRecord, false)) },
                     Arguments { arrayOf(AddRecord, Actions.Common.Back, Home) },

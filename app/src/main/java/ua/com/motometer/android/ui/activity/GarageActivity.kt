@@ -63,6 +63,7 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
     }
 
     override fun renderViewState(oldState: State, newState: State) {
+        super.renderViewState(oldState, newState)
         when (newState) {
             is Garage -> handleGarage(newState)
             is NewVehicle -> showNewVehicle()

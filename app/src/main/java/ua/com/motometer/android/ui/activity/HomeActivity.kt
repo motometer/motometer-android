@@ -54,6 +54,7 @@ class HomeActivity : AbstractMenuActivity(Home) {
     }
 
     override fun renderViewState(oldState: State, newState: State) {
+        super.renderViewState(oldState, newState)
         when (newState) {
             is Home -> home()
             is AddRecord -> addRecord()

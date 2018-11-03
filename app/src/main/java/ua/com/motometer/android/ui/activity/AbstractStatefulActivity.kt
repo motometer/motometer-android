@@ -1,6 +1,7 @@
 package ua.com.motometer.android.ui.activity
 
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import ua.com.motometer.android.ui.state.api.Action
 import ua.com.motometer.android.ui.state.api.ActionListener
 import ua.com.motometer.android.ui.state.api.Actions
@@ -12,6 +13,10 @@ abstract class AbstractStatefulActivity(initialState: State) : AppCompatActivity
 
     private var currentState: State by Delegates.observable(initialState) { _, old, new ->
         renderViewState(old, new)
+    }
+
+    override fun renderViewState(oldState: State, newState: State) {
+        Log.d(javaClass.simpleName, "Changing state from $oldState to $newState")
     }
 
     override fun onBackPressed() = onAction(Actions.Common.Back)
