@@ -23,9 +23,4 @@ class DrawerListenerAdapter(
         original.onDrawerOpened(view)
         actionListener.onAction(Actions.Common.OpenMenu)
     }
-
-    override fun onDrawerClosed(view: View) {
-        original.onDrawerOpened(view)
-        actionListener.onAction(Actions.Common.CloseMenu)
-    }
 }

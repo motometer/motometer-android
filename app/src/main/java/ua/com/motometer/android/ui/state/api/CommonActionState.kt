@@ -1,6 +1,7 @@
 package ua.com.motometer.android.ui.state.api
 
-import ua.com.motometer.android.ui.state.Menu
+import ua.com.motometer.android.ui.state.MenuClosed
+import ua.com.motometer.android.ui.state.MenuOpened
 
 interface CommonActionState : State {
 
@@ -14,7 +15,7 @@ interface CommonActionState : State {
 
     fun changeState(action: Actions.Common.Back): State
 
-    fun changeState(action: Actions.Common.OpenMenu): State = Menu(this)
+    fun changeState(action: Actions.Common.OpenMenu): State = MenuOpened(this)
 
-    fun changeState(action: Actions.Common.CloseMenu): State = Menu(this, false)
+    fun changeState(action: Actions.Common.CloseMenu): State = MenuClosed(this)
 }

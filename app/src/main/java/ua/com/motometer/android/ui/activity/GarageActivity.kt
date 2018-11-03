@@ -25,7 +25,8 @@ import ua.com.motometer.android.ui.fragment.garage.VehicleDetailsFragment
 import ua.com.motometer.android.ui.state.AppClosed
 import ua.com.motometer.android.ui.state.Garage
 import ua.com.motometer.android.ui.state.Home
-import ua.com.motometer.android.ui.state.Menu
+import ua.com.motometer.android.ui.state.MenuClosed
+import ua.com.motometer.android.ui.state.MenuOpened
 import ua.com.motometer.android.ui.state.NewVehicle
 import ua.com.motometer.android.ui.state.NewVehicleCreated
 import ua.com.motometer.android.ui.state.VehicleDetails
@@ -69,7 +70,8 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
             is NewVehicle -> showNewVehicle()
             is AppClosed -> finishAffinity()
             is MenuState -> newState.handleMenu(this)
-            is Menu -> onMenu(newState)
+            is MenuOpened -> Unit
+            is MenuClosed -> menuClosed()
             is NewVehicleCreated -> AsyncTask.execute {
                 addNewVehicle()
             }

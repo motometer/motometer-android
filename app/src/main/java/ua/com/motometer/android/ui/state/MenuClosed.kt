@@ -6,7 +6,7 @@ import ua.com.motometer.android.ui.state.api.CommonActionState
 import ua.com.motometer.android.ui.state.api.MenuActionState
 import ua.com.motometer.android.ui.state.api.State
 
-data class Menu(private val previousState: State, val drawerOpened: Boolean = true) : CommonActionState, MenuActionState {
+data class MenuClosed(private val previousState: State) : CommonActionState, MenuActionState {
     override fun changeState(action: Action): State {
         logAction(action)
         return when (action) {
@@ -16,7 +16,5 @@ data class Menu(private val previousState: State, val drawerOpened: Boolean = tr
         }
     }
 
-    override fun changeState(action: Actions.Common.Back): State {
-        return if (drawerOpened) Menu(previousState, false) else previousState
-    }
+    override fun changeState(action: Actions.Common.Back): State = previousState
 }

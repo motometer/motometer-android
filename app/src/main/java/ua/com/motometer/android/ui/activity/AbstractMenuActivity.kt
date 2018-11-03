@@ -20,7 +20,7 @@ import ua.com.motometer.android.ui.state.api.MenuHandler
 import ua.com.motometer.android.ui.state.api.State
 import java.net.URI
 import javax.inject.Inject
-import ua.com.motometer.android.ui.state.Menu as MenuState
+import ua.com.motometer.android.ui.state.MenuOpened as MenuState
 
 
 abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActivity(initialState), MenuHandler {
@@ -66,10 +66,8 @@ abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActiv
 
     abstract fun drawerLayout(): DrawerLayout
 
-    fun onMenu(menuState: MenuState) {
-        if (!menuState.drawerOpened) {
-            drawerLayout().closeDrawer(GravityCompat.START)
-            onAction(Actions.Common.Back)
-        }
+    fun menuClosed() {
+        drawerLayout().closeDrawer(GravityCompat.START)
+        onAction(Actions.Common.Back)
     }
 }
