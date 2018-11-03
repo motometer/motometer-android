@@ -24,7 +24,7 @@ internal class StateMachineTest {
         fun parameters(): List<Any> {
             return listOf(
                     Arguments { arrayOf(EmptyGarage, Actions.Common.OpenMenu, Menu(EmptyGarage)) },
-                    Arguments { arrayOf(EmptyGarage, Actions.Common.Back, Garage) },
+                    Arguments { arrayOf(EmptyGarage, Actions.Common.Back, Home) },
                     Arguments { arrayOf(EmptyGarage, Actions.Garage.Add, NewVehicle) },
                     Arguments { arrayOf(EmptyGarage, Actions.Garage.Empty, EmptyGarage) },
                     Arguments { arrayOf(EmptyGarage, Actions.Menu.Garage, Garage) },

@@ -20,7 +20,7 @@ object EmptyGarage : MenuState, CommonActionState, MenuActionState, GarageAction
         }
     }
 
-    override fun changeState(action: Actions.Common.Back): State = Garage
+    override fun changeState(action: Actions.Common.Back): State = Home
 
     override fun changeState(action: Actions.Garage.Add): State = NewVehicle
 
