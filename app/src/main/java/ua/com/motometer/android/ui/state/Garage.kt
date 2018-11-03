@@ -14,6 +14,7 @@ data class Garage(val empty: Boolean = false) : MenuState, MenuActionState, Comm
         logAction(action)
         return when (action) {
             is Actions.Common -> this.changeState(action)
+            is Actions.Menu -> this.changeState(action)
             is Actions.Garage -> this.changeState(action)
             else -> this
         }
@@ -30,6 +31,8 @@ data class Garage(val empty: Boolean = false) : MenuState, MenuActionState, Comm
     override fun changeState(action: Actions.Garage.FinishCreate): State = this
 
     override fun changeState(action: Actions.Garage.Cancel): State = this
+
+    override fun changeState(action: Actions.Menu.Garage): State = this
 
     override fun handleMenu(menuHandler: MenuHandler) = menuHandler.handleGarage(this)
 }

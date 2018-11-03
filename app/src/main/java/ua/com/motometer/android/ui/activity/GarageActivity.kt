@@ -23,6 +23,7 @@ import ua.com.motometer.android.ui.fragment.garage.ListFragment
 import ua.com.motometer.android.ui.fragment.garage.NewVehicleFragment
 import ua.com.motometer.android.ui.fragment.garage.VehicleDetailsFragment
 import ua.com.motometer.android.ui.state.AppClosed
+import ua.com.motometer.android.ui.state.AppStarted
 import ua.com.motometer.android.ui.state.Garage
 import ua.com.motometer.android.ui.state.Home
 import ua.com.motometer.android.ui.state.MenuClosed
@@ -36,7 +37,7 @@ import ua.com.motometer.android.ui.state.api.State
 import java.time.LocalDate
 import javax.inject.Inject
 
-class GarageActivity : AbstractMenuActivity(Garage()) {
+class GarageActivity : AbstractMenuActivity(AppStarted(Garage())) {
 
     @Inject
     lateinit var garageFacade: GarageFacade
@@ -65,6 +66,9 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
 
     override fun renderViewState(oldState: State, newState: State) {
         super.renderViewState(oldState, newState)
+        if (oldState == newState) {
+            return
+        }
         when (newState) {
             is Garage -> handleGarage(newState)
             is NewVehicle -> showNewVehicle()

@@ -17,6 +17,7 @@ import ua.com.motometer.android.ui.fragment.home.NewRecordFragment
 import ua.com.motometer.android.ui.fragment.home.RecordListFragment
 import ua.com.motometer.android.ui.state.AddRecord
 import ua.com.motometer.android.ui.state.AppClosed
+import ua.com.motometer.android.ui.state.AppStarted
 import ua.com.motometer.android.ui.state.Garage
 import ua.com.motometer.android.ui.state.Home
 import ua.com.motometer.android.ui.state.MenuClosed
@@ -25,7 +26,7 @@ import ua.com.motometer.android.ui.state.api.Actions
 import ua.com.motometer.android.ui.state.api.MenuState
 import ua.com.motometer.android.ui.state.api.State
 
-class HomeActivity : AbstractMenuActivity(Home) {
+class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +48,11 @@ class HomeActivity : AbstractMenuActivity(Home) {
         onAction(Actions.Menu.Home)
     }
 
+    override fun onResume() {
+        super.onResume()
+        onAction(Actions.Menu.Home)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_settings -> true
@@ -56,6 +62,9 @@ class HomeActivity : AbstractMenuActivity(Home) {
 
     override fun renderViewState(oldState: State, newState: State) {
         super.renderViewState(oldState, newState)
+        if (oldState == newState) {
+            return
+        }
         when (newState) {
             is Home -> home()
             is AddRecord -> addRecord()

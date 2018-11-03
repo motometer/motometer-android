@@ -6,6 +6,7 @@ sealed class Actions : Action {
         object Back : Common()
         object OpenMenu : Common()
         object CloseMenu : Common()
+        object DrawerClosed : Common()
     }
 
     sealed class Menu : Actions() {

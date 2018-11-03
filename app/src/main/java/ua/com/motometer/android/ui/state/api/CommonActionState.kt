@@ -10,6 +10,7 @@ interface CommonActionState : State {
             is Actions.Common.Back -> this.changeState(action)
             is Actions.Common.CloseMenu -> this.changeState(action)
             is Actions.Common.OpenMenu -> this.changeState(action)
+            is Actions.Common.DrawerClosed -> this.changeState(action)
         }
     }
 
@@ -18,4 +19,6 @@ interface CommonActionState : State {
     fun changeState(action: Actions.Common.OpenMenu): State = MenuOpened(this)
 
     fun changeState(action: Actions.Common.CloseMenu): State = MenuClosed(this)
+
+    fun changeState(action: Actions.Common.DrawerClosed): State = this
 }
