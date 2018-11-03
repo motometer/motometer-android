@@ -17,14 +17,4 @@ data class Menu(private val previousState: State) : CommonActionState, MenuActio
     }
 
     override fun changeState(action: Actions.Common.Back): State = previousState
-
-    override fun changeState(action: Actions.Common.OpenMenu): State = this
-
-    override fun changeState(action: Actions.Common.CloseMenu): State = previousState
-
-    override fun changeState(action: Actions.Menu.Home): State = Home
-
-    override fun changeState(action: Actions.Menu.Garage): State = Garage
-
-    override fun changeState(action: Actions.Menu.SignOut): State = SignOut
 }

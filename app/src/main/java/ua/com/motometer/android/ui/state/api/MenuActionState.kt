@@ -1,5 +1,9 @@
 package ua.com.motometer.android.ui.state.api
 
+import ua.com.motometer.android.ui.state.Garage
+import ua.com.motometer.android.ui.state.Home
+import ua.com.motometer.android.ui.state.SignOut
+
 interface MenuActionState : State {
 
     fun changeState(action: Actions.Menu): State {
@@ -10,9 +14,9 @@ interface MenuActionState : State {
         }
     }
 
-    fun changeState(action: Actions.Menu.Home): State
+    fun changeState(action: Actions.Menu.Home): State = Home
 
-    fun changeState(action: Actions.Menu.Garage): State
+    fun changeState(action: Actions.Menu.Garage): State = Garage
 
-    fun changeState(action: Actions.Menu.SignOut): State
+    fun changeState(action: Actions.Menu.SignOut): State = SignOut
 }

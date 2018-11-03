@@ -19,17 +19,7 @@ object Garage : MenuState, MenuActionState, CommonActionState, GarageActionState
         }
     }
 
-    override fun changeState(action: Actions.Menu.Home): State = Home
-
-    override fun changeState(action: Actions.Menu.Garage): State = Garage
-
-    override fun changeState(action: Actions.Menu.SignOut): State = SignOut
-
     override fun changeState(action: Actions.Common.Back): State = Home
-
-    override fun changeState(action: Actions.Common.OpenMenu): State = Menu(this)
-
-    override fun changeState(action: Actions.Common.CloseMenu): State = this
 
     override fun changeState(action: Actions.Garage.Add): State = NewVehicle
 

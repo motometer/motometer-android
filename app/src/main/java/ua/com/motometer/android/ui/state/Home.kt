@@ -22,16 +22,6 @@ object Home : MenuState, CommonActionState, MenuActionState, HomeActionState {
 
     override fun changeState(action: Actions.Common.Back): State = ClosedApp
 
-    override fun changeState(action: Actions.Common.OpenMenu): State = Menu(this)
-
-    override fun changeState(action: Actions.Common.CloseMenu): State = this
-
-    override fun changeState(action: Actions.Menu.Home): State = Home
-
-    override fun changeState(action: Actions.Menu.Garage): State = Garage
-
-    override fun changeState(action: Actions.Menu.SignOut): State = SignOut
-
     override fun changeState(action: Actions.Home.AddNewRecord): State = AddRecordState
 
     override fun changeState(action: Actions.Home.TrackRecordDetails): State = this
