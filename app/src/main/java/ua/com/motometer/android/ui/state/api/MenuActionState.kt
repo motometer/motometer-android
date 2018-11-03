@@ -16,7 +16,7 @@ interface MenuActionState : State {
 
     fun changeState(action: Actions.Menu.Home): State = Home
 
-    fun changeState(action: Actions.Menu.Garage): State = Garage
+    fun changeState(action: Actions.Menu.Garage): State = Garage()
 
     fun changeState(action: Actions.Menu.SignOut): State = SignOut
 }

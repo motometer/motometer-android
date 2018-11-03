@@ -9,7 +9,7 @@ import ua.com.motometer.android.ui.state.api.MenuHandler
 import ua.com.motometer.android.ui.state.api.MenuState
 import ua.com.motometer.android.ui.state.api.State
 
-object Garage : MenuState, MenuActionState, CommonActionState, GarageActionState {
+data class Garage(val empty: Boolean = false) : MenuState, MenuActionState, CommonActionState, GarageActionState {
     override fun changeState(action: Action): State {
         logAction(action)
         return when (action) {
@@ -25,7 +25,7 @@ object Garage : MenuState, MenuActionState, CommonActionState, GarageActionState
 
     override fun changeState(action: Actions.Garage.VehicleDetails): State = VehicleDetails(action.vehicleId)
 
-    override fun changeState(action: Actions.Garage.Empty): State = EmptyGarage
+    override fun changeState(action: Actions.Garage.Empty): State = Garage(true)
 
     override fun changeState(action: Actions.Garage.FinishCreate): State = this
 

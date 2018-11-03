@@ -18,7 +18,7 @@ object NewVehicle : CommonActionState, GarageActionState, MenuActionState {
         }
     }
 
-    override fun changeState(action: Actions.Common.Back): State = Garage
+    override fun changeState(action: Actions.Common.Back): State = Garage()
 
     override fun changeState(action: Actions.Garage.Add): State = this
 
@@ -28,5 +28,5 @@ object NewVehicle : CommonActionState, GarageActionState, MenuActionState {
 
     override fun changeState(action: Actions.Garage.FinishCreate): State = NewVehicleCreated
 
-    override fun changeState(action: Actions.Garage.Cancel): State = Garage
+    override fun changeState(action: Actions.Garage.Cancel): State = Garage()
 }

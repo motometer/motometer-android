@@ -24,7 +24,6 @@ import ua.com.motometer.android.ui.fragment.garage.ListFragment
 import ua.com.motometer.android.ui.fragment.garage.NewVehicleFragment
 import ua.com.motometer.android.ui.fragment.garage.VehicleDetailsFragment
 import ua.com.motometer.android.ui.state.ClosedApp
-import ua.com.motometer.android.ui.state.EmptyGarage
 import ua.com.motometer.android.ui.state.Garage
 import ua.com.motometer.android.ui.state.Home
 import ua.com.motometer.android.ui.state.Menu
@@ -37,7 +36,7 @@ import ua.com.motometer.android.ui.state.api.State
 import java.time.LocalDate
 import javax.inject.Inject
 
-class GarageActivity : AbstractMenuActivity(Garage) {
+class GarageActivity : AbstractMenuActivity(Garage()) {
 
     @Inject
     lateinit var garageFacade: GarageFacade
@@ -66,7 +65,7 @@ class GarageActivity : AbstractMenuActivity(Garage) {
 
     override fun renderViewState(oldState: State, newState: State) {
         when (newState) {
-            is EmptyGarage -> showEmptyGarage()
+            is Garage -> handleGarage(newState)
             is NewVehicle -> showNewVehicle()
             is ClosedApp -> finishAffinity()
             is MenuState -> newState.handleMenu(this)
@@ -115,7 +114,6 @@ class GarageActivity : AbstractMenuActivity(Garage) {
     private fun text(viewId: Int) = findViewById<EditText>(viewId).text.toString()
 
     private fun showEmptyGarage() {
-        drawer_layout.closeDrawer(GravityCompat.START)
         supportFragmentManager.beginTransaction().run {
             setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             replace(R.id.garage_list, EmptyGarageFragment())
@@ -127,10 +125,14 @@ class GarageActivity : AbstractMenuActivity(Garage) {
 
     override fun handleGarage(state: Garage) {
         drawer_layout.closeDrawer(GravityCompat.START)
-        supportFragmentManager.beginTransaction().run {
-            setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-            replace(R.id.garage_list, ListFragment())
-            commit()
+        if (state.empty) {
+            showEmptyGarage()
+        } else {
+            supportFragmentManager.beginTransaction().run {
+                setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+                replace(R.id.garage_list, ListFragment())
+                commit()
+            }
         }
     }
 
