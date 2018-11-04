@@ -1,8 +1,10 @@
 package ua.com.motometer.android.ui.fragment.garage
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,7 @@ import ua.com.motometer.android.R
 import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
 import ua.com.motometer.android.ui.state.api.ActionListener
 import ua.com.motometer.android.ui.state.api.Actions
+import java.time.LocalDate
 
 class NewVehicleFragment : Fragment() {
 
@@ -42,9 +45,15 @@ class NewVehicleFragment : Fragment() {
 
             fragment.findViewById<EditText>(R.id.new_vehicle_bought_date_edit)
                     .setOnFocusChangeListener { view, hasFocus ->
+                        view as EditText
                         if (hasFocus) {
-                            val newFragment = DatePickerFragment()
-                            newFragment.input = view as EditText
+                            val newFragment = ua.com.motometer.android.ui.fragment.common.DatePickerDialog()
+                            newFragment.listener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                                val localDate = LocalDate.of(year, month, dayOfMonth)
+                                view.setText(localDate.toString())
+                                Log.d(javaClass.simpleName, "Chosen date $localDate")
+                            }
+
                             newFragment.show(activity?.supportFragmentManager, "datePicker")
                         }
                     }

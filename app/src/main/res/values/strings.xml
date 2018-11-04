@@ -31,8 +31,8 @@
     <string name="title_activity_garage">Garage</string>
     <string name="empty_garage">You don\'t have any vehicle yet.</string>
     <string name="add_vehicle_button">Click here to add a new vehicle</string>
-    <string name="new_record_service_title">Hello service</string>
-    <string name="new_record_fuel_title">Hello fuel</string>
+    <string name="new_record_service_title">Type service expenses</string>
+    <string name="new_record_fuel_title">Type refill expenses</string>
     <string-array name="vehicle_type">
         <item>Car</item>
         <item>Motorbike</item>
