@@ -9,6 +9,6 @@
         android:id="@+id/new_record_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:text="@string/new_record_fuel_title" />
 
 </FrameLayout>

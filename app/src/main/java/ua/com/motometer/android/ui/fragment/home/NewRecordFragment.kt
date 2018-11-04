@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ua.com.motometer.android.R
 import ua.com.motometer.android.ui.state.api.ActionListener
 
 
@@ -15,7 +14,8 @@ class NewRecordFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_new_record, container, false)
+        val viewId = arguments?.get(RECORD_TYPE_VIEW) as Int
+        return inflater.inflate(viewId, container, false)
     }
 
     override fun onAttach(context: Context) {
@@ -30,5 +30,9 @@ class NewRecordFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         listener = null
+    }
+
+    companion object {
+        const val RECORD_TYPE_VIEW = "RECORD_TYPE_VIEW"
     }
 }

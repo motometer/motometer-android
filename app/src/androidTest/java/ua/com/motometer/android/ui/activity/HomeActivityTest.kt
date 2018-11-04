@@ -17,7 +17,7 @@ class HomeActivityTest : AbstractActivityTest() {
         onView(withId(R.id.fab))
                 .check(matches(isDisplayed()))
 
-        onView(withId(R.id.record_list))
+        onView(withId(R.id.new_vehicle_type_choice))
                 .check(matches(isDisplayed()))
     }
 
@@ -26,7 +26,7 @@ class HomeActivityTest : AbstractActivityTest() {
         onView(withId(R.id.fab))
                 .perform(ViewActions.click())
 
-        onView(withId(R.id.new_record_view))
+        onView(withId(R.id.new_vehicle_type_choice))
                 .check(matches(isDisplayed()))
     }
 }

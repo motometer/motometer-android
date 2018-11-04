@@ -1,5 +1,7 @@
 package ua.com.motometer.android.ui.state.api
 
+import ua.com.motometer.android.ui.state.home.RecordType
+
 sealed class Actions : Action {
 
     sealed class Common : Actions() {
@@ -25,6 +27,8 @@ sealed class Actions : Action {
 
     sealed class Home : Actions() {
         object AddNewRecord : Home()
+        object RecordTypeDialogClosed : Home()
+        data class RecordTypeChoice(val recordType: RecordType) : Home()
         class TrackRecordDetails(val trackRecordId: Long) : Home()
     }
 }

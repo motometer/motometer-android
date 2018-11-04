@@ -25,7 +25,6 @@ import ua.com.motometer.android.ui.fragment.garage.VehicleDetailsFragment
 import ua.com.motometer.android.ui.state.AppClosed
 import ua.com.motometer.android.ui.state.AppStarted
 import ua.com.motometer.android.ui.state.Garage
-import ua.com.motometer.android.ui.state.Home
 import ua.com.motometer.android.ui.state.MenuClosed
 import ua.com.motometer.android.ui.state.MenuOpened
 import ua.com.motometer.android.ui.state.NewVehicle
@@ -34,6 +33,7 @@ import ua.com.motometer.android.ui.state.VehicleDetails
 import ua.com.motometer.android.ui.state.api.Actions
 import ua.com.motometer.android.ui.state.api.MenuState
 import ua.com.motometer.android.ui.state.api.State
+import ua.com.motometer.android.ui.state.home.Home
 import java.time.LocalDate
 import javax.inject.Inject
 

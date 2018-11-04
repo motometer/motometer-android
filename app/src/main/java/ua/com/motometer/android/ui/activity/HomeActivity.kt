@@ -15,16 +15,19 @@ import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
 import ua.com.motometer.android.ui.adapter.OnNavigationItemSelectedListenerAdapter
 import ua.com.motometer.android.ui.fragment.home.NewRecordFragment
 import ua.com.motometer.android.ui.fragment.home.RecordListFragment
-import ua.com.motometer.android.ui.state.AddRecord
+import ua.com.motometer.android.ui.fragment.home.RecordTypeChoiceDialog
 import ua.com.motometer.android.ui.state.AppClosed
 import ua.com.motometer.android.ui.state.AppStarted
 import ua.com.motometer.android.ui.state.Garage
-import ua.com.motometer.android.ui.state.Home
 import ua.com.motometer.android.ui.state.MenuClosed
 import ua.com.motometer.android.ui.state.MenuOpened
 import ua.com.motometer.android.ui.state.api.Actions
 import ua.com.motometer.android.ui.state.api.MenuState
 import ua.com.motometer.android.ui.state.api.State
+import ua.com.motometer.android.ui.state.home.Home
+import ua.com.motometer.android.ui.state.home.NewRecord
+import ua.com.motometer.android.ui.state.home.RecordType
+import ua.com.motometer.android.ui.state.home.RecordTypeChoice
 
 class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
 
@@ -67,7 +70,8 @@ class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
         }
         when (newState) {
             is Home -> home()
-            is AddRecord -> addRecord()
+            is RecordTypeChoice -> recordTypeChoice()
+            is NewRecord -> newRecord(newState)
             is MenuOpened -> Unit
             is MenuClosed -> menuClosed()
             is AppClosed -> finishAffinity()
@@ -76,12 +80,26 @@ class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
         }
     }
 
-    private fun addRecord() {
+    private fun newRecord(newRecordState: NewRecord) {
+        val viewId = when (newRecordState.recordType) {
+            RecordType.FUEL -> R.layout.fragment_new_record_fuel
+            RecordType.SERVICE -> R.layout.fragment_new_record_service
+        }
+
         supportFragmentManager.beginTransaction().run {
             setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-            replace(R.id.record_list, NewRecordFragment())
+            val bundle = Bundle()
+            bundle.putInt(NewRecordFragment.RECORD_TYPE_VIEW, viewId)
+            val fragment = NewRecordFragment()
+            fragment.arguments = bundle
+            replace(R.id.record_list, fragment)
             commit()
         }
+    }
+
+    private fun recordTypeChoice() {
+        val dialog = RecordTypeChoiceDialog()
+        dialog.show(supportFragmentManager, "NoticeDialogFragment")
     }
 
     private fun home() {
