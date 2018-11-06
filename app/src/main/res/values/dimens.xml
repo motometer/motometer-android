@@ -10,4 +10,5 @@
     <dimen name="list_item_spacing_half">8dp</dimen>
     <dimen name="new_vehicle_edit_label">150dp</dimen>
     <dimen name="empty_garage">24sp</dimen>
+    <dimen name="record_service_title_size">20sp</dimen>
 </resources>
