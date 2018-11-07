@@ -18,7 +18,7 @@ public interface Vehicle {
 
     int builtYear();
 
-    String vin();
+    String registrationNumber();
 
     LocalDate boughtDate();
 

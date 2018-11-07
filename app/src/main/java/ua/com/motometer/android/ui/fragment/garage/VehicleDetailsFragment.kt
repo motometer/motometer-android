@@ -50,7 +50,7 @@ class VehicleDetailsFragment : Fragment() {
                     view.findViewById<TextView>(R.id.details_currency).text = it.currency()
                     view.findViewById<TextView>(R.id.details_price).text = it.price().toString()
                     view.findViewById<TextView>(R.id.details_type).text = it.type()
-                    view.findViewById<TextView>(R.id.details_vin_code).text = it.vin()
+                    view.findViewById<TextView>(R.id.details_reg_number).text = it.registrationNumber()
                 }
         ).execute()
 

@@ -1,9 +1,9 @@
 package ua.com.motometer.android.core.facade.impl.adapter
 
 import ua.com.motometer.android.core.facade.api.model.Vehicle
-import ua.com.motometer.android.core.dao.Vehicle as VehicleDaoModel
 import java.math.BigDecimal
 import java.time.LocalDate
+import ua.com.motometer.android.core.dao.Vehicle as VehicleDaoModel
 
 class VehicleDaoModelAdapter(private val vehicle: VehicleDaoModel) : Vehicle {
 
@@ -17,7 +17,7 @@ class VehicleDaoModelAdapter(private val vehicle: VehicleDaoModel) : Vehicle {
 
     override fun builtYear(): Int = vehicle.builtYear
 
-    override fun vin(): String = vehicle.vin
+    override fun registrationNumber(): String = vehicle.vin
 
     override fun boughtDate(): LocalDate = LocalDate.parse(vehicle.boughtDate)
 

@@ -95,10 +95,10 @@
             <TextView
                 android:layout_width="@dimen/new_vehicle_edit_label"
                 android:layout_height="match_parent"
-                android:text="@string/vin_code" />
+                android:text="@string/registration_number" />
 
             <EditText
-                android:id="@+id/new_vehicle_vin_edit"
+                android:id="@+id/new_vehicle_reg_num_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

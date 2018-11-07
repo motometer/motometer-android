@@ -89,7 +89,7 @@ class GarageActivity : AbstractMenuActivity(AppStarted(Garage())) {
                 .manufacturer(text(R.id.new_vehicle_manufacturer_edit))
                 .model(text(R.id.new_vehicle_model_edit))
                 .builtYear(text(R.id.new_vehicle_build_year_edit).toInt())
-                .vin(text(R.id.new_vehicle_vin_edit))
+                .registrationNumber(text(R.id.new_vehicle_reg_num_edit))
                 .boughtDate(LocalDate.parse(text(R.id.new_vehicle_bought_date_edit)))
                 .type(new_vehicle_type_choice.selectedItem.toString())
                 .price(text(R.id.new_vehicle_price_edit).toBigDecimal())

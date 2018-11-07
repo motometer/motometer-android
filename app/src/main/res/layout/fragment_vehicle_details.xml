@@ -80,9 +80,9 @@
             <TextView
                 android:layout_width="@dimen/new_vehicle_edit_label"
                 android:layout_height="match_parent"
-                android:text="@string/vin_code" />
+                android:text="@string/registration_number" />
             <TextView
-                android:id="@+id/details_vin_code"
+                android:id="@+id/details_reg_number"
                 android:layout_width="@dimen/new_vehicle_edit_label"
                 android:layout_height="match_parent" />
         </LinearLayout>

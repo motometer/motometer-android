@@ -9,7 +9,7 @@ fun Vehicle.toDaoModel(): VehicleDaoModel {
             manufacturer(),
             model(),
             builtYear(),
-            vin(),
+            registrationNumber(),
             boughtDate().toString(),
             price().toString(),
             currency()

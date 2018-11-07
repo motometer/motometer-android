@@ -26,7 +26,7 @@
     <string name="built_year">Built year</string>
     <string name="model">Model</string>
     <string name="manufacturer">Manufacturer</string>
-    <string name="vin_code">Vin code</string>
+    <string name="registration_number">Registration number</string>
     <string name="vehicle_type">Vehicle type</string>
     <string name="title_activity_garage">Garage</string>
     <string name="empty_garage">You don\'t have any vehicle yet.</string>
