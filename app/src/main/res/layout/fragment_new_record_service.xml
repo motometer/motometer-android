@@ -98,25 +98,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/new_vehicle_cancel"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/new_vehicle_cancel" />
-
-            <Button
-                android:id="@+id/new_vehicle_finish"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/new_vehicle_finish" />
-        </LinearLayout>
+        <include layout="@layout/control_buttons" />
 
     </LinearLayout>
 

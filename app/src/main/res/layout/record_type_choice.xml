@@ -9,12 +9,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Fuel" />
+        android:text="@string/fuel" />
 
     <Button
         android:id="@+id/record_type_service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Service" />
+        android:text="@string/service" />
 </LinearLayout>

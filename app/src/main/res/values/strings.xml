@@ -19,8 +19,8 @@
     <string name="nav_about_title">About</string>
     <string name="nav_sign_out_title">Sign out</string>
 
-    <string name="new_vehicle_finish">Finish</string>
-    <string name="new_vehicle_cancel">Cancel</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
     <string name="price">Price</string>
     <string name="bought_date">Bought date</string>
     <string name="built_year">Built year</string>
@@ -42,6 +42,8 @@
     <string name="fill_amount">Fill amount</string>
     <string name="fuel_price">Fuel price</string>
     <string name="petrol_station">Petrol station</string>
+    <string name="fuel">Fuel</string>
+    <string name="service">Service</string>
     <string-array name="vehicle_type">
         <item>Car</item>
         <item>Motorbike</item>

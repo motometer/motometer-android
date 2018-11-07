@@ -52,7 +52,7 @@ class GarageActivityTest : AbstractActivityTest() {
         onView(withId(R.id.fab))
                 .perform(click())
 
-        onView(withId(R.id.new_vehicle_cancel))
+        onView(withId(R.id.button_cancel))
                 .perform(click())
 
 

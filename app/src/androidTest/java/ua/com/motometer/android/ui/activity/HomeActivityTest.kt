@@ -1,10 +1,12 @@
 package ua.com.motometer.android.ui.activity
 
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions
+import android.support.test.espresso.Espresso.pressBack
+import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withId
+import android.support.test.espresso.matcher.ViewMatchers.withText
 import org.junit.Test
 import ua.com.motometer.android.R
 
@@ -16,17 +18,17 @@ class HomeActivityTest : AbstractActivityTest() {
     fun shouldDisplayFab() {
         onView(withId(R.id.fab))
                 .check(matches(isDisplayed()))
-
-        onView(withId(R.id.new_vehicle_type_choice))
-                .check(matches(isDisplayed()))
     }
 
     @Test
-    fun newRecordViewDisplayed() {
+    fun shouldOpenRecordTypeDialog() {
         onView(withId(R.id.fab))
-                .perform(ViewActions.click())
+                .perform(click())
 
-        onView(withId(R.id.new_vehicle_type_choice))
+        onView(withText(R.string.fuel))
                 .check(matches(isDisplayed()))
+        onView(withText(R.string.service))
+                .check(matches(isDisplayed()))
+        pressBack()
     }
 }

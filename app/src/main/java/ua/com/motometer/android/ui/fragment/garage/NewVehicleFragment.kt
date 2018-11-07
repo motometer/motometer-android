@@ -38,9 +38,9 @@ class NewVehicleFragment : Fragment() {
 
     private fun registerListeners(fragment: View) {
         if (actionListener != null) {
-            fragment.findViewById<Button>(R.id.new_vehicle_cancel)
+            fragment.findViewById<Button>(R.id.button_cancel)
                     .setOnClickListener(OnClickListenerAdapter(Actions.Garage.Cancel, actionListener!!))
-            fragment.findViewById<Button>(R.id.new_vehicle_finish)
+            fragment.findViewById<Button>(R.id.button_submit)
                     .setOnClickListener(OnClickListenerAdapter(Actions.Garage.FinishCreate, actionListener!!))
 
             fragment.findViewById<EditText>(R.id.new_vehicle_bought_date_edit)
