@@ -28,4 +28,6 @@ object RecordTypeChoice : MenuActionState, CommonActionState, HomeActionState {
     override fun changeState(action: Actions.Home.RecordTypeChoice): State = NewRecord(action.recordType)
 
     override fun changeState(action: Actions.Home.RecordTypeDialogClosed): State = Home
+
+    override fun changeState(action: Actions.Home.SubmitRecord): State = this
 }

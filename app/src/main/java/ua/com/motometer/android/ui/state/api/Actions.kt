@@ -27,6 +27,7 @@ sealed class Actions : Action {
 
     sealed class Home : Actions() {
         object AddNewRecord : Home()
+        object SubmitRecord : Home()
         object RecordTypeDialogClosed : Home()
         data class RecordTypeChoice(val recordType: RecordType) : Home()
         class TrackRecordDetails(val trackRecordId: Long) : Home()

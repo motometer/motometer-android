@@ -29,4 +29,6 @@ data class NewRecord(val recordType: RecordType) : CommonActionState, MenuAction
     override fun changeState(action: Actions.Home.RecordTypeChoice): State = this
 
     override fun changeState(action: Actions.Home.RecordTypeDialogClosed): State = this
+
+    override fun changeState(action: Actions.Home.SubmitRecord): State = Home
 }
