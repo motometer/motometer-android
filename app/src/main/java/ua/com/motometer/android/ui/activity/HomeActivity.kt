@@ -16,6 +16,7 @@ import ua.com.motometer.android.ui.adapter.OnNavigationItemSelectedListenerAdapt
 import ua.com.motometer.android.ui.fragment.home.NewRecordFragment
 import ua.com.motometer.android.ui.fragment.home.RecordListFragment
 import ua.com.motometer.android.ui.fragment.home.RecordTypeChoiceDialog
+import ua.com.motometer.android.ui.fragment.home.VehicleChoiceDialog
 import ua.com.motometer.android.ui.state.AppClosed
 import ua.com.motometer.android.ui.state.AppStarted
 import ua.com.motometer.android.ui.state.Garage
@@ -28,6 +29,7 @@ import ua.com.motometer.android.ui.state.home.Home
 import ua.com.motometer.android.ui.state.home.NewRecord
 import ua.com.motometer.android.ui.state.home.RecordType
 import ua.com.motometer.android.ui.state.home.RecordTypeChoice
+import ua.com.motometer.android.ui.state.home.VehicleChoice
 
 class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
 
@@ -71,6 +73,7 @@ class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
         when (newState) {
             is Home -> home()
             is RecordTypeChoice -> recordTypeChoice()
+            is VehicleChoice -> vehicleChoice()
             is NewRecord -> newRecord(newState)
             is MenuOpened -> Unit
             is MenuClosed -> menuClosed()
@@ -78,6 +81,11 @@ class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
             is MenuState -> newState.handleMenu(this)
             else -> Log.e(javaClass.simpleName, "Illegal state $newState")
         }
+    }
+
+    private fun vehicleChoice() {
+        val dialog = VehicleChoiceDialog()
+        dialog.show(supportFragmentManager, "VehicleChoiceDialog")
     }
 
     private fun newRecord(newRecordState: NewRecord) {
@@ -99,7 +107,7 @@ class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
 
     private fun recordTypeChoice() {
         val dialog = RecordTypeChoiceDialog()
-        dialog.show(supportFragmentManager, "NoticeDialogFragment")
+        dialog.show(supportFragmentManager, "RecordTypeChoiceDialog")
     }
 
     private fun home() {

@@ -11,6 +11,7 @@ import ua.com.motometer.android.ui.state.home.Home
 import ua.com.motometer.android.ui.state.home.NewRecord
 import ua.com.motometer.android.ui.state.home.RecordType
 import ua.com.motometer.android.ui.state.home.RecordTypeChoice
+import ua.com.motometer.android.ui.state.home.VehicleChoice
 
 internal class StateMachineTest {
 
@@ -27,30 +28,54 @@ internal class StateMachineTest {
         @JvmStatic
         fun home(): List<Any> {
             return listOf(
-                    Arguments { arrayOf(NewRecord(RecordType.FUEL), Actions.Common.OpenMenu, MenuOpened(NewRecord(RecordType.FUEL))) },
-                    Arguments { arrayOf(NewRecord(RecordType.FUEL), Actions.Common.CloseMenu, MenuClosed(NewRecord(RecordType.FUEL))) },
-                    Arguments { arrayOf(NewRecord(RecordType.FUEL), Actions.Common.Back, Home) },
-                    Arguments { arrayOf(NewRecord(RecordType.FUEL), Actions.Menu.Garage, Garage()) },
-                    Arguments { arrayOf(NewRecord(RecordType.FUEL), Actions.Menu.Home, Home) },
-                    Arguments { arrayOf(NewRecord(RecordType.FUEL), Actions.Menu.SignOut, SignOut) },
-                    Arguments { arrayOf(RecordTypeChoice, Actions.Common.OpenMenu, MenuOpened(RecordTypeChoice)) },
-                    Arguments { arrayOf(RecordTypeChoice, Actions.Common.CloseMenu, MenuClosed(RecordTypeChoice)) },
-                    Arguments { arrayOf(RecordTypeChoice, Actions.Common.Back, Home) },
-                    Arguments { arrayOf(RecordTypeChoice, Actions.Menu.Garage, Garage()) },
-                    Arguments { arrayOf(RecordTypeChoice, Actions.Menu.Home, Home) },
-                    Arguments { arrayOf(RecordTypeChoice, Actions.Menu.SignOut, SignOut) },
-                    Arguments { arrayOf(RecordTypeChoice, Actions.Home.RecordTypeChoice(RecordType.SERVICE), NewRecord(RecordType.SERVICE)) },
-                    Arguments { arrayOf(RecordTypeChoice, Actions.Home.RecordTypeChoice(RecordType.FUEL), NewRecord(RecordType.FUEL)) },
-                    Arguments { arrayOf(RecordTypeChoice, Actions.Menu.SignOut, SignOut) },
-                    Arguments { arrayOf(Home, Actions.Common.OpenMenu, MenuOpened(Home)) },
-                    Arguments { arrayOf(Home, Actions.Common.CloseMenu, MenuClosed(Home)) },
-                    Arguments { arrayOf(Home, Actions.Common.Back, AppClosed) },
-                    Arguments { arrayOf(Home, Actions.Menu.Home, Home) },
-                    Arguments { arrayOf(Home, Actions.Menu.SignOut, SignOut) },
-                    Arguments { arrayOf(Home, Actions.Menu.Garage, Garage()) },
-                    Arguments { arrayOf(Home, Actions.Home.AddNewRecord, RecordTypeChoice) }
-            )
+                    newRecord(RecordType.FUEL),
+                    newRecord(RecordType.SERVICE),
+                    recordTypeChoice(),
+                    vehicleChoice(),
+                    menu(),
+                    common()
+            ).flatten()
         }
+
+        private fun vehicleChoice(): List<Arguments> =
+                listOf(
+                        Arguments { arrayOf(VehicleChoice, Actions.Home.ChoseRecord, RecordTypeChoice) }
+                )
+
+        private fun common(): List<Arguments> = listOf(
+                Arguments { arrayOf(Home, Actions.Common.OpenMenu, MenuOpened(Home)) },
+                Arguments { arrayOf(Home, Actions.Common.CloseMenu, MenuClosed(Home)) },
+                Arguments { arrayOf(Home, Actions.Common.Back, AppClosed) }
+        )
+
+        private fun menu(): List<Arguments> = listOf(
+                Arguments { arrayOf(Home, Actions.Menu.Home, Home) },
+                Arguments { arrayOf(Home, Actions.Menu.SignOut, SignOut) },
+                Arguments { arrayOf(Home, Actions.Menu.Garage, Garage()) },
+                Arguments { arrayOf(Home, Actions.Home.AddNewRecord, VehicleChoice) }
+        )
+
+        private fun recordTypeChoice(): List<Arguments> = listOf(
+                Arguments { arrayOf(RecordTypeChoice, Actions.Common.OpenMenu, MenuOpened(RecordTypeChoice)) },
+                Arguments { arrayOf(RecordTypeChoice, Actions.Common.CloseMenu, MenuClosed(RecordTypeChoice)) },
+                Arguments { arrayOf(RecordTypeChoice, Actions.Common.Back, VehicleChoice) },
+                Arguments { arrayOf(RecordTypeChoice, Actions.Menu.Garage, Garage()) },
+                Arguments { arrayOf(RecordTypeChoice, Actions.Menu.Home, Home) },
+                Arguments { arrayOf(RecordTypeChoice, Actions.Menu.SignOut, SignOut) },
+                Arguments { arrayOf(RecordTypeChoice, Actions.Home.RecordTypeChoice(RecordType.SERVICE), NewRecord(RecordType.SERVICE)) },
+                Arguments { arrayOf(RecordTypeChoice, Actions.Home.RecordTypeChoice(RecordType.FUEL), NewRecord(RecordType.FUEL)) },
+                Arguments { arrayOf(RecordTypeChoice, Actions.Menu.SignOut, SignOut) }
+        )
+
+        private fun newRecord(recordType: RecordType): List<Arguments> = listOf(
+                Arguments { arrayOf(NewRecord(recordType), Actions.Home.SubmitRecord, Home) },
+                Arguments { arrayOf(NewRecord(recordType), Actions.Common.OpenMenu, MenuOpened(NewRecord(recordType))) },
+                Arguments { arrayOf(NewRecord(recordType), Actions.Common.CloseMenu, MenuClosed(NewRecord(recordType))) },
+                Arguments { arrayOf(NewRecord(recordType), Actions.Common.Back, Home) },
+                Arguments { arrayOf(NewRecord(recordType), Actions.Menu.Garage, Garage()) },
+                Arguments { arrayOf(NewRecord(recordType), Actions.Menu.Home, Home) },
+                Arguments { arrayOf(NewRecord(recordType), Actions.Menu.SignOut, SignOut) }
+        )
 
         @JvmStatic
         fun garage(): List<Any> {

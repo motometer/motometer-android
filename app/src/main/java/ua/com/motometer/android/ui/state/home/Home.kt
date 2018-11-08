@@ -24,7 +24,7 @@ object Home : MenuState, CommonActionState, MenuActionState, HomeActionState {
 
     override fun changeState(action: Actions.Common.Back): State = AppClosed
 
-    override fun changeState(action: Actions.Home.AddNewRecord): State = RecordTypeChoice
+    override fun changeState(action: Actions.Home.AddNewRecord): State = VehicleChoice
 
     override fun changeState(action: Actions.Home.TrackRecordDetails): State = this
 
@@ -35,4 +35,6 @@ object Home : MenuState, CommonActionState, MenuActionState, HomeActionState {
     override fun changeState(action: Actions.Home.RecordTypeDialogClosed): State = this
 
     override fun changeState(action: Actions.Home.SubmitRecord): State = this
+
+    override fun changeState(action: Actions.Home.ChoseRecord): State = this
 }

@@ -16,19 +16,15 @@ class HomeActivityTest : AbstractActivityTest() {
 
     @Test
     fun shouldDisplayFab() {
-        onView(withId(R.id.fab))
-                .check(matches(isDisplayed()))
+        onView(withId(R.id.fab)).check(matches(isDisplayed()))
     }
 
     @Test
     fun shouldOpenRecordTypeDialog() {
-        onView(withId(R.id.fab))
-                .perform(click())
+        onView(withId(R.id.fab)).perform(click())
 
-        onView(withText(R.string.fuel))
-                .check(matches(isDisplayed()))
-        onView(withText(R.string.service))
-                .check(matches(isDisplayed()))
+        onView(withText(R.string.vehicle_choice)).check(matches(isDisplayed()))
+
         pressBack()
     }
 }

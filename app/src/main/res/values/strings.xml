@@ -44,6 +44,7 @@
     <string name="petrol_station">Petrol station</string>
     <string name="fuel">Fuel</string>
     <string name="service">Service</string>
+    <string name="vehicle_choice">Select vehicle for record</string>
     <string-array name="vehicle_type">
         <item>Car</item>
         <item>Motorbike</item>
