@@ -32,5 +32,5 @@ data class NewRecord(val recordType: RecordType) : CommonActionState, MenuAction
 
     override fun changeState(action: Actions.Home.SubmitRecord): State = Home
 
-    override fun changeState(action: Actions.Home.ChoseRecord): State = Home
+    override fun changeState(action: Actions.Home.ChoseVehicle): State = Home
 }

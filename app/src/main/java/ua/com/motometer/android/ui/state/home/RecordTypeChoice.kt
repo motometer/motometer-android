@@ -31,5 +31,5 @@ object RecordTypeChoice : MenuActionState, CommonActionState, HomeActionState {
 
     override fun changeState(action: Actions.Home.SubmitRecord): State = this
 
-    override fun changeState(action: Actions.Home.ChoseRecord): State = this
+    override fun changeState(action: Actions.Home.ChoseVehicle): State = this
 }

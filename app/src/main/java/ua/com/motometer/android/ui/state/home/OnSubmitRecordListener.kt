@@ -18,6 +18,6 @@ class OnSubmitRecordListener(val view: View, private val actionListener: ActionL
             val service_comment = view.findViewById<View>(R.id.service_comment)
         }
 
-        actionListener.onAction(Actions.Home.ChoseRecord)
+        actionListener.onAction(Actions.Home.SubmitRecord)
     }
 }

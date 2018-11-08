@@ -39,7 +39,8 @@ internal class StateMachineTest {
 
         private fun vehicleChoice(): List<Arguments> =
                 listOf(
-                        Arguments { arrayOf(VehicleChoice, Actions.Home.ChoseRecord, RecordTypeChoice) }
+                        Arguments { arrayOf(VehicleChoice, Actions.Common.Back, Home) },
+                        Arguments { arrayOf(VehicleChoice, Actions.Home.ChoseVehicle(10), RecordTypeChoice) }
                 )
 
         private fun common(): List<Arguments> = listOf(

@@ -35,7 +35,7 @@ class VehicleDetailsFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_vehicle_details, container, false)
 
-        Log.d("T", "baadgba")
+        Log.d("ReadTask", "baadgba")
 
         ReadWriteTask(
                 {

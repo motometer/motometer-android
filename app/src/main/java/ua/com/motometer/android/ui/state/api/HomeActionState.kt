@@ -9,7 +9,7 @@ interface HomeActionState : State {
             is Actions.Home.RecordTypeChoice -> this.changeState(action)
             is Actions.Home.RecordTypeDialogClosed -> this.changeState(action)
             is Actions.Home.SubmitRecord -> this.changeState(action)
-            is Actions.Home.ChoseRecord -> this.changeState(action)
+            is Actions.Home.ChoseVehicle -> this.changeState(action)
         }
     }
 
@@ -23,5 +23,5 @@ interface HomeActionState : State {
 
     fun changeState(action: Actions.Home.SubmitRecord): State
 
-    fun changeState(action: Actions.Home.ChoseRecord): State
+    fun changeState(action: Actions.Home.ChoseVehicle): State
 }

@@ -5,6 +5,7 @@ import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.ui.fragment.garage.ListFragment
 import ua.com.motometer.android.ui.fragment.garage.VehicleDetailsFragment
 import ua.com.motometer.android.ui.fragment.home.RecordListFragment
+import ua.com.motometer.android.ui.fragment.home.VehicleChoiceDialog
 import javax.inject.Singleton
 
 @Singleton
@@ -16,4 +17,6 @@ interface FragmentComponent {
     fun inject(vehicleDetailsFragment: VehicleDetailsFragment)
 
     fun inject(recordListFragment: RecordListFragment)
+
+    fun inject(vehicleChoiceDialog: VehicleChoiceDialog)
 }
