@@ -9,6 +9,8 @@ import javax.inject.Singleton
 interface ActivityComponent {
     fun inject(app: AbstractMenuActivity)
 
+    fun inject(homeActivity: HomeActivity)
+
     fun inject(garageActivity: GarageActivity)
 
     fun inject(launcherActivity: LauncherActivity)

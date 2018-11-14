@@ -9,6 +9,7 @@ import ua.com.motometer.android.ui.state.api.Actions
 import ua.com.motometer.android.ui.state.api.State
 import ua.com.motometer.android.ui.state.home.Home
 import ua.com.motometer.android.ui.state.home.NewRecord
+import ua.com.motometer.android.ui.state.home.RecordCreated
 import ua.com.motometer.android.ui.state.home.RecordType
 import ua.com.motometer.android.ui.state.home.RecordTypeChoice
 import ua.com.motometer.android.ui.state.home.VehicleChoice
@@ -69,7 +70,7 @@ internal class StateMachineTest {
         )
 
         private fun newRecord(recordType: RecordType): List<Arguments> = listOf(
-                Arguments { arrayOf(NewRecord(recordType), Actions.Home.SubmitRecord, Home) },
+                Arguments { arrayOf(NewRecord(recordType), Actions.Home.SubmitRecord(FuelRecordFixture), RecordCreated(FuelRecordFixture)) },
                 Arguments { arrayOf(NewRecord(recordType), Actions.Common.OpenMenu, MenuOpened(NewRecord(recordType))) },
                 Arguments { arrayOf(NewRecord(recordType), Actions.Common.CloseMenu, MenuClosed(NewRecord(recordType))) },
                 Arguments { arrayOf(NewRecord(recordType), Actions.Common.Back, Home) },

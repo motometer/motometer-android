@@ -1,6 +1,7 @@
 package ua.com.motometer.android.ui.activity
 
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.widget.DrawerLayout
@@ -10,6 +11,11 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 import ua.com.motometer.android.R
+import ua.com.motometer.android.core.dao.RoomModule
+import ua.com.motometer.android.core.facade.api.ExpenseFacade
+import ua.com.motometer.android.core.facade.api.FacadeModule
+import ua.com.motometer.android.core.facade.api.model.ImmutableExpenseRecord
+import ua.com.motometer.android.core.firebase.FirebaseModule
 import ua.com.motometer.android.ui.adapter.DrawerListenerAdapter
 import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
 import ua.com.motometer.android.ui.adapter.OnNavigationItemSelectedListenerAdapter
@@ -27,16 +33,28 @@ import ua.com.motometer.android.ui.state.api.MenuState
 import ua.com.motometer.android.ui.state.api.State
 import ua.com.motometer.android.ui.state.home.Home
 import ua.com.motometer.android.ui.state.home.NewRecord
+import ua.com.motometer.android.ui.state.home.RecordCreated
 import ua.com.motometer.android.ui.state.home.RecordType
 import ua.com.motometer.android.ui.state.home.RecordTypeChoice
 import ua.com.motometer.android.ui.state.home.VehicleChoice
+import javax.inject.Inject
 
 class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
+
+    @Inject
+    lateinit var expenseFacade: ExpenseFacade
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
+
+        DaggerActivityComponent.builder()
+                .facadeModule(FacadeModule())
+                .roomModule(RoomModule(application))
+                .firebaseModule(FirebaseModule())
+                .build()
+                .inject(this)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -75,11 +93,26 @@ class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
             is RecordTypeChoice -> recordTypeChoice()
             is VehicleChoice -> vehicleChoice()
             is NewRecord -> newRecord(newState)
+            is RecordCreated -> recordCreated(newState)
             is MenuOpened -> Unit
             is MenuClosed -> menuClosed()
             is AppClosed -> finishAffinity()
             is MenuState -> newState.handleMenu(this)
             else -> Log.e(javaClass.simpleName, "Illegal state $newState")
+        }
+    }
+
+    private fun recordCreated(recordCreated: RecordCreated) {
+        AsyncTask.execute {
+            val fuelRecord = recordCreated.fuelRecord
+            val record = ImmutableExpenseRecord.of(
+                    0,
+                    fuelRecord.fuelTotalAmount(),
+                    fuelRecord.date(),
+                    fuelRecord.comment()
+            )
+            expenseFacade.addExpense(record)
+            onAction(Actions.Menu.Home)
         }
     }
 
