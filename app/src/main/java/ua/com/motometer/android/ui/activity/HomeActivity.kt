@@ -34,7 +34,6 @@ import ua.com.motometer.android.ui.state.api.State
 import ua.com.motometer.android.ui.state.home.Home
 import ua.com.motometer.android.ui.state.home.NewRecord
 import ua.com.motometer.android.ui.state.home.RecordCreated
-import ua.com.motometer.android.ui.state.home.RecordType
 import ua.com.motometer.android.ui.state.home.RecordTypeChoice
 import ua.com.motometer.android.ui.state.home.VehicleChoice
 import javax.inject.Inject
@@ -107,7 +106,7 @@ class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
             val fuelRecord = recordCreated.fuelRecord
             val record = ImmutableExpenseRecord.of(
                     0,
-                    fuelRecord.fuelTotalAmount(),
+                    fuelRecord.amount(),
                     fuelRecord.date(),
                     fuelRecord.comment()
             )
@@ -122,15 +121,12 @@ class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
     }
 
     private fun newRecord(newRecordState: NewRecord) {
-        val viewId = when (newRecordState.recordType) {
-            RecordType.FUEL -> R.layout.fragment_new_record_fuel
-            RecordType.SERVICE -> R.layout.fragment_new_record_service
-        }
+        val ordinal = newRecordState.recordType.ordinal
 
         supportFragmentManager.beginTransaction().run {
             setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             val bundle = Bundle()
-            bundle.putInt(NewRecordFragment.RECORD_TYPE_VIEW, viewId)
+            bundle.putInt(NewRecordFragment.RECORD_TYPE, ordinal)
             val fragment = NewRecordFragment()
             fragment.arguments = bundle
             replace(R.id.record_list, fragment)

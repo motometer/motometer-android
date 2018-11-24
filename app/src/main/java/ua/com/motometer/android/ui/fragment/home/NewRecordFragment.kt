@@ -11,6 +11,7 @@ import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
 import ua.com.motometer.android.ui.state.api.ActionListener
 import ua.com.motometer.android.ui.state.api.Actions
 import ua.com.motometer.android.ui.state.home.OnSubmitRecordListener
+import ua.com.motometer.android.ui.state.home.RecordType
 
 
 class NewRecordFragment : Fragment() {
@@ -18,10 +19,11 @@ class NewRecordFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val viewId = arguments?.get(RECORD_TYPE_VIEW) as Int
-        val view = inflater.inflate(viewId, container, false)
+        val recordTypeOrdinal = arguments?.get(RECORD_TYPE) as Int
+        val recordType1 = RecordType.values()[recordTypeOrdinal]
+        val view = inflater.inflate(recordType1.viewId, container, false)
 
-        view.button_submit.setOnClickListener(OnSubmitRecordListener(view, activity as ActionListener))
+        view.button_submit.setOnClickListener(OnSubmitRecordListener(view, activity as ActionListener, recordType1.expenseRecordFactory))
         view.button_cancel.setOnClickListener(OnClickListenerAdapter(Actions.Common.Back, activity as ActionListener))
         return view
     }
@@ -41,6 +43,6 @@ class NewRecordFragment : Fragment() {
     }
 
     companion object {
-        const val RECORD_TYPE_VIEW = "RECORD_TYPE_VIEW"
+        const val RECORD_TYPE = "RECORD_TYPE"
     }
 }

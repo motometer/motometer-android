@@ -21,7 +21,7 @@ object FuelRecordFixture : FuelRecord {
         TODO("not implemented")
     }
 
-    override fun fuelTotalAmount(): BigDecimal {
+    override fun amount(): BigDecimal {
         TODO("not implemented")
     }
 

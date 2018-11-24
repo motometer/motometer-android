@@ -1,6 +1,6 @@
 package ua.com.motometer.android.ui.state.api
 
-import ua.com.motometer.android.ui.state.home.FuelRecord
+import ua.com.motometer.android.ui.state.home.ExpenseRecord
 import ua.com.motometer.android.ui.state.home.RecordType
 
 sealed class Actions : Action {
@@ -28,7 +28,7 @@ sealed class Actions : Action {
 
     sealed class Home : Actions() {
         object AddNewRecord : Home()
-        data class SubmitRecord(val fuelRecord: FuelRecord) : Home()
+        data class SubmitRecord(val fuelRecord: ExpenseRecord) : Home()
         object RecordTypeDialogClosed : Home()
         data class ChoseVehicle(val vehicleId: Long) : Home()
 

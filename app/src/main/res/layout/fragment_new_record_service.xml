@@ -32,7 +32,7 @@
                 android:text="@string/date" />
 
             <EditText
-                android:id="@+id/service_date"
+                android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="date"
@@ -54,7 +54,7 @@
                 android:text="@string/amount" />
 
             <EditText
-                android:id="@+id/service_amount"
+                android:id="@+id/amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -74,7 +74,7 @@
                 android:text="@string/mileage" />
 
             <EditText
-                android:id="@+id/service_odometer"
+                android:id="@+id/odometer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -93,7 +93,7 @@
                 android:text="@string/comment" />
 
             <EditText
-                android:id="@+id/service_comment"
+                android:id="@+id/comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
