@@ -3,10 +3,12 @@ package ua.com.motometer.android.ui.state.home
 import android.view.View
 import android.widget.TextView
 import ua.com.motometer.android.R
+import ua.com.motometer.android.ui.state.api.Action
+import ua.com.motometer.android.ui.state.api.Actions
 import java.time.LocalDate
 
-class ServiceRecordFactory : ExpenseRecordFactory {
-    override fun createExpenseRecord(view: View): ServiceRecord {
+class ServiceRecordFactory : ActionFactory {
+    override fun toAction(view: View): Action {
         val serviceDate = view.findViewById<TextView>(R.id.date)
         val amount = view.findViewById<TextView>(R.id.amount)
         val odometer = view.findViewById<TextView>(R.id.odometer)
@@ -18,5 +20,6 @@ class ServiceRecordFactory : ExpenseRecordFactory {
                 .amount(extractText(amount).toBigDecimal())
                 .odometer(extractText(odometer).toInt())
                 .build()
+                .let { Actions.Home.SubmitService(it) }
     }
 }

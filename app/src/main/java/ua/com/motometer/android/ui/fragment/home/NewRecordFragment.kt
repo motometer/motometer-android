@@ -23,7 +23,7 @@ class NewRecordFragment : Fragment() {
         val recordType1 = RecordType.values()[recordTypeOrdinal]
         val view = inflater.inflate(recordType1.viewId, container, false)
 
-        view.button_submit.setOnClickListener(OnSubmitRecordListener(view, activity as ActionListener, recordType1.expenseRecordFactory))
+        view.button_submit.setOnClickListener(OnSubmitRecordListener(view, activity as ActionListener, recordType1.actionFactory))
         view.button_cancel.setOnClickListener(OnClickListenerAdapter(Actions.Common.Back, activity as ActionListener))
         return view
     }

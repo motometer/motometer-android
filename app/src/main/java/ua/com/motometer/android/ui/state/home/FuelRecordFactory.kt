@@ -3,10 +3,12 @@ package ua.com.motometer.android.ui.state.home
 import android.view.View
 import android.widget.TextView
 import ua.com.motometer.android.R
+import ua.com.motometer.android.ui.state.api.Action
+import ua.com.motometer.android.ui.state.api.Actions
 import java.time.LocalDate
 
-class FuelRecordFactory : ExpenseRecordFactory {
-    override fun createExpenseRecord(view: View): FuelRecord {
+class FuelRecordFactory : ActionFactory {
+    override fun toAction(view: View): Action {
         val serviceDate = view.findViewById<TextView>(R.id.date)
         val petrolStationName = view.findViewById<TextView>(R.id.petrol_station_name)
         val fuelPrice = view.findViewById<TextView>(R.id.fuel_price)
@@ -24,5 +26,6 @@ class FuelRecordFactory : ExpenseRecordFactory {
                 .amount(extractText(fuelTotalAmount).toBigDecimal())
                 .odometer(extractText(serviceOdometer).toInt())
                 .build()
+                .let { Actions.Home.SubmitFuel(it) }
     }
 }

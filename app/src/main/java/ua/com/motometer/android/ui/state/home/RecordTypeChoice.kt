@@ -29,7 +29,9 @@ object RecordTypeChoice : MenuActionState, CommonActionState, HomeActionState {
 
     override fun changeState(action: Actions.Home.RecordTypeDialogClosed): State = Home
 
-    override fun changeState(action: Actions.Home.SubmitRecord): State = this
+    override fun changeState(action: Actions.Home.SubmitFuel): State = this
+
+    override fun changeState(action: Actions.Home.SubmitService): State = this
 
     override fun changeState(action: Actions.Home.ChoseVehicle): State = this
 }
