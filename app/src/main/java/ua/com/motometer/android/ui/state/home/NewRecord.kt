@@ -30,9 +30,9 @@ data class NewRecord(val recordType: RecordType) : CommonActionState, MenuAction
 
     override fun changeState(action: Actions.Home.RecordTypeDialogClosed): State = this
 
-    override fun changeState(action: Actions.Home.SubmitService): State = RecordCreated(action.serviceRecord)
+    override fun changeState(action: Actions.Home.SubmitService): State = ServiceRecordCreated(action.serviceRecord)
 
-    override fun changeState(action: Actions.Home.SubmitFuel): State = RecordCreated(action.fuelRecord)
+    override fun changeState(action: Actions.Home.SubmitFuel): State = FuelRecordCreated(action.fuelRecord)
 
     override fun changeState(action: Actions.Home.ChoseVehicle): State = Home
 }

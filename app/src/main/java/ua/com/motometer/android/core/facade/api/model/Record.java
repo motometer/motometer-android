@@ -1,9 +1,9 @@
-package ua.com.motometer.android.ui.state.home;
+package ua.com.motometer.android.core.facade.api.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public interface ExpenseRecord {
+public interface Record {
     LocalDate date();
 
     int odometer();

@@ -3,6 +3,7 @@ package ua.com.motometer.android.ui.state.home
 import android.view.View
 import android.widget.TextView
 import ua.com.motometer.android.R
+import ua.com.motometer.android.core.facade.api.model.ImmutableServiceRecord
 import ua.com.motometer.android.ui.state.api.Action
 import ua.com.motometer.android.ui.state.api.Actions
 import java.time.LocalDate

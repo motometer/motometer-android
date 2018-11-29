@@ -1,8 +1,8 @@
 package ua.com.motometer.android.ui.state.api
 
-import ua.com.motometer.android.ui.state.home.FuelRecord
+import ua.com.motometer.android.core.facade.api.model.FuelRecord
+import ua.com.motometer.android.core.facade.api.model.ServiceRecord
 import ua.com.motometer.android.ui.state.home.RecordType
-import ua.com.motometer.android.ui.state.home.ServiceRecord
 
 sealed class Actions : Action {
 

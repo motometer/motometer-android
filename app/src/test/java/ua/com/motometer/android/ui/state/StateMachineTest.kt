@@ -7,11 +7,12 @@ import org.junit.jupiter.params.provider.MethodSource
 import ua.com.motometer.android.ui.state.api.Action
 import ua.com.motometer.android.ui.state.api.Actions
 import ua.com.motometer.android.ui.state.api.State
+import ua.com.motometer.android.ui.state.home.FuelRecordCreated
 import ua.com.motometer.android.ui.state.home.Home
 import ua.com.motometer.android.ui.state.home.NewRecord
-import ua.com.motometer.android.ui.state.home.RecordCreated
 import ua.com.motometer.android.ui.state.home.RecordType
 import ua.com.motometer.android.ui.state.home.RecordTypeChoice
+import ua.com.motometer.android.ui.state.home.ServiceRecordCreated
 import ua.com.motometer.android.ui.state.home.VehicleChoice
 
 internal class StateMachineTest {
@@ -70,7 +71,8 @@ internal class StateMachineTest {
         )
 
         private fun newRecord(recordType: RecordType): List<Arguments> = listOf(
-                Arguments { arrayOf(NewRecord(recordType), Actions.Home.SubmitRecord(FuelRecordFixture), RecordCreated(FuelRecordFixture)) },
+                Arguments { arrayOf(NewRecord(recordType), Actions.Home.SubmitFuel(FuelRecordFixture), FuelRecordCreated(FuelRecordFixture)) },
+                Arguments { arrayOf(NewRecord(recordType), Actions.Home.SubmitService(FuelRecordFixture), ServiceRecordCreated(FuelRecordFixture)) },
                 Arguments { arrayOf(NewRecord(recordType), Actions.Common.OpenMenu, MenuOpened(NewRecord(recordType))) },
                 Arguments { arrayOf(NewRecord(recordType), Actions.Common.CloseMenu, MenuClosed(NewRecord(recordType))) },
                 Arguments { arrayOf(NewRecord(recordType), Actions.Common.Back, Home) },

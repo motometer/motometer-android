@@ -1,10 +1,11 @@
 package ua.com.motometer.android.ui.state
 
-import ua.com.motometer.android.ui.state.home.FuelRecord
+import ua.com.motometer.android.core.facade.api.model.FuelRecord
+import ua.com.motometer.android.core.facade.api.model.ServiceRecord
 import java.math.BigDecimal
 import java.time.LocalDate
 
-object FuelRecordFixture : FuelRecord {
+object FuelRecordFixture : FuelRecord, ServiceRecord {
     override fun date(): LocalDate {
         TODO("not implemented")
     }

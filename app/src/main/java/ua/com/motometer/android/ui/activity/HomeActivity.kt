@@ -14,7 +14,6 @@ import ua.com.motometer.android.R
 import ua.com.motometer.android.core.dao.RoomModule
 import ua.com.motometer.android.core.facade.api.ExpenseFacade
 import ua.com.motometer.android.core.facade.api.FacadeModule
-import ua.com.motometer.android.core.facade.api.model.ImmutableExpenseRecord
 import ua.com.motometer.android.core.firebase.FirebaseModule
 import ua.com.motometer.android.ui.adapter.DrawerListenerAdapter
 import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
@@ -31,10 +30,11 @@ import ua.com.motometer.android.ui.state.MenuOpened
 import ua.com.motometer.android.ui.state.api.Actions
 import ua.com.motometer.android.ui.state.api.MenuState
 import ua.com.motometer.android.ui.state.api.State
+import ua.com.motometer.android.ui.state.home.FuelRecordCreated
 import ua.com.motometer.android.ui.state.home.Home
 import ua.com.motometer.android.ui.state.home.NewRecord
-import ua.com.motometer.android.ui.state.home.RecordCreated
 import ua.com.motometer.android.ui.state.home.RecordTypeChoice
+import ua.com.motometer.android.ui.state.home.ServiceRecordCreated
 import ua.com.motometer.android.ui.state.home.VehicleChoice
 import javax.inject.Inject
 
@@ -92,7 +92,8 @@ class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
             is RecordTypeChoice -> recordTypeChoice()
             is VehicleChoice -> vehicleChoice()
             is NewRecord -> newRecord(newState)
-            is RecordCreated -> recordCreated(newState)
+            is FuelRecordCreated -> recordCreated(newState)
+            is ServiceRecordCreated -> recordCreated(newState)
             is MenuOpened -> Unit
             is MenuClosed -> menuClosed()
             is AppClosed -> finishAffinity()
@@ -101,16 +102,16 @@ class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
         }
     }
 
-    private fun recordCreated(recordCreated: RecordCreated) {
+    private fun recordCreated(recordCreated: FuelRecordCreated) {
         AsyncTask.execute {
-            val fuelRecord = recordCreated.fuelRecord
-            val record = ImmutableExpenseRecord.of(
-                    0,
-                    fuelRecord.amount(),
-                    fuelRecord.date(),
-                    fuelRecord.comment()
-            )
-            expenseFacade.addExpense(record)
+            expenseFacade.addRecord(recordCreated.record)
+            onAction(Actions.Menu.Home)
+        }
+    }
+
+    private fun recordCreated(recordCreated: ServiceRecordCreated) {
+        AsyncTask.execute {
+            expenseFacade.addRecord(recordCreated.record)
             onAction(Actions.Menu.Home)
         }
     }
