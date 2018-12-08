@@ -12,6 +12,7 @@ import ua.com.motometer.android.R
 import ua.com.motometer.android.core.dao.RoomModule
 import ua.com.motometer.android.core.facade.api.ExpenseFacade
 import ua.com.motometer.android.core.facade.api.FacadeModule
+import ua.com.motometer.android.ui.common.ReadWriteTask
 import ua.com.motometer.android.ui.fragment.DaggerFragmentComponent
 import ua.com.motometer.android.ui.state.api.ActionListener
 import javax.inject.Inject
@@ -29,7 +30,10 @@ class RecordListFragment : Fragment() {
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = LinearLayoutManager(context)
-                adapter = RecordListRecyclerViewAdapter(expenseFacade.expenses(), listener)
+                ReadWriteTask(expenseFacade::expenses) {
+                    adapter = RecordListRecyclerViewAdapter(it)
+                }.execute()
+
             }
         }
         return view

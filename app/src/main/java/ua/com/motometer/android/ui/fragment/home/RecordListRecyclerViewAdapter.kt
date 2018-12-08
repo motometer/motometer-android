@@ -9,21 +9,13 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_recordlist.view.*
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.facade.api.model.ExpenseRecord
-import ua.com.motometer.android.ui.state.api.ActionListener
-import ua.com.motometer.android.ui.state.api.Actions
 
 class RecordListRecyclerViewAdapter(
-        private val mValues: List<ExpenseRecord>,
-        private val actionListener: ActionListener?)
+        private val mValues: List<ExpenseRecord>)
     : RecyclerView.Adapter<RecordListRecyclerViewAdapter.ViewHolder>() {
 
-    private val mOnClickListener: View.OnClickListener
+    private val mOnClickListener: View.OnClickListener = View.OnClickListener { v ->
 
-    init {
-        mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as ExpenseRecord
-            actionListener?.onAction(Actions.Home.TrackRecordDetails(item.id()))
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,7 +26,7 @@ class RecordListRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = mValues[position]
-        holder.mIdView.text = item.id().toString()
+        holder.mIdView.text = item.date().toString()
         holder.mContentView.text = with(item) {
             return@with "${amount()} $ | ${description()} |${date()}"
         }

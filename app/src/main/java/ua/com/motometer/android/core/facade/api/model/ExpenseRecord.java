@@ -7,8 +7,6 @@ import java.time.LocalDate;
 
 @Value.Immutable
 public interface ExpenseRecord {
-    @Value.Parameter
-    long id();
 
     @Value.Parameter
     BigDecimal amount();

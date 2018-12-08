@@ -5,14 +5,20 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 
-@Database(entities = [Vehicle::class], version = 1)
+@Database(entities = [
+    Vehicle::class,
+    Record::class
+], version = 1)
 abstract class ApplicationDatabase : RoomDatabase() {
 
     abstract fun vehicleDao(): VehicleDao
 
+    abstract fun recordDao(): RecordDao
+
     companion object {
 
-        @Volatile private var INSTANCE: ApplicationDatabase? = null
+        @Volatile
+        private var INSTANCE: ApplicationDatabase? = null
 
         const val DB_NAME = "motometer.db"
 
