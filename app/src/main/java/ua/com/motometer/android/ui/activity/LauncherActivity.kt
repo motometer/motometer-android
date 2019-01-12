@@ -20,7 +20,7 @@ class LauncherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launcher)
-        DaggerFacadeComponent.builder()
+        DaggerActivityComponent.builder()
                 .facadeModule(FacadeModule())
                 .roomModule(RoomModule(application))
                 .firebaseModule(FirebaseModule())

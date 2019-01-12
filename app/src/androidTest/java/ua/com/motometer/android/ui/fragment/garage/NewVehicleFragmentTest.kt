@@ -34,7 +34,7 @@ class NewVehicleFragmentTest : AbstractActivityTest() {
                 .perform(typeText("Q7"))
         onView(withId(R.id.new_vehicle_build_year_edit))
                 .perform(typeText("2016"))
-        onView(withId(R.id.new_vehicle_vin_edit))
+        onView(withId(R.id.new_vehicle_reg_num_edit))
                 .perform(typeText("vvvvvvvvvvvvvvv"))
         onView(withId(R.id.new_vehicle_price_edit))
                 .perform(typeText("80000"))
@@ -46,7 +46,7 @@ class NewVehicleFragmentTest : AbstractActivityTest() {
 
         pressBack()
 
-        onView(withId(R.id.new_vehicle_finish)).perform(click())
+        onView(withId(R.id.button_submit)).perform(click())
         onView(withId(R.id.list)).check(matches(isCompletelyDisplayed()))
         onView(withText("Audi Q7")).check(matches(isDisplayed()))
         onView(withText("2016")).check(matches(isDisplayed()))

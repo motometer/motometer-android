@@ -22,7 +22,7 @@ data class Vehicle(
         @ColumnInfo(name = "builtYear")
         val builtYear: Int,
 
-        @ColumnInfo(name = "vin")
+        @ColumnInfo(name = "registrationNumber")
         val vin: String,
 
         @ColumnInfo(name = "boughtDate")

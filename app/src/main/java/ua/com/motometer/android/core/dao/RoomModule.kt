@@ -16,4 +16,8 @@ class RoomModule(application: Application) {
     @Provides
     @Singleton
     fun provideVehicleDao(): VehicleDao = applicationDatabase!!.vehicleDao()
+
+    @Provides
+    @Singleton
+    fun provideRecordDao(): RecordDao = applicationDatabase!!.recordDao()
 }

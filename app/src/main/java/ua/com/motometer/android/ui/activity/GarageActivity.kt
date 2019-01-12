@@ -2,7 +2,6 @@ package ua.com.motometer.android.ui.activity
 
 import android.os.AsyncTask
 import android.os.Bundle
-import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
@@ -16,28 +15,29 @@ import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.GarageFacade
 import ua.com.motometer.android.core.facade.api.model.ImmutableVehicle
 import ua.com.motometer.android.core.firebase.FirebaseModule
+import ua.com.motometer.android.ui.adapter.DrawerListenerAdapter
+import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
+import ua.com.motometer.android.ui.adapter.OnNavigationItemSelectedListenerAdapter
+import ua.com.motometer.android.ui.fragment.garage.EmptyGarageFragment
 import ua.com.motometer.android.ui.fragment.garage.ListFragment
 import ua.com.motometer.android.ui.fragment.garage.NewVehicleFragment
-import ua.com.motometer.android.ui.adapter.DrawerListenerAdapter
-import ua.com.motometer.android.ui.adapter.OnNavigationItemSelectedListenerAdapter
-import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
-import ua.com.motometer.android.ui.fragment.garage.EmptyGarageFragment
 import ua.com.motometer.android.ui.fragment.garage.VehicleDetailsFragment
-import ua.com.motometer.android.ui.state.Actions
-import ua.com.motometer.android.ui.state.CloseApp
-import ua.com.motometer.android.ui.state.EmptyGarage
+import ua.com.motometer.android.ui.state.AppClosed
+import ua.com.motometer.android.ui.state.AppStarted
 import ua.com.motometer.android.ui.state.Garage
-import ua.com.motometer.android.ui.state.Home
-import ua.com.motometer.android.ui.state.Menu
-import ua.com.motometer.android.ui.state.MenuState
+import ua.com.motometer.android.ui.state.MenuClosed
+import ua.com.motometer.android.ui.state.MenuOpened
 import ua.com.motometer.android.ui.state.NewVehicle
 import ua.com.motometer.android.ui.state.NewVehicleCreated
-import ua.com.motometer.android.ui.state.State
 import ua.com.motometer.android.ui.state.VehicleDetails
+import ua.com.motometer.android.ui.state.api.Actions
+import ua.com.motometer.android.ui.state.api.MenuState
+import ua.com.motometer.android.ui.state.api.State
+import ua.com.motometer.android.ui.state.home.Home
 import java.time.LocalDate
 import javax.inject.Inject
 
-class GarageActivity : AbstractMenuActivity(Garage()) {
+class GarageActivity : AbstractMenuActivity(AppStarted(Garage())) {
 
     @Inject
     lateinit var garageFacade: GarageFacade
@@ -46,7 +46,7 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_garage)
         setSupportActionBar(toolbar)
-        DaggerFacadeComponent.builder()
+        DaggerActivityComponent.builder()
                 .facadeModule(FacadeModule())
                 .roomModule(RoomModule(application))
                 .firebaseModule(FirebaseModule())
@@ -65,12 +65,17 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
     }
 
     override fun renderViewState(oldState: State, newState: State) {
+        super.renderViewState(oldState, newState)
+        if (oldState == newState) {
+            return
+        }
         when (newState) {
-            is EmptyGarage -> showEmptyGarage()
+            is Garage -> handleGarage(newState)
             is NewVehicle -> showNewVehicle()
-            is CloseApp -> finishAffinity()
+            is AppClosed -> finishAffinity()
             is MenuState -> newState.handleMenu(this)
-            is Menu -> Unit
+            is MenuOpened -> Unit
+            is MenuClosed -> menuClosed()
             is NewVehicleCreated -> AsyncTask.execute {
                 addNewVehicle()
             }
@@ -84,7 +89,7 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
                 .manufacturer(text(R.id.new_vehicle_manufacturer_edit))
                 .model(text(R.id.new_vehicle_model_edit))
                 .builtYear(text(R.id.new_vehicle_build_year_edit).toInt())
-                .vin(text(R.id.new_vehicle_vin_edit))
+                .registrationNumber(text(R.id.new_vehicle_reg_num_edit))
                 .boughtDate(LocalDate.parse(text(R.id.new_vehicle_bought_date_edit)))
                 .type(new_vehicle_type_choice.selectedItem.toString())
                 .price(text(R.id.new_vehicle_price_edit).toBigDecimal())
@@ -114,7 +119,6 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
     private fun text(viewId: Int) = findViewById<EditText>(viewId).text.toString()
 
     private fun showEmptyGarage() {
-        drawer_layout.closeDrawer(GravityCompat.START)
         supportFragmentManager.beginTransaction().run {
             setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
             replace(R.id.garage_list, EmptyGarageFragment())
@@ -125,11 +129,14 @@ class GarageActivity : AbstractMenuActivity(Garage()) {
     override fun handleHome(state: Home) = finish()
 
     override fun handleGarage(state: Garage) {
-        drawer_layout.closeDrawer(GravityCompat.START)
-        supportFragmentManager.beginTransaction().run {
-            setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-            replace(R.id.garage_list, ListFragment())
-            commit()
+        if (state.empty) {
+            showEmptyGarage()
+        } else {
+            supportFragmentManager.beginTransaction().run {
+                setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+                replace(R.id.garage_list, ListFragment())
+                commit()
+            }
         }
     }
 

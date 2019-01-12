@@ -1,32 +1,13 @@
 package ua.com.motometer.android.core.dao
 
-import android.arch.persistence.room.Room
-import android.content.Context
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.After
-import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
-class VehicleDaoTest {
-
-    private var applicationDatabase: ApplicationDatabase? = null
-
-    @Before
-    fun setUp() {
-        val context: Context = InstrumentationRegistry.getTargetContext()
-        applicationDatabase = Room.inMemoryDatabaseBuilder(context, ApplicationDatabase::class.java).build()
-    }
-
-    @After
-    fun tearDown() = applicationDatabase!!.close()
+class VehicleDaoTest : AbstractDaoTest() {
 
     @Test
     fun nextId() {
-        val vehicleDao = applicationDatabase!!.vehicleDao()
+        val vehicleDao = applicationDatabase.vehicleDao()
 
         val id = vehicleDao.count()
 

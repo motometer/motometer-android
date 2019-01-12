@@ -4,8 +4,8 @@ import android.support.annotation.IdRes
 import android.support.design.widget.NavigationView
 import android.support.v4.widget.DrawerLayout
 import android.view.View
-import ua.com.motometer.android.ui.state.Actions
-import ua.com.motometer.android.ui.state.ActionListener
+import ua.com.motometer.android.ui.state.api.ActionListener
+import ua.com.motometer.android.ui.state.api.Actions
 
 class DrawerListenerAdapter(
         @IdRes private val selectedItem: Int,
@@ -22,5 +22,10 @@ class DrawerListenerAdapter(
     override fun onDrawerOpened(view: View) {
         original.onDrawerOpened(view)
         actionListener.onAction(Actions.Common.OpenMenu)
+    }
+
+    override fun onDrawerClosed(p0: View) {
+        original.onDrawerClosed(p0)
+        actionListener.onAction(Actions.Common.DrawerClosed)
     }
 }

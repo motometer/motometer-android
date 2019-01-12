@@ -9,14 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.dao.RoomModule
 import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.GarageFacade
-import ua.com.motometer.android.core.firebase.FirebaseModule
-import ua.com.motometer.android.ui.activity.DaggerFacadeComponent
 import ua.com.motometer.android.ui.common.ReadWriteTask
+import ua.com.motometer.android.ui.fragment.DaggerFragmentComponent
 import javax.inject.Inject
 
 class VehicleDetailsFragment : Fragment() {
@@ -26,10 +24,9 @@ class VehicleDetailsFragment : Fragment() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        DaggerFacadeComponent.builder()
+        DaggerFragmentComponent.builder()
                 .facadeModule(FacadeModule())
                 .roomModule(RoomModule(activity!!.application))
-                .firebaseModule(FirebaseModule())
                 .build()
                 .inject(this)
     }
@@ -38,7 +35,7 @@ class VehicleDetailsFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_vehicle_details, container, false)
 
-        Log.d("T", "baadgba")
+        Log.d("ReadTask", "baadgba")
 
         ReadWriteTask(
                 {
@@ -53,7 +50,7 @@ class VehicleDetailsFragment : Fragment() {
                     view.findViewById<TextView>(R.id.details_currency).text = it.currency()
                     view.findViewById<TextView>(R.id.details_price).text = it.price().toString()
                     view.findViewById<TextView>(R.id.details_type).text = it.type()
-                    view.findViewById<TextView>(R.id.details_vin_code).text = it.vin()
+                    view.findViewById<TextView>(R.id.details_reg_number).text = it.registrationNumber()
                 }
         ).execute()
 

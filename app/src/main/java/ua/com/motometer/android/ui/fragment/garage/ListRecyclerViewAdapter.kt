@@ -10,7 +10,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.garage_item.view.*
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.facade.api.model.Vehicle
-import ua.com.motometer.android.ui.state.ActionListener
+import ua.com.motometer.android.ui.state.api.ActionListener
 
 class ListRecyclerViewAdapter(
         private val items: List<Vehicle>,

@@ -12,11 +12,10 @@ import ua.com.motometer.android.R
 import ua.com.motometer.android.core.dao.RoomModule
 import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.GarageFacade
-import ua.com.motometer.android.core.firebase.FirebaseModule
-import ua.com.motometer.android.ui.activity.DaggerFacadeComponent
 import ua.com.motometer.android.ui.common.ReadWriteTask
-import ua.com.motometer.android.ui.state.ActionListener
-import ua.com.motometer.android.ui.state.Actions
+import ua.com.motometer.android.ui.fragment.DaggerFragmentComponent
+import ua.com.motometer.android.ui.state.api.ActionListener
+import ua.com.motometer.android.ui.state.api.Actions
 import javax.inject.Inject
 
 class ListFragment : Fragment() {
@@ -45,10 +44,9 @@ class ListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        DaggerFacadeComponent.builder()
+        DaggerFragmentComponent.builder()
                 .facadeModule(FacadeModule())
                 .roomModule(RoomModule(activity!!.application))
-                .firebaseModule(FirebaseModule())
                 .build()
                 .inject(this)
         listener = context as ActionListener

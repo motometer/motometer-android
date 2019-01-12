@@ -1,6 +1,7 @@
 package ua.com.motometer.android.ui.activity
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -13,12 +14,13 @@ import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.UserFacade
 import ua.com.motometer.android.core.firebase.FirebaseModule
 import ua.com.motometer.android.ui.common.ReadWriteTask
-import ua.com.motometer.android.ui.state.MenuHandler
 import ua.com.motometer.android.ui.state.SignOut
-import ua.com.motometer.android.ui.state.State
-import javax.inject.Inject
-import android.graphics.BitmapFactory
+import ua.com.motometer.android.ui.state.api.Actions
+import ua.com.motometer.android.ui.state.api.MenuHandler
+import ua.com.motometer.android.ui.state.api.State
 import java.net.URI
+import javax.inject.Inject
+import ua.com.motometer.android.ui.state.MenuOpened as MenuState
 
 
 abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActivity(initialState), MenuHandler {
@@ -28,7 +30,7 @@ abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActiv
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DaggerFacadeComponent.builder()
+        DaggerActivityComponent.builder()
                 .facadeModule(FacadeModule())
                 .roomModule(RoomModule(application))
                 .firebaseModule(FirebaseModule())
@@ -63,4 +65,9 @@ abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActiv
     }
 
     abstract fun drawerLayout(): DrawerLayout
+
+    fun menuClosed() {
+        drawerLayout().closeDrawer(GravityCompat.START)
+        onAction(Actions.Common.Back)
+    }
 }
