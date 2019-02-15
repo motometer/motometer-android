@@ -3,6 +3,7 @@ package ua.com.motometer.android.core.dao
 import android.app.Application
 import dagger.Module
 import dagger.Provides
+import ua.com.motometer.android.core.db.ApplicationDatabase
 import javax.inject.Singleton
 
 @Module

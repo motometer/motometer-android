@@ -18,7 +18,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import ua.com.motometer.android.R
-import ua.com.motometer.android.core.dao.ApplicationDatabase
+import ua.com.motometer.android.core.db.ApplicationDatabase
 
 @RunWith(AndroidJUnit4::class)
 abstract class AbstractActivityTest {
