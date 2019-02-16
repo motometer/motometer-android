@@ -1,14 +1,18 @@
-package ua.com.motometer.android.core.dao
+package ua.com.motometer.android.core.db
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
+import ua.com.motometer.android.core.dao.Record
+import ua.com.motometer.android.core.dao.RecordDao
+import ua.com.motometer.android.core.dao.Vehicle
+import ua.com.motometer.android.core.dao.VehicleDao
 
 @Database(entities = [
     Vehicle::class,
     Record::class
-], version = 1)
+], version = 2)
 abstract class ApplicationDatabase : RoomDatabase() {
 
     abstract fun vehicleDao(): VehicleDao
@@ -24,12 +28,14 @@ abstract class ApplicationDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): ApplicationDatabase =
                 INSTANCE ?: synchronized(this) {
-                    INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
+                    INSTANCE
+                            ?: buildDatabase(context).also { INSTANCE = it }
                 }
 
         private fun buildDatabase(context: Context) =
                 Room.databaseBuilder(context.applicationContext,
                         ApplicationDatabase::class.java, DB_NAME)
+                        .addMigrations(V2)
                         .build()
     }
 }
