@@ -1,7 +1,6 @@
 package ua.com.motometer.android.ui.activity
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -18,7 +17,6 @@ import ua.com.motometer.android.ui.state.SignOut
 import ua.com.motometer.android.ui.state.api.Actions
 import ua.com.motometer.android.ui.state.api.MenuHandler
 import ua.com.motometer.android.ui.state.api.State
-import java.net.URI
 import javax.inject.Inject
 import ua.com.motometer.android.ui.state.MenuOpened as MenuState
 
@@ -44,11 +42,9 @@ abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActiv
         ReadWriteTask(userFacade::currentUser) { account ->
             nav_header_title.text = account.displayName()
             nav_header_email.text = account.email()
-            ReadWriteTask({
-                return@ReadWriteTask BitmapFactory.decodeStream(URI(account.avatarUrl()).toURL().openConnection().getInputStream())
-            }, {
+            ReadWriteTask(AvatarBitmapFactory(account)::asBitmap) {
                 nav_header_avatar.setImageBitmap(it)
-            }).execute()
+            }.execute()
 
         }.execute()
 
