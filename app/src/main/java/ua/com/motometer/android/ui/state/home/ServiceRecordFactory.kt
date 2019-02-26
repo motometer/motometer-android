@@ -10,14 +10,14 @@ import java.time.LocalDate
 
 class ServiceRecordFactory : ActionFactory {
     override fun toAction(view: View): Action {
-        val serviceDate = view.findViewById<TextView>(R.id.date)
+        val serviceDate = view.findViewById<TextView>(R.id.date).tag as LocalDate
         val amount = view.findViewById<TextView>(R.id.amount)
         val odometer = view.findViewById<TextView>(R.id.odometer)
         val comment = view.findViewById<TextView>(R.id.comment)
 
         return ImmutableServiceRecord.builder()
                 .comment(extractText(comment))
-                .date(LocalDate.parse(extractText(serviceDate)))
+                .date(serviceDate)
                 .amount(extractText(amount).toBigDecimal())
                 .odometer(extractText(odometer).toInt())
                 .build()

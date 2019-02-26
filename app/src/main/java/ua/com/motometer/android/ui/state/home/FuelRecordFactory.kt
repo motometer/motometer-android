@@ -10,7 +10,7 @@ import java.time.LocalDate
 
 class FuelRecordFactory : ActionFactory {
     override fun toAction(view: View): Action {
-        val serviceDate = view.findViewById<TextView>(R.id.date)
+        val serviceDate = view.findViewById<TextView>(R.id.date).tag as LocalDate
         val petrolStationName = view.findViewById<TextView>(R.id.petrol_station_name)
         val fuelPrice = view.findViewById<TextView>(R.id.fuel_price)
         val fuelRefilled = view.findViewById<TextView>(R.id.fuel_refilled)
@@ -20,7 +20,7 @@ class FuelRecordFactory : ActionFactory {
 
         return ImmutableFuelRecord.builder()
                 .comment(extractText(serviceComment))
-                .date(LocalDate.parse(extractText(serviceDate)))
+                .date(serviceDate)
                 .petrolStationName(extractText(petrolStationName))
                 .fuelPrice(extractText(fuelPrice).toBigDecimal())
                 .fuelRefilled(extractText(fuelRefilled).toBigDecimal())
