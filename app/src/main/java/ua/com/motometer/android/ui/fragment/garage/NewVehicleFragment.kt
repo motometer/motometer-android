@@ -51,6 +51,7 @@ class NewVehicleFragment : Fragment() {
                             newFragment.listener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                                 val localDate = LocalDate.of(year, month, dayOfMonth)
                                 view.setText(localDate.toString())
+                                view.setTag(localDate)
                                 Log.d(javaClass.simpleName, "Chosen date $localDate")
                             }
 

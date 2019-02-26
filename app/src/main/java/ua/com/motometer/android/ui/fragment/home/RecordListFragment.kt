@@ -51,7 +51,7 @@ class RecordListFragment : Fragment() {
         if (actionListener is ActionListener) {
             listener = actionListener
         } else {
-            throw RuntimeException(actionListener.toString() + " must implement ActionListener")
+            throw RuntimeException("$actionListener must implement ActionListener")
         }
     }
 
