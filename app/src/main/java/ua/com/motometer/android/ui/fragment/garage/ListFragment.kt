@@ -2,7 +2,6 @@ package ua.com.motometer.android.ui.fragment.garage
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -14,16 +13,14 @@ import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.GarageFacade
 import ua.com.motometer.android.ui.common.ReadWriteTask
 import ua.com.motometer.android.ui.fragment.DaggerFragmentComponent
-import ua.com.motometer.android.ui.state.api.ActionListener
+import ua.com.motometer.android.ui.fragment.common.ListenerFragment
 import ua.com.motometer.android.ui.state.api.Actions
 import javax.inject.Inject
 
-class ListFragment : Fragment() {
+class ListFragment : ListenerFragment() {
 
     @Inject
     lateinit var garageFacade: GarageFacade
-
-    private var listener: ActionListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -49,11 +46,5 @@ class ListFragment : Fragment() {
                 .roomModule(RoomModule(activity!!.application))
                 .build()
                 .inject(this)
-        listener = context as ActionListener
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
     }
 }

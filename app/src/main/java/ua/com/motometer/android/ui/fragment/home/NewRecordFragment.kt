@@ -1,6 +1,5 @@
 package ua.com.motometer.android.ui.fragment.home
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -17,7 +16,6 @@ import ua.com.motometer.android.ui.state.home.RecordType
 
 
 class NewRecordFragment : Fragment() {
-    private var listener: ActionListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -29,20 +27,6 @@ class NewRecordFragment : Fragment() {
         view.button_cancel.setOnClickListener(OnClickListenerAdapter(Actions.Common.Back, activity as ActionListener))
         view.date.onFocusChangeListener = DateOnFocusChangeListener(activity!!)
         return view
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is ActionListener) {
-            listener = context
-        } else {
-            throw RuntimeException("$context must implement OnFragmentInteractionListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
     }
 
     companion object {

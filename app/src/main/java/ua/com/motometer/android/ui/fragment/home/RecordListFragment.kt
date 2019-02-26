@@ -14,12 +14,10 @@ import ua.com.motometer.android.core.facade.api.ExpenseFacade
 import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.ui.common.ReadWriteTask
 import ua.com.motometer.android.ui.fragment.DaggerFragmentComponent
-import ua.com.motometer.android.ui.state.api.ActionListener
 import javax.inject.Inject
 
 class RecordListFragment : Fragment() {
 
-    private var listener: ActionListener? = null
     @Inject
     lateinit var expenseFacade: ExpenseFacade
 
@@ -39,24 +37,13 @@ class RecordListFragment : Fragment() {
         return view
     }
 
-    override fun onAttach(actionListener: Context) {
-        super.onAttach(actionListener)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
 
         DaggerFragmentComponent.builder()
                 .facadeModule(FacadeModule())
                 .roomModule(RoomModule(activity!!.application))
                 .build()
                 .inject(this)
-
-        if (actionListener is ActionListener) {
-            listener = actionListener
-        } else {
-            throw RuntimeException("$actionListener must implement ActionListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
     }
 }
