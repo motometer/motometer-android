@@ -1,12 +1,11 @@
 package ua.com.motometer.android.core.facade.api
 
+import io.reactivex.Flowable
 import ua.com.motometer.android.core.facade.api.model.User
 
-interface UserFacade {
+interface UserRepository {
 
-    fun signIn()
-
-    fun currentUser(): User
+    fun currentUser(): Flowable<User>
 
     fun isAuthenticated(): Boolean
 }

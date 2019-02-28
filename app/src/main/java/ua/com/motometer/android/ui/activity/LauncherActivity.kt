@@ -7,7 +7,7 @@ import android.util.Log
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.dao.RoomModule
 import ua.com.motometer.android.core.facade.api.FacadeModule
-import ua.com.motometer.android.core.facade.api.UserFacade
+import ua.com.motometer.android.core.facade.api.UserRepository
 import ua.com.motometer.android.core.firebase.FirebaseModule
 import javax.inject.Inject
 
@@ -15,7 +15,7 @@ import javax.inject.Inject
 class LauncherActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var userFacade: UserFacade
+    lateinit var userRepository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,7 @@ class LauncherActivity : AppCompatActivity() {
                 .build()
                 .inject(this)
 
-        if (userFacade.isAuthenticated()) {
+        if (userRepository.isAuthenticated()) {
             Log.d(javaClass.simpleName, "User is authenticated")
             startActivity(Intent(this, HomeActivity::class.java))
         } else {

@@ -37,7 +37,7 @@ abstract class AbstractActivityTest {
 
     @Test
     fun shouldOpenMenu() {
-        assertThat(activityRule.activity.userFacade).isNotNull
+        assertThat(activityRule.activity.viewModelFactory).isNotNull
 
         onView(withContentDescription(R.string.navigation_drawer_open))
                 .perform(click())

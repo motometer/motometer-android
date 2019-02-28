@@ -1,18 +1,23 @@
 package ua.com.motometer.android.ui.activity
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
+import android.util.Log
 import android.view.Menu
 import com.firebase.ui.auth.AuthUI
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.nav_header_home.*
-import ua.com.motometer.android.R
 import ua.com.motometer.android.core.dao.RoomModule
 import ua.com.motometer.android.core.facade.api.FacadeModule
-import ua.com.motometer.android.core.facade.api.UserFacade
 import ua.com.motometer.android.core.firebase.FirebaseModule
 import ua.com.motometer.android.ui.common.ReadWriteTask
+import ua.com.motometer.android.ui.model.UserViewModel
+import ua.com.motometer.android.ui.model.ViewModelFactory
 import ua.com.motometer.android.ui.state.SignOut
 import ua.com.motometer.android.ui.state.api.Actions
 import ua.com.motometer.android.ui.state.api.MenuHandler
@@ -24,7 +29,12 @@ import ua.com.motometer.android.ui.state.MenuOpened as MenuState
 abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActivity(initialState), MenuHandler {
 
     @Inject
-    lateinit var userFacade: UserFacade
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private lateinit var viewModel: UserViewModel
+
+    private val disposable = CompositeDisposable()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,21 +44,33 @@ abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActiv
                 .firebaseModule(FirebaseModule())
                 .build()
                 .inject(this)
+
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(UserViewModel::class.java)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.home, menu)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val result = super.onCreateOptionsMenu(menu)
+        updateUser()
+        return result
+    }
 
-        ReadWriteTask(userFacade::currentUser) { account ->
-            nav_header_title.text = account.displayName()
-            nav_header_email.text = account.email()
-            ReadWriteTask(AvatarBitmapFactory(account)::asBitmap) {
-                nav_header_avatar.setImageBitmap(it)
-            }.execute()
+    private fun updateUser() {
+        disposable.add(viewModel.currentUser()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    nav_header_title.text = it.displayName()
+                    nav_header_email.text = it.email()
+                    ReadWriteTask(AvatarBitmapFactory(it)::asBitmap) { user ->
+                        nav_header_avatar.setImageBitmap(user)
+                    }.execute()
+                },
+                        { error -> Log.e("AA", "Unable to get username", error) }))
+    }
 
-        }.execute()
-
-        return true
+    override fun onStop() {
+        super.onStop()
+        disposable.clear()
     }
 
     final override fun handleSignOut(state: SignOut) {
