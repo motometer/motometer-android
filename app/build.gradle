@@ -41,40 +41,38 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.android.gms:play-services-auth:16.0.1'
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:design:28.0.0'
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
-    implementation 'com.google.firebase:firebase-auth:16.1.0'
-    implementation 'com.google.firebase:firebase-core:16.0.7'
-    implementation 'com.firebaseui:firebase-ui-auth:4.0.0'
-    implementation "com.google.dagger:dagger:$dagger_version"
-    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation deps.playservices
+    implementation deps.kotlin
+    implementation deps.support.appcompat
+    implementation deps.support.constraint
+    implementation deps.support.design
+    implementation deps.support.support
+    implementation deps.support.recyclerview
+    implementation deps.firebase.auth
+    implementation deps.firebase.core
+    implementation deps.firebase.ui
+    implementation deps.dagger.dagger
+    implementation deps.findbugs
     implementation deps.guava
-
     implementation deps.room.runtime
     implementation deps.room.rxjava2
     implementation deps.rx_android
+    implementation deps.arch.lifecycle
 
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
     compileOnly deps.immutables
 
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt deps.dagger.compiler
     kapt deps.room.compiler
     annotationProcessor deps.immutables
     testImplementation deps.junit5.jupiter
     testImplementation deps.junit5.engine
     testImplementation deps.junit5.params
     testImplementation deps.junit5.vintage
-    testImplementation 'org.assertj:assertj-core:3.10.0'
-    androidTestImplementation 'org.assertj:assertj-core:3.10.0'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    testImplementation deps.assertj
+    androidTestImplementation deps.assertj
+    androidTestImplementation deps.support.runner
+    androidTestImplementation deps.support.espresso
+    androidTestImplementation deps.support.rules
     androidTestImplementation deps.room.testing
 }
 task copyDebugConfig(type: Copy) {
