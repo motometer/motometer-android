@@ -14,7 +14,7 @@ class RecordListRecyclerViewAdapter(
         private val mValues: List<ExpenseRecord>)
     : RecyclerView.Adapter<RecordListRecyclerViewAdapter.ViewHolder>() {
 
-    private val mOnClickListener: View.OnClickListener = View.OnClickListener { v ->
+    private val mOnClickListener: View.OnClickListener = View.OnClickListener {
 
     }
 

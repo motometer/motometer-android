@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.dao.RoomModule
 import ua.com.motometer.android.core.facade.api.FacadeModule
-import ua.com.motometer.android.core.facade.api.GarageFacade
+import ua.com.motometer.android.core.facade.api.VehicleRepository
 import ua.com.motometer.android.ui.common.ReadWriteTask
 import ua.com.motometer.android.ui.fragment.DaggerFragmentComponent
 import ua.com.motometer.android.ui.fragment.common.ListenerFragment
@@ -20,7 +20,7 @@ import javax.inject.Inject
 class ListFragment : ListenerFragment() {
 
     @Inject
-    lateinit var garageFacade: GarageFacade
+    lateinit var vehicleRepository: VehicleRepository
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -28,7 +28,7 @@ class ListFragment : ListenerFragment() {
 
         if (view is RecyclerView) {
             view.layoutManager = LinearLayoutManager(context)
-            ReadWriteTask(garageFacade::vehicles) { vehicles ->
+            ReadWriteTask(vehicleRepository::vehicles) { vehicles ->
                 if (vehicles.isEmpty()) {
                     listener!!.onAction(Actions.Garage.Empty)
                 } else {

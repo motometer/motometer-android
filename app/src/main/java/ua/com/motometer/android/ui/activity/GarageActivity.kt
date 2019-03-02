@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_new_vehicle.*
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.dao.RoomModule
 import ua.com.motometer.android.core.facade.api.FacadeModule
-import ua.com.motometer.android.core.facade.api.GarageFacade
+import ua.com.motometer.android.core.facade.api.VehicleRepository
 import ua.com.motometer.android.core.facade.api.model.ImmutableVehicle
 import ua.com.motometer.android.core.firebase.FirebaseModule
 import ua.com.motometer.android.ui.adapter.DrawerListenerAdapter
@@ -40,7 +40,7 @@ import javax.inject.Inject
 class GarageActivity : AbstractMenuActivity(AppStarted(Garage())) {
 
     @Inject
-    lateinit var garageFacade: GarageFacade
+    lateinit var vehicleRepository: VehicleRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,7 +96,7 @@ class GarageActivity : AbstractMenuActivity(AppStarted(Garage())) {
                 .currency(text(R.id.new_vehicle_currency_edit))
                 .id(0)
                 .build()
-                .let(garageFacade::registerVehicle)
+                .let(vehicleRepository::registerVehicle)
 
         onAction(Actions.Menu.Garage)
     }

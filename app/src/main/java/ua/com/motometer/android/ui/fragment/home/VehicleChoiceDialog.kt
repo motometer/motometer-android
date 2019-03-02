@@ -8,7 +8,7 @@ import android.support.v4.app.DialogFragment
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.dao.RoomModule
 import ua.com.motometer.android.core.facade.api.FacadeModule
-import ua.com.motometer.android.core.facade.api.GarageFacade
+import ua.com.motometer.android.core.facade.api.VehicleRepository
 import ua.com.motometer.android.core.facade.api.model.Vehicle
 import ua.com.motometer.android.ui.fragment.DaggerFragmentComponent
 import ua.com.motometer.android.ui.state.api.ActionListener
@@ -19,7 +19,7 @@ import javax.inject.Inject
 class VehicleChoiceDialog : DialogFragment() {
 
     @Inject
-    lateinit var garageFacade: GarageFacade
+    lateinit var vehicleRepository: VehicleRepository
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         super.onCreateDialog(savedInstanceState)
@@ -34,7 +34,7 @@ class VehicleChoiceDialog : DialogFragment() {
         val actionListener: ActionListener = activity as ActionListener
 
         val vehicles = ReadTask()
-                .execute(garageFacade)
+                .execute(vehicleRepository)
                 .get() //TODO don't use blocking get
 
         val strings = vehicles.map { "${it.registrationNumber()} ${it.manufacturer()} ${it.model()}" }
@@ -47,8 +47,8 @@ class VehicleChoiceDialog : DialogFragment() {
     }
 }
 
-class ReadTask : AsyncTask<GarageFacade, Unit, List<Vehicle>>() {
-    override fun doInBackground(vararg params: GarageFacade?): List<Vehicle> {
+class ReadTask : AsyncTask<VehicleRepository, Unit, List<Vehicle>>() {
+    override fun doInBackground(vararg params: VehicleRepository?): List<Vehicle> {
         return params.first()?.vehicles() ?: listOf()
     }
 }

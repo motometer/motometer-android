@@ -10,7 +10,7 @@ import org.junit.runner.RunWith
 import ua.com.motometer.android.core.db.ApplicationDatabase
 
 @RunWith(AndroidJUnit4::class)
-open class AbstractDaoTest {
+abstract class AbstractDaoTest {
 
     lateinit var applicationDatabase: ApplicationDatabase
 

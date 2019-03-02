@@ -29,9 +29,5 @@ class VehicleDaoTest : AbstractDaoTest() {
         val nextId = vehicleDao.count()
 
         assertThat(nextId).isEqualTo(1L)
-
-        val found = vehicleDao.findById(id)
-
-        assertThat(found).isEqualTo(newVehicle)
     }
 }
