@@ -1,7 +1,7 @@
 package ua.com.motometer.android.ui.fragment.common
 
 import android.content.Context
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import ua.com.motometer.android.ui.state.api.ActionListener
 
 open class ListenerFragment : Fragment() {

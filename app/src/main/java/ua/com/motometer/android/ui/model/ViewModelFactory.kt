@@ -1,7 +1,7 @@
 package ua.com.motometer.android.ui.model
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import ua.com.motometer.android.core.facade.api.UserRepository
 import ua.com.motometer.android.core.facade.api.VehicleRepository
 

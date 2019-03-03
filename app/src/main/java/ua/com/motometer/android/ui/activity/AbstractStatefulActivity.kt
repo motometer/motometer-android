@@ -1,7 +1,7 @@
 package ua.com.motometer.android.ui.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import ua.com.motometer.android.ui.state.api.Action
 import ua.com.motometer.android.ui.state.api.ActionListener
 import ua.com.motometer.android.ui.state.api.Actions

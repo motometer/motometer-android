@@ -1,12 +1,12 @@
 package ua.com.motometer.android.ui.fragment.garage
 
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.garage_item.view.*
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.facade.api.model.Vehicle

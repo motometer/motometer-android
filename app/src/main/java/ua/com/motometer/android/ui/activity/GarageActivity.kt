@@ -2,10 +2,10 @@ package ua.com.motometer.android.ui.activity
 
 import android.os.AsyncTask
 import android.os.Bundle
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
+import androidx.drawerlayout.widget.DrawerLayout
 import android.util.Log
 import android.widget.EditText
+import androidx.appcompat.app.ActionBarDrawerToggle
 import kotlinx.android.synthetic.main.activity_garage.*
 import kotlinx.android.synthetic.main.app_bar_garage.*
 import kotlinx.android.synthetic.main.fragment_new_vehicle.*

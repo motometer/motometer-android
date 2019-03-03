@@ -1,7 +1,7 @@
 package ua.com.motometer.android.ui.model
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ua.com.motometer.android.core.facade.api.VehicleRepository

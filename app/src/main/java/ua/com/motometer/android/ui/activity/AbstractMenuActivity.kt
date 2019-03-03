@@ -1,10 +1,10 @@
 package ua.com.motometer.android.ui.activity
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import android.util.Log
 import android.view.Menu
 import com.firebase.ui.auth.AuthUI

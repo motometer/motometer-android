@@ -3,11 +3,11 @@ package ua.com.motometer.android.ui.activity
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
+import androidx.drawerlayout.widget.DrawerLayout
 import android.util.Log
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 import ua.com.motometer.android.R

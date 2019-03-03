@@ -1,7 +1,7 @@
 package ua.com.motometer.android.ui.adapter
 
-import android.support.design.widget.NavigationView
 import android.view.MenuItem
+import com.google.android.material.navigation.NavigationView
 import ua.com.motometer.android.R
 import ua.com.motometer.android.ui.state.api.ActionListener
 import ua.com.motometer.android.ui.state.api.Actions
