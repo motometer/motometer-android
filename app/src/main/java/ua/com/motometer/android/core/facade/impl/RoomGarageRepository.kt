@@ -10,9 +10,9 @@ import ua.com.motometer.android.core.facade.impl.adapter.VehicleDaoModelAdapter
 
 class RoomGarageRepository(private var vehicleDao: VehicleDao) : VehicleRepository {
 
-    override fun vehicles(): List<Vehicle> {
+    override fun vehicles(): Flowable<List<Vehicle>> {
         return vehicleDao.findAll()
-                .map(::VehicleDaoModelAdapter)
+                .map { it.map(::VehicleDaoModelAdapter) }
     }
 
     override fun registerVehicle(registration: Vehicle) {

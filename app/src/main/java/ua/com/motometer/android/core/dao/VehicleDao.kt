@@ -10,7 +10,7 @@ import io.reactivex.Flowable
 interface VehicleDao {
 
     @Query("SELECT * FROM Vehicle")
-    fun findAll(): List<Vehicle>
+    fun findAll(): Flowable<List<Vehicle>>
 
     @Query("SELECT * FROM Vehicle WHERE id = :id")
     fun findById(id: Long): Flowable<Vehicle>
