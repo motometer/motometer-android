@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 import ua.com.motometer.android.R
 import ua.com.motometer.android.core.dao.RoomModule
-import ua.com.motometer.android.core.facade.api.ExpenseFacade
+import ua.com.motometer.android.core.facade.api.ExpenseRepository
 import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.firebase.FirebaseModule
 import ua.com.motometer.android.ui.adapter.DrawerListenerAdapter
@@ -41,7 +41,7 @@ import javax.inject.Inject
 class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
 
     @Inject
-    lateinit var expenseFacade: ExpenseFacade
+    lateinit var expenseRepository: ExpenseRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,14 +104,14 @@ class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
 
     private fun recordCreated(recordCreated: FuelRecordCreated) {
         AsyncTask.execute {
-            expenseFacade.addRecord(recordCreated.record)
+            expenseRepository.addRecord(recordCreated.record)
             onAction(Actions.Menu.Home)
         }
     }
 
     private fun recordCreated(recordCreated: ServiceRecordCreated) {
         AsyncTask.execute {
-            expenseFacade.addRecord(recordCreated.record)
+            expenseRepository.addRecord(recordCreated.record)
             onAction(Actions.Menu.Home)
         }
     }

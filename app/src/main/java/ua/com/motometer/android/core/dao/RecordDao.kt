@@ -3,6 +3,7 @@ package ua.com.motometer.android.core.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import io.reactivex.Single
 
 @Dao
 interface RecordDao {
@@ -11,5 +12,5 @@ interface RecordDao {
     fun insert(record: Record)
 
     @Query("SELECT * FROM Record")
-    fun findAll(): List<Record>
+    fun findAll(): Single<List<Record>>
 }
