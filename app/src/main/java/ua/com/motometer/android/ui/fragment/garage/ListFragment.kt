@@ -10,10 +10,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ua.com.motometer.android.R
-import ua.com.motometer.android.core.dao.RoomModule
-import ua.com.motometer.android.core.facade.api.FacadeModule
-import ua.com.motometer.android.ui.fragment.DaggerFragmentComponent
 import ua.com.motometer.android.ui.fragment.common.ListenerFragment
+import ua.com.motometer.android.ui.fragment.common.injector
 import ua.com.motometer.android.ui.model.VehicleViewModel
 import ua.com.motometer.android.ui.model.ViewModelFactory
 import ua.com.motometer.android.ui.state.api.Actions
@@ -50,10 +48,6 @@ class ListFragment : ListenerFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        DaggerFragmentComponent.builder()
-                .facadeModule(FacadeModule())
-                .roomModule(RoomModule(activity!!.application))
-                .build()
-                .inject(this)
+        injector().inject(this)
     }
 }

@@ -5,10 +5,8 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import ua.com.motometer.android.R
-import ua.com.motometer.android.core.dao.RoomModule
-import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.VehicleRepository
-import ua.com.motometer.android.ui.fragment.DaggerFragmentComponent
+import ua.com.motometer.android.ui.fragment.common.injector
 import ua.com.motometer.android.ui.state.api.ActionListener
 import ua.com.motometer.android.ui.state.api.Actions
 import javax.inject.Inject
@@ -21,11 +19,7 @@ class VehicleChoiceDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         super.onCreateDialog(savedInstanceState)
-        DaggerFragmentComponent.builder()
-                .facadeModule(FacadeModule())
-                .roomModule(RoomModule(activity!!.application))
-                .build()
-                .inject(this)
+        injector().inject(this)
 
         val builder = AlertDialog.Builder(activity)
 

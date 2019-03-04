@@ -10,11 +10,8 @@ import kotlinx.android.synthetic.main.activity_garage.*
 import kotlinx.android.synthetic.main.app_bar_garage.*
 import kotlinx.android.synthetic.main.fragment_new_vehicle.*
 import ua.com.motometer.android.R
-import ua.com.motometer.android.core.dao.RoomModule
-import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.VehicleRepository
 import ua.com.motometer.android.core.facade.api.model.ImmutableVehicle
-import ua.com.motometer.android.core.firebase.FirebaseModule
 import ua.com.motometer.android.ui.adapter.DrawerListenerAdapter
 import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
 import ua.com.motometer.android.ui.adapter.OnNavigationItemSelectedListenerAdapter
@@ -46,12 +43,7 @@ class GarageActivity : AbstractMenuActivity(AppStarted(Garage())) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_garage)
         setSupportActionBar(toolbar)
-        DaggerActivityComponent.builder()
-                .facadeModule(FacadeModule())
-                .roomModule(RoomModule(application))
-                .firebaseModule(FirebaseModule())
-                .build()
-                .inject(this)
+        injector().inject(this)
 
         fab.setOnClickListener(OnClickListenerAdapter(Actions.Garage.Add, this))
 

@@ -12,9 +12,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.nav_header_home.*
-import ua.com.motometer.android.core.dao.RoomModule
-import ua.com.motometer.android.core.facade.api.FacadeModule
-import ua.com.motometer.android.core.firebase.FirebaseModule
 import ua.com.motometer.android.ui.common.ReadWriteTask
 import ua.com.motometer.android.ui.model.UserViewModel
 import ua.com.motometer.android.ui.model.ViewModelFactory
@@ -38,13 +35,7 @@ abstract class AbstractMenuActivity(initialState: State) : AbstractStatefulActiv
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DaggerActivityComponent.builder()
-                .facadeModule(FacadeModule())
-                .roomModule(RoomModule(application))
-                .firebaseModule(FirebaseModule())
-                .build()
-                .inject(this)
-
+        injector().inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(UserViewModel::class.java)
     }
 

@@ -12,10 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import ua.com.motometer.android.R
-import ua.com.motometer.android.core.dao.RoomModule
-import ua.com.motometer.android.core.facade.api.FacadeModule
 import ua.com.motometer.android.core.facade.api.model.Vehicle
-import ua.com.motometer.android.ui.fragment.DaggerFragmentComponent
+import ua.com.motometer.android.ui.fragment.common.injector
 import ua.com.motometer.android.ui.model.VehicleViewModel
 import ua.com.motometer.android.ui.model.ViewModelFactory
 import javax.inject.Inject
@@ -29,12 +27,7 @@ class VehicleDetailsFragment : Fragment() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        DaggerFragmentComponent.builder()
-                .facadeModule(FacadeModule())
-                .roomModule(RoomModule(activity!!.application))
-                .build()
-                .inject(this)
-
+        injector().inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
