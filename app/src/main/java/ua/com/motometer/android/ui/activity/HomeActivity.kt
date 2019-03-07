@@ -7,7 +7,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 import ua.com.motometer.android.R
@@ -46,11 +45,6 @@ class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
         setSupportActionBar(toolbar)
 
         injector().inject(this)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
