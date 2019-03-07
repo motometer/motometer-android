@@ -1,9 +1,9 @@
 package ua.com.motometer.android.ui.adapter
 
-import android.support.annotation.IdRes
-import android.support.design.widget.NavigationView
-import android.support.v4.widget.DrawerLayout
+import androidx.annotation.IdRes
+import androidx.drawerlayout.widget.DrawerLayout
 import android.view.View
+import com.google.android.material.navigation.NavigationView
 import ua.com.motometer.android.ui.state.api.ActionListener
 import ua.com.motometer.android.ui.state.api.Actions
 

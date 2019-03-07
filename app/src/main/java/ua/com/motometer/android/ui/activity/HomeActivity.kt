@@ -3,18 +3,15 @@ package ua.com.motometer.android.ui.activity
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
+import androidx.drawerlayout.widget.DrawerLayout
 import android.util.Log
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 import ua.com.motometer.android.R
-import ua.com.motometer.android.core.dao.RoomModule
-import ua.com.motometer.android.core.facade.api.ExpenseFacade
-import ua.com.motometer.android.core.facade.api.FacadeModule
-import ua.com.motometer.android.core.firebase.FirebaseModule
+import ua.com.motometer.android.core.facade.api.ExpenseRepository
 import ua.com.motometer.android.ui.adapter.DrawerListenerAdapter
 import ua.com.motometer.android.ui.adapter.OnClickListenerAdapter
 import ua.com.motometer.android.ui.adapter.OnNavigationItemSelectedListenerAdapter
@@ -41,19 +38,14 @@ import javax.inject.Inject
 class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
 
     @Inject
-    lateinit var expenseFacade: ExpenseFacade
+    lateinit var expenseRepository: ExpenseRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
 
-        DaggerActivityComponent.builder()
-                .facadeModule(FacadeModule())
-                .roomModule(RoomModule(application))
-                .firebaseModule(FirebaseModule())
-                .build()
-                .inject(this)
+        injector().inject(this)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -104,14 +96,14 @@ class HomeActivity : AbstractMenuActivity(AppStarted(Home)) {
 
     private fun recordCreated(recordCreated: FuelRecordCreated) {
         AsyncTask.execute {
-            expenseFacade.addRecord(recordCreated.record)
+            expenseRepository.addRecord(recordCreated.record)
             onAction(Actions.Menu.Home)
         }
     }
 
     private fun recordCreated(recordCreated: ServiceRecordCreated) {
         AsyncTask.execute {
-            expenseFacade.addRecord(recordCreated.record)
+            expenseRepository.addRecord(recordCreated.record)
             onAction(Actions.Menu.Home)
         }
     }

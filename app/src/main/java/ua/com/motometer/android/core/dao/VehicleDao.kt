@@ -1,16 +1,16 @@
 package ua.com.motometer.android.core.dao
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy
-import android.arch.persistence.room.Query
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import io.reactivex.Flowable
 
 @Dao
 interface VehicleDao {
 
     @Query("SELECT * FROM Vehicle")
-    fun findAll(): List<Vehicle>
+    fun findAll(): Flowable<List<Vehicle>>
 
     @Query("SELECT * FROM Vehicle WHERE id = :id")
     fun findById(id: Long): Flowable<Vehicle>

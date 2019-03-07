@@ -1,8 +1,9 @@
 package ua.com.motometer.android.core.facade.impl
 
+import io.reactivex.Single
 import ua.com.motometer.android.core.dao.Record
 import ua.com.motometer.android.core.dao.RecordDao
-import ua.com.motometer.android.core.facade.api.ExpenseFacade
+import ua.com.motometer.android.core.facade.api.ExpenseRepository
 import ua.com.motometer.android.core.facade.api.model.ExpenseRecord
 import ua.com.motometer.android.core.facade.api.model.FuelRecord
 import ua.com.motometer.android.core.facade.api.model.ImmutableExpenseRecord
@@ -11,17 +12,20 @@ import java.math.BigDecimal
 import java.time.LocalDate
 import java.util.*
 
-class RoomExpenseFacade(private val recordDao: RecordDao) : ExpenseFacade {
+class RoomExpenseRepository(private val recordDao: RecordDao) : ExpenseRepository {
 
-    override fun expenses(): List<ExpenseRecord> {
-        return recordDao.findAll().map {
-            ImmutableExpenseRecord.of(
-                    BigDecimal(it.amount),
-                    LocalDate.parse(it.date),
-                    it.comment
+    override fun expenses(): Single<List<ExpenseRecord>> {
+        return recordDao.findAll()
+                .map {
+                    it.map {
+                        ImmutableExpenseRecord.of(
+                                BigDecimal(it.amount),
+                                LocalDate.parse(it.date),
+                                it.comment
 
-            )
-        }
+                        )
+                    }
+                }
     }
 
     override fun addRecord(record: FuelRecord) {

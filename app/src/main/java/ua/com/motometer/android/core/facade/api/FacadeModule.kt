@@ -6,7 +6,7 @@ import ua.com.motometer.android.core.dao.RecordDao
 import ua.com.motometer.android.core.dao.RoomModule
 import ua.com.motometer.android.core.dao.VehicleDao
 import ua.com.motometer.android.core.facade.impl.DefaultUserRepository
-import ua.com.motometer.android.core.facade.impl.RoomExpenseFacade
+import ua.com.motometer.android.core.facade.impl.RoomExpenseRepository
 import ua.com.motometer.android.core.facade.impl.RoomGarageRepository
 import ua.com.motometer.android.core.firebase.FirebaseAdapter
 import ua.com.motometer.android.core.firebase.FirebaseModule
@@ -21,5 +21,5 @@ class FacadeModule {
     fun provideGarageRepository(vehicleDao: VehicleDao): VehicleRepository = RoomGarageRepository(vehicleDao)
 
     @Provides
-    fun provideExpenseFacade(recordDao: RecordDao): ExpenseFacade = RoomExpenseFacade(recordDao)
+    fun provideExpenseRepository(recordDao: RecordDao): ExpenseRepository = RoomExpenseRepository(recordDao)
 }

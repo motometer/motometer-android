@@ -1,7 +1,6 @@
 package ua.com.motometer.android.core.dao
 
-import android.support.test.runner.AndroidJUnit4
-import org.assertj.core.api.Assertions.assertThat
+import androidx.test.runner.AndroidJUnit4
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.*
@@ -22,6 +21,8 @@ class RecordDaoTest : AbstractDaoTest() {
 
         recordDao.insert(record)
 
-        assertThat(recordDao.findAll()).hasSize(1)
+        recordDao.findAll()
+                .test()
+                .assertValue { it.size == 1 }
     }
 }

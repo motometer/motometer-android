@@ -5,7 +5,7 @@ import ua.com.motometer.android.core.facade.api.model.Vehicle
 
 interface VehicleRepository {
 
-    fun vehicles(): List<Vehicle>
+    fun vehicles(): Flowable<List<Vehicle>>
 
     fun registerVehicle(registration: Vehicle)
 
